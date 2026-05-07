@@ -1,0 +1,66 @@
+<div class="@ClassNames">
+    @if (!string.IsNullOrWhiteSpace(Label))
+    {
+        <label class="noknin-select__label" id="@LabelId">
+            @Label
+            @if (Required)
+            {
+                <span aria-hidden="true">*</span>
+            }
+        </label>
+    }
+
+    <button type="button"
+            class="noknin-select__trigger"
+            disabled="@Disabled"
+            aria-haspopup="listbox"
+            aria-expanded="@_open"
+            aria-labelledby="@LabelledBy"
+            aria-describedby="@DescribedBy"
+            aria-invalid="@HasError"
+            @onclick="Toggle"
+            @onkeydown="HandleTriggerKeyDown">
+
+        <span class="@ValueClassNames">
+            @SelectedLabel
+        </span>
+
+        <span class="noknin-select__chevron" aria-hidden="true">˅</span>
+    </button>
+
+    @if (_open)
+    {
+        <div class="noknin-select__list"
+             role="listbox"
+             aria-labelledby="@LabelId"
+             tabindex="-1"
+             @onkeydown="HandleListKeyDown">
+
+            @foreach (var option in Options)
+            {
+                <button type="button"
+                        class="@GetOptionClassNames(option)"
+                        role="option"
+                        aria-selected="@(option.Value == Value)"
+                        disabled="@option.Disabled"
+                        @onclick="() => SelectAsync(option)">
+                    @option.Label
+                </button>
+            }
+        </div>
+    }
+
+    @if (!string.IsNullOrWhiteSpace(Description) && !HasError)
+    {
+        <p id="@DescriptionId" class="noknin-select__description">
+            @Description
+        </p>
+    }
+
+    @if (HasError)
+    {
+        <p id="@ErrorId" class="noknin-select__error">
+            @ErrorText
+        </p>
+    }
+</div>

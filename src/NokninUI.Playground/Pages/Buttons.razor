@@ -272,12 +272,44 @@
         </NokninTooltip>
     </div>
 
+    <hr style="margin:2rem 0;" />
+
+    <h2>Select</h2>
+
+    <div style="max-width:400px; display:grid; gap:1rem;">
+        <NokninSelect Label="Framework" Placeholder="Choose framework" Options="@_frameworkOptions"
+                      Value="@_selectedFramework" ValueChanged="value => _selectedFramework = value"
+                      Description="Select the framework you use most." />
+
+        <NokninSelect Label="Status" Options="@_statusOptions" Value="@_selectedStatus"
+                      ValueChanged="value => _selectedStatus = value" ErrorText="Status is required." Required />
+
+        <NokninSelect Label="Disabled select" Options="@_frameworkOptions" Disabled />
+    </div>
+
 </div>
 
 @code {
     private String noknin = "Noknin";
     private string? _activeTab = "overview";
 
+    private string? _selectedFramework;
+    private string? _selectedStatus;
+
+    private readonly IReadOnlyList<NokninSelectOption> _frameworkOptions =
+    [
+        new() { Value = "blazor", Label = "Blazor" },
+        new() { Value = "react", Label = "React" },
+        new() { Value = "vue", Label = "Vue" },
+        new() { Value = "angular", Label = "Angular", Disabled = true }
+    ];
+
+    private readonly IReadOnlyList<NokninSelectOption> _statusOptions =
+    [
+        new() { Value = "active", Label = "Active" },
+        new() { Value = "pending", Label = "Pending" },
+        new() { Value = "archived", Label = "Archived" }
+    ];
 
     private void HandleAlertDismiss()
     {
