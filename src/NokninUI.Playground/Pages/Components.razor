@@ -553,6 +553,49 @@
                           PageChanged="value => _compactPaginationPage = value" />
     </div>
 
+    <hr style="margin:2rem 0;" />
+
+    <h2>Paged Table</h2>
+
+    <div style="display:grid; gap:1rem;">
+        <NokninTable Variant="NokninTableVariant.Striped" Hoverable Caption="Paged table example">
+            <NokninTableHeader>
+                <NokninTableRow>
+                    <NokninTableCell Header>Project</NokninTableCell>
+                    <NokninTableCell Header Align="NokninTableCellAlign.Center">Status</NokninTableCell>
+                    <NokninTableCell Header Numeric>Progress</NokninTableCell>
+                    <NokninTableCell Header NoWrap>Updated</NokninTableCell>
+                </NokninTableRow>
+            </NokninTableHeader>
+
+            <NokninTableBody>
+                @foreach (var project in PagedProjects)
+                {
+                    <NokninTableRow>
+                        <NokninTableCell>@project.Name</NokninTableCell>
+
+                        <NokninTableCell Align="NokninTableCellAlign.Center">
+                            <NokninBadge Variant="@GetProjectBadgeVariant(project.Status)">
+                                @project.Status
+                            </NokninBadge>
+                        </NokninTableCell>
+
+                        <NokninTableCell Numeric>
+                            @project.Progress%
+                        </NokninTableCell>
+
+                        <NokninTableCell NoWrap>
+                            @project.Updated
+                        </NokninTableCell>
+                    </NokninTableRow>
+                }
+            </NokninTableBody>
+        </NokninTable>
+
+        <NokninPagination TotalItems="@_projects.Count" PageSize="@_pagedTablePageSize" Page="@_pagedTablePage"
+                          PageChanged="HandlePagedTablePageChanged" />
+    </div>
+
 </div>
 
 @code {
@@ -614,6 +657,10 @@
     private int _largePaginationPage = 5;
     private int _compactPaginationPage = 3;
 
+    private int _pagedTablePage = 1;
+    private int _pagedTablePageSize = 5;
+
+
     private void HandleAlertDismiss()
     {
         Console.WriteLine("Alert dismissed");
@@ -655,4 +702,56 @@
     {
         Toasts.Info("Table row", "You clicked a table row.");
     }
+
+    private IReadOnlyList<ProjectRow> PagedProjects
+    {
+        get
+        {
+            return _projects
+                .Skip((_pagedTablePage - 1) * _pagedTablePageSize)
+                .Take(_pagedTablePageSize)
+                .ToList();
+        }
+    }
+
+    private Task HandlePagedTablePageChanged(int page)
+    {
+        _pagedTablePage = page;
+        return Task.CompletedTask;
+    }
+
+    private static NokninBadgeVariant GetProjectBadgeVariant(string status)
+    {
+        return status switch
+        {
+            "Active" => NokninBadgeVariant.Success,
+            "Testing" => NokninBadgeVariant.Info,
+            "Paused" => NokninBadgeVariant.Neutral,
+            "Blocked" => NokninBadgeVariant.Error,
+            "Planning" => NokninBadgeVariant.Warning,
+            _ => NokninBadgeVariant.Neutral
+        };
+    }
+
+    private sealed record ProjectRow(
+        string Name,
+        string Status,
+        int Progress,
+        string Updated);
+
+    private readonly IReadOnlyList<ProjectRow> _projects =
+    [
+        new("NokninUI", "Active", 82, "Today"),
+    new("Playground", "Testing", 64, "Yesterday"),
+    new("Docs", "Paused", 20, "2 days ago"),
+    new("Theme provider", "Planning", 10, "3 days ago"),
+    new("Overlay service", "Planning", 5, "4 days ago"),
+    new("Focus trap", "Blocked", 35, "5 days ago"),
+    new("Data grid", "Planning", 0, "1 week ago"),
+    new("Icon system", "Active", 48, "1 week ago"),
+    new("Theme persistence", "Testing", 70, "2 weeks ago"),
+    new("System theme sync", "Paused", 25, "2 weeks ago"),
+    new("Table primitives", "Active", 90, "Today"),
+    new("Pagination", "Testing", 75, "Yesterday")
+    ];
 }
