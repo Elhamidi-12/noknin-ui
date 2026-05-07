@@ -1,0 +1,47 @@
+.noknin-radio-group {
+    display: grid;
+    gap: var(--noknin-space-2);
+    color: var(--noknin-text-primary);
+}
+
+.noknin-radio-group__label {
+    color: var(--noknin-text-primary);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.noknin-radio-group__required {
+    color: var(--noknin-status-error);
+    margin-left: var(--noknin-space-1);
+}
+
+.noknin-radio-group__items {
+    display: flex;
+    gap: var(--noknin-space-3);
+}
+
+.noknin-radio-group--vertical .noknin-radio-group__items {
+    flex-direction: column;
+}
+
+.noknin-radio-group--horizontal .noknin-radio-group__items {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.noknin-radio-group__description {
+    color: var(--noknin-text-muted);
+    font-size: 0.875rem;
+    line-height: 1.4;
+}
+
+.noknin-radio-group__error {
+    color: var(--noknin-status-error);
+    font-size: 0.875rem;
+    line-height: 1.4;
+}
+
+.noknin-radio-group--disabled {
+    opacity: 0.6;
+}

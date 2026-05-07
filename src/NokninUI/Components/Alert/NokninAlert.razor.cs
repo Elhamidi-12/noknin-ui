@@ -25,14 +25,20 @@ public partial class NokninAlert
 
     [Parameter] public string? AriaLive { get; set; }
 
-    private string Icon => Variant switch
+    private string Icon
     {
-        NokninAlertVariant.Success => "✓",
-        NokninAlertVariant.Warning => "!",
-        NokninAlertVariant.Error => "!",
-        NokninAlertVariant.Neutral => "•",
-        _ => "i"
-    };
+        get
+        {
+            return Variant switch
+            {
+                NokninAlertVariant.Success => "✓",
+                NokninAlertVariant.Warning => "!",
+                NokninAlertVariant.Error => "!",
+                NokninAlertVariant.Neutral => "•",
+                _ => "i"
+            };
+        }
+    }
 
     private string ComputedRole
     {

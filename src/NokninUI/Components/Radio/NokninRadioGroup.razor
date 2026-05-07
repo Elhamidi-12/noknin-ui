@@ -1,0 +1,33 @@
+<CascadingValue Value="this">
+    <div class="@RootClass" style="@Style" role="radiogroup" aria-labelledby="@LabelId" aria-describedby="@DescribedBy">
+        @if (!string.IsNullOrWhiteSpace(Label))
+        {
+            <div id="@LabelId" class="noknin-radio-group__label">
+                @Label
+
+                @if (Required)
+                {
+                    <span class="noknin-radio-group__required" aria-hidden="true">*</span>
+                }
+            </div>
+        }
+
+        <div class="noknin-radio-group__items">
+            @ChildContent
+        </div>
+
+        @if (!string.IsNullOrWhiteSpace(Description) && !HasError)
+        {
+            <div id="@DescriptionId" class="noknin-radio-group__description">
+                @Description
+            </div>
+        }
+
+        @if (!string.IsNullOrWhiteSpace(ErrorText))
+        {
+            <div id="@ErrorId" class="noknin-radio-group__error">
+                @ErrorText
+            </div>
+        }
+    </div>
+</CascadingValue>

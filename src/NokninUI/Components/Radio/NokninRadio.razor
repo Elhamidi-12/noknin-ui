@@ -1,0 +1,55 @@
+<label class="@RootClass" style="@Style">
+    <span class="noknin-radio__control-wrap">
+        <input
+            id="@Id"
+            class="noknin-radio__input"
+            type="radio"
+            name="@GroupName"
+            value="@Value"
+            checked="@IsChecked"
+            disabled="@IsDisabled"
+            required="@IsRequired"
+            aria-invalid="@HasError.ToString().ToLowerInvariant()"
+            aria-describedby="@DescribedBy"
+            @onchange="HandleChangeAsync" />
+
+        <span class="noknin-radio__control" aria-hidden="true">
+            <span class="noknin-radio__dot"></span>
+        </span>
+    </span>
+
+    <span class="noknin-radio__content">
+        @if (!string.IsNullOrWhiteSpace(Label))
+        {
+            <span class="noknin-radio__label">
+                @Label
+
+                @if (ShowRequiredIndicator)
+                {
+                    <span class="noknin-radio__required" aria-hidden="true">*</span>
+                }
+            </span>
+        }
+
+        @if (!string.IsNullOrWhiteSpace(Description) && !HasError)
+        {
+            <span id="@DescriptionId" class="noknin-radio__description">
+                @Description
+            </span>
+        }
+
+        @if (!string.IsNullOrWhiteSpace(ErrorText))
+        {
+            <span id="@ErrorId" class="noknin-radio__error">
+                @ErrorText
+            </span>
+        }
+
+        @if (ChildContent is not null)
+        {
+            <span class="noknin-radio__child-content">
+                @ChildContent
+            </span>
+        }
+    </span>
+</label>

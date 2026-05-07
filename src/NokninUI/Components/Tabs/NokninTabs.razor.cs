@@ -15,7 +15,13 @@ public partial class NokninTabs
 
     [Parameter] public string? Class { get; set; }
 
-    internal string? CurrentValue => Value;
+    internal string? CurrentValue
+    {
+        get
+        {
+            return Value;
+        }
+    }
 
     internal async Task SelectAsync(string value)
     {

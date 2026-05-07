@@ -11,10 +11,29 @@ public partial class NokninTabPanel
     [Parameter] public bool Lazy { get; set; }
     [Parameter] public string? Class { get; set; }
 
-    private bool Selected => Tabs?.CurrentValue == Value;
+    private bool Selected
+    {
+        get
+        {
+            return Tabs?.CurrentValue == Value;
+        }
+    }
 
-    private string TabId => $"noknin-tab-{Value}";
-    private string PanelId => $"noknin-tab-panel-{Value}";
+    private string TabId
+    {
+        get
+        {
+            return $"noknin-tab-{Value}";
+        }
+    }
+
+    private string PanelId
+    {
+        get
+        {
+            return $"noknin-tab-panel-{Value}";
+        }
+    }
 
     private string ClassNames
     {

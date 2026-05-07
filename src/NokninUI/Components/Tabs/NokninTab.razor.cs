@@ -12,12 +12,37 @@ public partial class NokninTab
     [Parameter] public bool Disabled { get; set; }
     [Parameter] public string? Class { get; set; }
 
-    private bool Selected => Tabs?.CurrentValue == Value;
+    private bool Selected
+    {
+        get
+        {
+            return Tabs?.CurrentValue == Value;
+        }
+    }
 
-    private string TabId => $"noknin-tab-{Value}";
-    private string PanelId => $"noknin-tab-panel-{Value}";
+    private string TabId
+    {
+        get
+        {
+            return $"noknin-tab-{Value}";
+        }
+    }
 
-    private int TabIndex => Selected ? 0 : -1;
+    private string PanelId
+    {
+        get
+        {
+            return $"noknin-tab-panel-{Value}";
+        }
+    }
+
+    private int TabIndex
+    {
+        get
+        {
+            return Selected ? 0 : -1;
+        }
+    }
 
     private string ClassNames
     {

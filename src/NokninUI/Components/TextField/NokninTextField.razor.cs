@@ -19,11 +19,37 @@ public partial class NokninTextField
     [Parameter] public bool Required { get; set; }
     [Parameter] public string? Class { get; set; }
 
-    private bool HasError => !string.IsNullOrWhiteSpace(ErrorText);
+    private bool HasError
+    {
+        get
+        {
+            return !string.IsNullOrWhiteSpace(ErrorText);
+        }
+    }
 
-    private string InputId => Id ?? _generatedId;
-    private string DescriptionId => $"{InputId}-description";
-    private string ErrorId => $"{InputId}-error";
+    private string InputId
+    {
+        get
+        {
+            return Id ?? _generatedId;
+        }
+    }
+
+    private string DescriptionId
+    {
+        get
+        {
+            return $"{InputId}-description";
+        }
+    }
+
+    private string ErrorId
+    {
+        get
+        {
+            return $"{InputId}-error";
+        }
+    }
 
     private string? DescribedBy
     {

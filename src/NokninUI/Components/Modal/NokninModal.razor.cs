@@ -25,7 +25,13 @@ public partial class NokninModal
 
     [Parameter] public string? Class { get; set; }
 
-    private string TitleId => _titleId;
+    private string TitleId
+    {
+        get
+        {
+            return _titleId;
+        }
+    }
 
     private string ClassNames
     {

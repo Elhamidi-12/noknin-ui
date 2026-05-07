@@ -1,15 +1,17 @@
 using Microsoft.AspNetCore.Components;
 using NokninUI.Data.Enums;
 
-namespace NokninUI.Components.Checkbox;
+namespace NokninUI.Components.Radio;
 
-public partial class NokninCheckbox
+public partial class NokninRadioGroup
 {
-    private readonly string _componentId = $"noknin-checkbox-{Guid.NewGuid():N}";
+    private readonly string _componentId = $"noknin-radio-group-{Guid.NewGuid():N}";
 
-    [Parameter] public bool Checked { get; set; }
+    [Parameter] public string? Value { get; set; }
 
-    [Parameter] public EventCallback<bool> CheckedChanged { get; set; }
+    [Parameter] public EventCallback<string?> ValueChanged { get; set; }
+
+    [Parameter] public string? Name { get; set; }
 
     [Parameter] public string? Label { get; set; }
 
@@ -23,13 +25,25 @@ public partial class NokninCheckbox
 
     [Parameter] public NokninSize Size { get; set; } = NokninSize.Medium;
 
+    [Parameter] public NokninRadioOrientation Orientation { get; set; } = NokninRadioOrientation.Vertical;
+
     [Parameter] public RenderFragment? ChildContent { get; set; }
 
     [Parameter] public string? Class { get; set; }
 
     [Parameter] public string? Style { get; set; }
 
-    private bool HasError
+    internal string GroupName
+    {
+        get
+        {
+            return string.IsNullOrWhiteSpace(Name)
+        ? _componentId
+        : Name;
+        }
+    }
+
+    internal bool HasError
     {
         get
         {
@@ -37,11 +51,11 @@ public partial class NokninCheckbox
         }
     }
 
-    private string Id
+    private string LabelId
     {
         get
         {
-            return $"{_componentId}-input";
+            return $"{_componentId}-label";
         }
     }
 
@@ -87,26 +101,29 @@ public partial class NokninCheckbox
             " ",
             new[]
             {
-                "noknin-checkbox",
-                $"noknin-checkbox--{Size.ToString().ToLowerInvariant()}",
-                Checked ? "noknin-checkbox--checked" : null,
-                Disabled ? "noknin-checkbox--disabled" : null,
-                HasError ? "noknin-checkbox--error" : null,
+                "noknin-radio-group",
+                $"noknin-radio-group--{Size.ToString().ToLowerInvariant()}",
+                $"noknin-radio-group--{Orientation.ToString().ToLowerInvariant()}",
+                Disabled ? "noknin-radio-group--disabled" : null,
+                HasError ? "noknin-radio-group--error" : null,
                 Class
             }.Where(value => !string.IsNullOrWhiteSpace(value)));
         }
     }
 
-    private async Task HandleChangeAsync(ChangeEventArgs args)
+    internal bool IsSelected(string? value)
+    {
+        return Value == value;
+    }
+
+    internal async Task SelectAsync(string? value)
     {
         if (Disabled)
         {
             return;
         }
 
-        var isChecked = args.Value is bool value && value;
-
-        Checked = isChecked;
-        await CheckedChanged.InvokeAsync(Checked);
+        Value = value;
+        await ValueChanged.InvokeAsync(Value);
     }
 }
