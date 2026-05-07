@@ -155,6 +155,34 @@
         </Footer>
     </NokninModal>
 
+    <hr style="margin:2rem 0;" />
+
+    <h2>Dropdown</h2>
+
+    <NokninDropdown Align="NokninDropdownAlign.Start">
+        <Trigger>
+            Actions ▾
+        </Trigger>
+
+        <ChildContent>
+            <NokninDropdownItem OnClick="HandleDropdownAction">
+                Edit
+            </NokninDropdownItem>
+
+            <NokninDropdownItem>
+                Duplicate
+            </NokninDropdownItem>
+
+            <NokninDropdownItem Disabled>
+                Archive
+            </NokninDropdownItem>
+
+            <NokninDropdownItem>
+                Delete
+            </NokninDropdownItem>
+        </ChildContent>
+    </NokninDropdown>
+
 </div>
 
 @code {
@@ -189,5 +217,10 @@
     private void CloseModal()
     {
         _modalOpen = false;
+    }
+
+    private void HandleDropdownAction()
+    {
+        Console.WriteLine("Dropdown action clicked");
     }
 }

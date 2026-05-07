@@ -1,0 +1,21 @@
+<div class="@ClassNames">
+    <button type="button"
+            class="noknin-dropdown__trigger"
+            aria-haspopup="menu"
+            aria-expanded="@Open"
+            @onclick="ToggleAsync"
+            @onkeydown="HandleTriggerKeyDown">
+        @Trigger
+    </button>
+
+    @if (Open)
+    {
+        <div class="noknin-dropdown__menu"
+             role="menu"
+             tabindex="-1"
+             @onkeydown="HandleMenuKeyDown">
+
+            @ChildContent
+        </div>
+    }
+</div>

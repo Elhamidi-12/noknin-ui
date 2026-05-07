@@ -1,0 +1,16 @@
+<button type="button"
+        class="@ClassNames"
+        role="menuitem"
+        disabled="@Disabled"
+        @onclick="HandleClick">
+    @if (Icon is not null)
+    {
+        <span class="noknin-dropdown-item__icon" aria-hidden="true">
+            @Icon
+        </span>
+    }
+
+    <span class="noknin-dropdown-item__content">
+        @ChildContent
+    </span>
+</button>
