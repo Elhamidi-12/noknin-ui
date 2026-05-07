@@ -1,0 +1,156 @@
+.noknin-switch {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: var(--noknin-space-3);
+    color: var(--noknin-text-primary);
+    cursor: pointer;
+}
+
+.noknin-switch__control-wrap {
+    position: relative;
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+}
+
+.noknin-switch__input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    border: 0;
+    opacity: 0;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+}
+
+.noknin-switch__track {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--noknin-border-default);
+    border-radius: var(--noknin-radius-full);
+    background: var(--noknin-bg-subtle);
+    transition:
+        background-color var(--noknin-duration-200) var(--noknin-ease-out),
+        border-color var(--noknin-duration-200) var(--noknin-ease-out),
+        box-shadow var(--noknin-duration-200) var(--noknin-ease-out);
+}
+
+.noknin-switch__thumb {
+    display: block;
+    border-radius: var(--noknin-radius-full);
+    background: var(--noknin-bg-surface);
+    box-shadow: var(--noknin-shadow-md);
+    transition:
+        transform var(--noknin-duration-200) var(--noknin-ease-out),
+        background-color var(--noknin-duration-200) var(--noknin-ease-out);
+}
+
+.noknin-switch--small .noknin-switch__track {
+    width: 2rem;
+    height: 1.125rem;
+    padding: 0.125rem;
+}
+
+.noknin-switch--small .noknin-switch__thumb {
+    width: 0.875rem;
+    height: 0.875rem;
+}
+
+.noknin-switch--medium .noknin-switch__track {
+    width: 2.5rem;
+    height: 1.375rem;
+    padding: 0.125rem;
+}
+
+.noknin-switch--medium .noknin-switch__thumb {
+    width: 1.125rem;
+    height: 1.125rem;
+}
+
+.noknin-switch--large .noknin-switch__track {
+    width: 3rem;
+    height: 1.625rem;
+    padding: 0.125rem;
+}
+
+.noknin-switch--large .noknin-switch__thumb {
+    width: 1.375rem;
+    height: 1.375rem;
+}
+
+.noknin-switch:hover:not(.noknin-switch--disabled) .noknin-switch__track {
+    border-color: var(--noknin-brand-primary-hover);
+}
+
+.noknin-switch__input:focus-visible + .noknin-switch__track {
+    outline: 2px solid var(--noknin-ring);
+    outline-offset: 2px;
+}
+
+.noknin-switch__input:checked + .noknin-switch__track {
+    border-color: var(--noknin-brand-primary);
+    background: var(--noknin-brand-primary);
+}
+
+.noknin-switch--small .noknin-switch__input:checked + .noknin-switch__track .noknin-switch__thumb {
+    transform: translateX(0.875rem);
+}
+
+.noknin-switch--medium .noknin-switch__input:checked + .noknin-switch__track .noknin-switch__thumb {
+    transform: translateX(1.125rem);
+}
+
+.noknin-switch--large .noknin-switch__input:checked + .noknin-switch__track .noknin-switch__thumb {
+    transform: translateX(1.375rem);
+}
+
+.noknin-switch--error .noknin-switch__track {
+    border-color: var(--noknin-status-error);
+}
+
+.noknin-switch--disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.noknin-switch__content {
+    display: inline-flex;
+    flex-direction: column;
+    gap: var(--noknin-space-1);
+    min-width: 0;
+}
+
+.noknin-switch__label {
+    color: var(--noknin-text-primary);
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.noknin-switch--large .noknin-switch__label {
+    font-size: 1rem;
+}
+
+.noknin-switch__required {
+    color: var(--noknin-status-error);
+    margin-left: var(--noknin-space-1);
+}
+
+.noknin-switch__description,
+.noknin-switch__child-content {
+    color: var(--noknin-text-muted);
+    font-size: 0.875rem;
+    line-height: 1.4;
+}
+
+.noknin-switch__error {
+    color: var(--noknin-status-error);
+    font-size: 0.875rem;
+    line-height: 1.4;
+}

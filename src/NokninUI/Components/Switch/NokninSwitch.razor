@@ -1,0 +1,55 @@
+<label class="@RootClass" style="@Style">
+    <span class="noknin-switch__control-wrap">
+        <input
+            id="@Id"
+            class="noknin-switch__input"
+            type="checkbox"
+            role="switch"
+            checked="@Checked"
+            disabled="@Disabled"
+            required="@Required"
+            aria-checked="@Checked.ToString().ToLowerInvariant()"
+            aria-invalid="@HasError.ToString().ToLowerInvariant()"
+            aria-describedby="@DescribedBy"
+            @onchange="HandleChangeAsync" />
+
+        <span class="noknin-switch__track" aria-hidden="true">
+            <span class="noknin-switch__thumb"></span>
+        </span>
+    </span>
+
+    <span class="noknin-switch__content">
+        @if (!string.IsNullOrWhiteSpace(Label))
+        {
+            <span class="noknin-switch__label">
+                @Label
+
+                @if (Required)
+                {
+                    <span class="noknin-switch__required" aria-hidden="true">*</span>
+                }
+            </span>
+        }
+
+        @if (!string.IsNullOrWhiteSpace(Description) && !HasError)
+        {
+            <span id="@DescriptionId" class="noknin-switch__description">
+                @Description
+            </span>
+        }
+
+        @if (!string.IsNullOrWhiteSpace(ErrorText))
+        {
+            <span id="@ErrorId" class="noknin-switch__error">
+                @ErrorText
+            </span>
+        }
+
+        @if (ChildContent is not null)
+        {
+            <span class="noknin-switch__child-content">
+                @ChildContent
+            </span>
+        }
+    </span>
+</label>

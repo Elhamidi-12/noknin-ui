@@ -367,6 +367,31 @@
         </NokninRadioGroup>
     </div>
 
+    <hr style="margin:2rem 0;" />
+
+    <h2>Switch</h2>
+
+    <div style="max-width:420px; display:grid; gap:1rem;">
+        <NokninSwitch Label="Enable notifications" Description="Receive updates about important activity."
+                      @bind-Checked="_notificationsEnabled" />
+
+        <NokninSwitch Label="Required switch" Description="This setting must be enabled before continuing." Required
+                      @bind-Checked="_requiredSwitch" />
+
+        <NokninSwitch Label="Error switch" ErrorText="You must enable this setting." @bind-Checked="_errorSwitch" />
+
+        <NokninSwitch Label="Disabled switch" Description="This setting is unavailable." Disabled />
+
+        <NokninSwitch Label="Checked disabled switch" Description="This setting is locked on." Checked="true"
+                      Disabled />
+
+        <NokninSwitch Label="Small switch" Size="NokninSize.Small" @bind-Checked="_smallSwitch" />
+
+        <NokninSwitch Label="Medium switch" Size="NokninSize.Medium" @bind-Checked="_mediumSwitch" />
+
+        <NokninSwitch Label="Large switch" Size="NokninSize.Large" @bind-Checked="_largeSwitch" />
+    </div>
+
 </div>
 
 @code {
@@ -407,6 +432,13 @@
     private string? _selectedRadioStatus;
     private string? _selectedRadioExampleSize;
     private string? _disabledRadioValue = "one";
+
+    private bool _notificationsEnabled;
+    private bool _requiredSwitch;
+    private bool _errorSwitch;
+    private bool _smallSwitch;
+    private bool _mediumSwitch;
+    private bool _largeSwitch;
 
     private void HandleAlertDismiss()
     {
