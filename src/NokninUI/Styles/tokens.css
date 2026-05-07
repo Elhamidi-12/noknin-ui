@@ -1,0 +1,31 @@
+:root {
+  --noknin-brand-primary: #6366f1;
+  --noknin-brand-primary-hover: #4f46e5;
+  --noknin-brand-primary-active: #4338ca;
+
+  --noknin-bg-primary: #ffffff;
+  --noknin-bg-surface: #f8fafc;
+  --noknin-bg-subtle: #f1f5f9;
+
+  --noknin-text-primary: #0f172a;
+  --noknin-text-secondary: #334155;
+  --noknin-text-muted: #64748b;
+  --noknin-text-inverse: #ffffff;
+
+  --noknin-border-default: #e2e8f0;
+  --noknin-ring: #6366f1;
+
+  --noknin-space-1: .25rem;
+  --noknin-space-2: .5rem;
+  --noknin-space-3: .75rem;
+  --noknin-space-4: 1rem;
+  --noknin-space-6: 1.5rem;
+
+  --noknin-radius-sm: .375rem;
+  --noknin-radius-md: .5rem;
+  --noknin-radius-lg: .75rem;
+
+  --noknin-duration-100: 100ms;
+  --noknin-duration-200: 200ms;
+  --noknin-ease-out: cubic-bezier(0, 0, .2, 1);
+}

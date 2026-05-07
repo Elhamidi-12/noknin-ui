@@ -1,0 +1,11 @@
+[data-theme="dark"] {
+  --noknin-bg-primary: #09090b;
+  --noknin-bg-surface: #131316;
+  --noknin-bg-subtle: #18181b;
+
+  --noknin-text-primary: #fafafa;
+  --noknin-text-secondary: #d4d4d8;
+  --noknin-text-muted: #a1a1aa;
+
+  --noknin-border-default: #27272a;
+}

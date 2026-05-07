@@ -1,0 +1,65 @@
+.noknin-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--noknin-space-2);
+  border: 1px solid transparent;
+  border-radius: var(--noknin-radius-md);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color var(--noknin-duration-200) var(--noknin-ease-out),
+    border-color var(--noknin-duration-200) var(--noknin-ease-out),
+    color var(--noknin-duration-200) var(--noknin-ease-out);
+}
+
+.noknin-button--small {
+  min-height: 2rem;
+  padding: 0 var(--noknin-space-3);
+}
+
+.noknin-button--medium {
+  min-height: 2.5rem;
+  padding: 0 var(--noknin-space-4);
+}
+
+.noknin-button--large {
+  min-height: 3rem;
+  padding: 0 var(--noknin-space-6);
+}
+
+.noknin-button--primary {
+  background: var(--noknin-brand-primary);
+  color: var(--noknin-text-inverse);
+}
+
+.noknin-button--primary:hover {
+  background: var(--noknin-brand-primary-hover);
+}
+
+.noknin-button--secondary {
+  background: var(--noknin-bg-surface);
+  color: var(--noknin-text-primary);
+  border-color: var(--noknin-border-default);
+}
+
+.noknin-button--ghost {
+  background: transparent;
+  color: var(--noknin-text-primary);
+}
+
+.noknin-button--destructive {
+  background: #ef4444;
+  color: white;
+}
+
+.noknin-button:focus-visible {
+  outline: 2px solid var(--noknin-ring);
+  outline-offset: 2px;
+}
+
+.noknin-button:disabled {
+  opacity: .55;
+  cursor: not-allowed;
+}
