@@ -96,7 +96,7 @@ public partial class NokninDataGrid<TItem>
 
     internal void RegisterColumn(NokninDataGridColumn<TItem> column)
     {
-        if (_columns.Contains(column))
+        if (_columns.Any(existingColumn => ReferenceEquals(existingColumn, column)))
         {
             return;
         }

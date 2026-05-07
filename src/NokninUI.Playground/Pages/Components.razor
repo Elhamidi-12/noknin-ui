@@ -637,6 +637,26 @@
                 <NokninDataGridColumn TItem="ProjectRow" Header="Progress" Field="Progress" Numeric />
             </Columns>
         </NokninDataGrid>
+
+        <NokninDataGrid TItem="ProjectRow" Items="@_projects" Caption="Bordered small data grid" Size="NokninSize.Small"
+                        Bordered>
+            <Columns>
+                <NokninDataGridColumn TItem="ProjectRow" Header="Project" Field="Name" />
+
+                <NokninDataGridColumn TItem="ProjectRow" Header="Status" Align="NokninTableCellAlign.Center">
+                    <Template Context="project">
+                        <NokninBadge Variant="@GetProjectBadgeVariant(project.Status)">
+                            @project.Status
+                        </NokninBadge>
+                    </Template>
+                </NokninDataGridColumn>
+
+                <NokninDataGridColumn TItem="ProjectRow" Header="Progress" Field="Progress" Numeric />
+
+                <NokninDataGridColumn TItem="ProjectRow" Header="Updated" Field="Updated" NoWrap />
+            </Columns>
+        </NokninDataGrid>
+
     </div>
 
 </div>

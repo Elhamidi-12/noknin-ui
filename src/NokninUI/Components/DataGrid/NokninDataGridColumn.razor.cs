@@ -5,6 +5,8 @@ namespace NokninUI.Components.DataGrid;
 
 public partial class NokninDataGridColumn<TItem> : ComponentBase, IDisposable
 {
+    private NokninDataGrid<TItem>? _registeredGrid;
+
     [CascadingParameter] internal NokninDataGrid<TItem>? DataGrid { get; set; }
 
     [Parameter] public string Header { get; set; } = string.Empty;
@@ -31,11 +33,18 @@ public partial class NokninDataGridColumn<TItem> : ComponentBase, IDisposable
 
     protected override void OnInitialized()
     {
-        DataGrid?.RegisterColumn(this);
+        if (DataGrid is null)
+        {
+            return;
+        }
+
+        DataGrid.RegisterColumn(this);
+        _registeredGrid = DataGrid;
     }
 
     public void Dispose()
     {
-        DataGrid?.UnregisterColumn(this);
+        _registeredGrid?.UnregisterColumn(this);
+        _registeredGrid = null;
     }
 }
