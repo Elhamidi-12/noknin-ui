@@ -1,0 +1,29 @@
+.demo-page {
+    min-height: 100vh;
+    padding: 2rem;
+    background: var(--noknin-bg-primary);
+    color: var(--noknin-text-primary);
+}
+
+.demo-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.button-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.theme-toggle {
+    border: 1px solid var(--noknin-border-default);
+    border-radius: var(--noknin-radius-md);
+    background: var(--noknin-bg-surface);
+    color: var(--noknin-text-primary);
+    padding: .5rem 1rem;
+    cursor: pointer;
+}

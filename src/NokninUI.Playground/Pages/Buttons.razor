@@ -2,22 +2,37 @@
 
 <PageTitle>Buttons</PageTitle>
 
-<h1>Buttons</h1>
+<div class="demo-page" data-theme="@Theme">
+    <div class="demo-header">
+        <h1>Buttons</h1>
 
-<div style="display:flex; gap:1rem; flex-wrap:wrap;">
-    <NokninButton Variant="NokninVariant.Primary">
-        Primary
-    </NokninButton>
+        <button class="theme-toggle" @onclick="ToggleTheme">
+            Toggle theme
+        </button>
+    </div>
 
-    <NokninButton Variant="NokninVariant.Secondary">
-        Secondary
-    </NokninButton>
+    <div class="button-row">
+        <NokninButton Variant="NokninVariant.Primary">Primary</NokninButton>
+        <NokninButton Variant="NokninVariant.Secondary">Secondary</NokninButton>
+        <NokninButton Variant="NokninVariant.Ghost">Ghost</NokninButton>
+        <NokninButton Variant="NokninVariant.Destructive">Destructive</NokninButton>
+    </div>
 
-    <NokninButton Variant="NokninVariant.Ghost">
-        Ghost
-    </NokninButton>
-
-    <NokninButton Variant="NokninVariant.Destructive">
-        Destructive
-    </NokninButton>
+    <div class="button-row">
+        <NokninButton Size="NokninSize.Small">Small</NokninButton>
+        <NokninButton Size="NokninSize.Medium">Medium</NokninButton>
+        <NokninButton Size="NokninSize.Large">Large</NokninButton>
+        <NokninButton Disabled>Disabled</NokninButton>
+    </div>
 </div>
+
+@code {
+    private bool _dark;
+
+    private void ToggleTheme()
+    {
+        _dark = !_dark;
+    }
+
+    private string Theme => _dark ? "dark" : "light";
+}
