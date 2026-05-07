@@ -1,0 +1,4 @@
+.noknin-accordion {
+    display: grid;
+    gap: var(--noknin-space-2);
+}

@@ -226,6 +226,30 @@
         </NokninButton>
     </div>
 
+    <hr style="margin:2rem 0;" />
+
+    <h2>Accordion</h2>
+
+    <div style="max-width:720px;">
+        <NokninAccordion>
+            <NokninAccordionItem Value="tokens" Title="Semantic tokens">
+                NokninUI uses semantic CSS variables for color, spacing, typography, radius, shadow, and motion.
+            </NokninAccordionItem>
+
+            <NokninAccordionItem Value="themes" Title="Dark and light themes">
+                Theme switching works through data-theme attributes and token overrides.
+            </NokninAccordionItem>
+
+            <NokninAccordionItem Value="accessibility" Title="Accessibility">
+                Components use native HTML, visible focus states, ARIA where needed, and keyboard-friendly behavior.
+            </NokninAccordionItem>
+
+            <NokninAccordionItem Value="disabled" Title="Disabled item" Disabled>
+                This content cannot be opened.
+            </NokninAccordionItem>
+        </NokninAccordion>
+    </div>
+
 </div>
 
 @code {

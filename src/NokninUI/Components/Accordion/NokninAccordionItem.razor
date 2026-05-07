@@ -1,0 +1,29 @@
+<div class="@ClassNames">
+    <h3 class="noknin-accordion-item__heading">
+        <button type="button"
+                class="noknin-accordion-item__trigger"
+                aria-expanded="@Open"
+                aria-controls="@PanelId"
+                id="@TriggerId"
+                disabled="@Disabled"
+                @onclick="Toggle">
+            <span class="noknin-accordion-item__title">
+                @Title
+            </span>
+
+            <span class="noknin-accordion-item__icon" aria-hidden="true">
+                ˅
+            </span>
+        </button>
+    </h3>
+
+    <div id="@PanelId"
+         class="noknin-accordion-item__panel"
+         role="region"
+         aria-labelledby="@TriggerId"
+         hidden="@(!Open)">
+        <div class="noknin-accordion-item__content">
+            @ChildContent
+        </div>
+    </div>
+</div>

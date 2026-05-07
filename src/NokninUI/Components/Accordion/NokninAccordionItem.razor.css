@@ -1,0 +1,86 @@
+.noknin-accordion-item {
+    border: 1px solid var(--noknin-border-default);
+    border-radius: var(--noknin-radius-lg);
+    background: var(--noknin-bg-surface);
+    color: var(--noknin-text-primary);
+    overflow: hidden;
+}
+
+.noknin-accordion-item__heading {
+    margin: 0;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+.noknin-accordion-item__trigger {
+    width: 100%;
+    min-height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--noknin-space-4);
+    border: 0;
+    background: transparent;
+    color: var(--noknin-text-primary);
+    padding: 0 var(--noknin-space-4);
+    font-family: inherit;
+    font-size: var(--noknin-text-base, .9375rem);
+    line-height: 1.2;
+    font-weight: 700;
+    text-align: left;
+    cursor: pointer;
+}
+
+.noknin-accordion-item__trigger:hover:not(:disabled) {
+    background: var(--noknin-bg-subtle);
+}
+
+.noknin-accordion-item__trigger:focus-visible {
+    outline: 2px solid var(--noknin-ring);
+    outline-offset: -2px;
+}
+
+.noknin-accordion-item__title {
+    font-size: inherit;
+    line-height: inherit;
+}
+
+.noknin-accordion-item__icon {
+    transition: transform var(--noknin-duration-200) var(--noknin-ease-out);
+    font-size: var(--noknin-text-sm, .8125rem);
+    line-height: 1;
+}
+
+.noknin-accordion-item--open .noknin-accordion-item__icon {
+    transform: rotate(180deg);
+}
+
+.noknin-accordion-item__panel {
+    border-top: 1px solid var(--noknin-border-default);
+}
+
+.noknin-accordion-item__content {
+    padding: var(--noknin-space-4);
+    color: var(--noknin-text-secondary);
+    font-size: var(--noknin-text-base, .9375rem);
+    line-height: 1.6;
+}
+
+.noknin-accordion-item[hidden],
+.noknin-accordion-item__panel[hidden] {
+    display: none;
+}
+
+.noknin-accordion-item--disabled {
+    opacity: .6;
+}
+
+.noknin-accordion-item--disabled .noknin-accordion-item__trigger {
+    cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .noknin-accordion-item__icon {
+        transition: none;
+    }
+}
