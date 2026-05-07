@@ -1,0 +1,133 @@
+.noknin-modal {
+    position: fixed;
+    inset: 0;
+    z-index: var(--noknin-z-modal, 1000);
+    display: grid;
+    place-items: center;
+    padding: var(--noknin-space-4);
+}
+
+.noknin-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: var(--noknin-bg-overlay, rgb(15 23 42 / .64));
+    animation: noknin-modal-fade-in var(--noknin-duration-200) var(--noknin-ease-out);
+}
+
+.noknin-modal__dialog {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 32rem);
+    max-height: calc(100vh - 2rem);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    overflow: hidden;
+    border: 1px solid var(--noknin-border-default);
+    border-radius: var(--noknin-radius-lg);
+    background: var(--noknin-bg-surface);
+    color: var(--noknin-text-primary);
+    box-shadow: var(--noknin-shadow-lg, 0 24px 64px rgb(15 23 42 / .24));
+    animation: noknin-modal-enter var(--noknin-duration-200) var(--noknin-ease-out);
+}
+
+.noknin-modal__dialog--small {
+    width: min(100%, 24rem);
+}
+
+.noknin-modal__dialog--medium {
+    width: min(100%, 32rem);
+}
+
+.noknin-modal__dialog--large {
+    width: min(100%, 48rem);
+}
+
+.noknin-modal__dialog--full {
+    width: min(100%, 72rem);
+    height: calc(100vh - 2rem);
+}
+
+.noknin-modal__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--noknin-space-4);
+    padding: var(--noknin-space-4);
+    border-bottom: 1px solid var(--noknin-border-default);
+}
+
+.noknin-modal__title {
+    margin: 0;
+    font-size: var(--noknin-text-lg, 1.125rem);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.noknin-modal__close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border: 0;
+    border-radius: var(--noknin-radius-md);
+    background: transparent;
+    color: var(--noknin-text-muted);
+    cursor: pointer;
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.noknin-modal__close:hover {
+    background: var(--noknin-bg-subtle);
+    color: var(--noknin-text-primary);
+}
+
+.noknin-modal__close:focus-visible {
+    outline: 2px solid var(--noknin-ring);
+    outline-offset: 2px;
+}
+
+.noknin-modal__body {
+    overflow: auto;
+    padding: var(--noknin-space-4);
+    color: var(--noknin-text-secondary);
+    line-height: 1.6;
+}
+
+.noknin-modal__footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--noknin-space-2);
+    padding: var(--noknin-space-4);
+    border-top: 1px solid var(--noknin-border-default);
+}
+
+@keyframes noknin-modal-fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes noknin-modal-enter {
+    from {
+        opacity: 0;
+        transform: translateY(8px) scale(.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .noknin-modal__backdrop,
+    .noknin-modal__dialog {
+        animation: none;
+    }
+}

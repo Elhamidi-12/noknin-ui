@@ -27,124 +27,133 @@
     </div>
     <hr style="margin:2rem 0;" />
 
-<h2>Text Fields</h2>
+    <h2>Text Fields</h2>
 
-<div style="max-width: 400px; display:grid; gap:1rem;">
+    <div style="max-width: 400px; display:grid; gap:1rem;">
 
-    <NokninTextField Label="Email"
-                     Placeholder="you@example.com"
-                     Description="Enter your work email." />
+        <NokninTextField Label="Email" Placeholder="you@example.com" Description="Enter your work email." />
 
-    <NokninTextField Label="Full name"
-                     Placeholder="John Doe"
-                     Required />
+        <NokninTextField Label="Full name" Placeholder="John Doe" Required />
 
-    <NokninTextField Label="Username"
-                     Placeholder="@noknin"
-                     ErrorText="Username is already taken." />
+        <NokninTextField Label="Username" Placeholder="@noknin" ErrorText="Username is already taken." />
 
-    <NokninTextField Label="Disabled field"
-                     Placeholder="Disabled"
-                     Disabled />
+        <NokninTextField Label="Disabled field" Placeholder="Disabled" Disabled />
 
-</div>
+    </div>
 
-<hr style="margin:2rem 0;" />
+    <hr style="margin:2rem 0;" />
 
-<h2>Cards</h2>
+    <h2>Cards</h2>
 
-<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1rem;">
-    <NokninCard>
-        <Header>
-            Card title
-        </Header>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1rem;">
+        <NokninCard>
+            <Header>
+                Card title
+            </Header>
+
+            <ChildContent>
+                This is a basic elevated card using NokninUI semantic tokens.
+            </ChildContent>
+
+            <Footer>
+                <NokninButton Variant="NokninVariant.Ghost">Cancel</NokninButton>
+                <NokninButton Variant="NokninVariant.Primary">Save</NokninButton>
+            </Footer>
+        </NokninCard>
+
+        <NokninCard Variant="NokninCardVariant.Outlined">
+            <Header>
+                Outlined card
+            </Header>
+
+            <ChildContent>
+                Useful for dashboards, settings pages, and grouped content.
+            </ChildContent>
+        </NokninCard>
+
+        <NokninCard Variant="NokninCardVariant.Ghost" Interactive>
+            <Header>
+                Interactive ghost card
+            </Header>
+
+            <ChildContent>
+                Hover this card to test the interactive state.
+            </ChildContent>
+        </NokninCard>
+    </div>
+
+    <hr style="margin:2rem 0;" />
+
+    <h2>Badges</h2>
+
+    <div style="display:flex; gap:.75rem; flex-wrap:wrap; align-items:center;">
+        <NokninBadge Variant="NokninBadgeVariant.Primary">Primary</NokninBadge>
+        <NokninBadge Variant="NokninBadgeVariant.Secondary">Secondary</NokninBadge>
+        <NokninBadge Variant="NokninBadgeVariant.Success">Success</NokninBadge>
+        <NokninBadge Variant="NokninBadgeVariant.Warning">Warning</NokninBadge>
+        <NokninBadge Variant="NokninBadgeVariant.Error">Error</NokninBadge>
+        <NokninBadge Variant="NokninBadgeVariant.Info">Info</NokninBadge>
+        <NokninBadge Variant="NokninBadgeVariant.Neutral">Neutral</NokninBadge>
+    </div>
+
+    <div style="display:flex; gap:.75rem; flex-wrap:wrap; align-items:center; margin-top:1rem;">
+        <NokninBadge Size="NokninSize.Small">Small</NokninBadge>
+        <NokninBadge Size="NokninSize.Medium">Medium</NokninBadge>
+        <NokninBadge Size="NokninSize.Large">Large</NokninBadge>
+    </div>
+
+    <hr style="margin:2rem 0;" />
+
+    <h2>Alerts</h2>
+
+    <div style="display:grid; gap:1rem; max-width:720px;">
+        <NokninAlert Title="Info alert" Variant="NokninAlertVariant.Info">
+            This is a helpful informational message.
+        </NokninAlert>
+
+        <NokninAlert Title="Success alert" Variant="NokninAlertVariant.Success">
+            Your changes were saved successfully.
+        </NokninAlert>
+
+        <NokninAlert Title="Warning alert" Variant="NokninAlertVariant.Warning">
+            Please review this before continuing.
+        </NokninAlert>
+
+        <NokninAlert Title="Error alert" Variant="NokninAlertVariant.Error">
+            Something went wrong. Please try again.
+        </NokninAlert>
+
+        <NokninAlert Title="Dismissible alert" Variant="NokninAlertVariant.Neutral" Dismissible
+                     OnDismiss="HandleAlertDismiss">
+            This alert has a close button.
+        </NokninAlert>
+    </div>
+
+    <hr style="margin:2rem 0;" />
+
+    <h2>Modal</h2>
+
+    <NokninButton Variant="NokninVariant.Primary" OnClick="OpenModal">
+        Open modal
+    </NokninButton>
+
+    <NokninModal Open="@_modalOpen" OpenChanged="@(value => _modalOpen = value)" Title="Delete project"
+                 Size="NokninModalSize.Medium">
 
         <ChildContent>
-            This is a basic elevated card using NokninUI semantic tokens.
+            Are you sure you want to delete this project? This action cannot be undone.
         </ChildContent>
 
         <Footer>
-            <NokninButton Variant="NokninVariant.Ghost">Cancel</NokninButton>
-            <NokninButton Variant="NokninVariant.Primary">Save</NokninButton>
+            <NokninButton Variant="NokninVariant.Ghost" OnClick="CloseModal">
+                Cancel
+            </NokninButton>
+
+            <NokninButton Variant="NokninVariant.Destructive" OnClick="CloseModal">
+                Delete
+            </NokninButton>
         </Footer>
-    </NokninCard>
-
-    <NokninCard Variant="NokninCardVariant.Outlined">
-        <Header>
-            Outlined card
-        </Header>
-
-        <ChildContent>
-            Useful for dashboards, settings pages, and grouped content.
-        </ChildContent>
-    </NokninCard>
-
-    <NokninCard Variant="NokninCardVariant.Ghost" Interactive>
-        <Header>
-            Interactive ghost card
-        </Header>
-
-        <ChildContent>
-            Hover this card to test the interactive state.
-        </ChildContent>
-    </NokninCard>
-</div>
-
-<hr style="margin:2rem 0;" />
-
-<h2>Badges</h2>
-
-<div style="display:flex; gap:.75rem; flex-wrap:wrap; align-items:center;">
-    <NokninBadge Variant="NokninBadgeVariant.Primary">Primary</NokninBadge>
-    <NokninBadge Variant="NokninBadgeVariant.Secondary">Secondary</NokninBadge>
-    <NokninBadge Variant="NokninBadgeVariant.Success">Success</NokninBadge>
-    <NokninBadge Variant="NokninBadgeVariant.Warning">Warning</NokninBadge>
-    <NokninBadge Variant="NokninBadgeVariant.Error">Error</NokninBadge>
-    <NokninBadge Variant="NokninBadgeVariant.Info">Info</NokninBadge>
-    <NokninBadge Variant="NokninBadgeVariant.Neutral">Neutral</NokninBadge>
-</div>
-
-<div style="display:flex; gap:.75rem; flex-wrap:wrap; align-items:center; margin-top:1rem;">
-    <NokninBadge Size="NokninSize.Small">Small</NokninBadge>
-    <NokninBadge Size="NokninSize.Medium">Medium</NokninBadge>
-    <NokninBadge Size="NokninSize.Large">Large</NokninBadge>
-</div>
-
-<hr style="margin:2rem 0;" />
-
-<h2>Alerts</h2>
-
-<div style="display:grid; gap:1rem; max-width:720px;">
-    <NokninAlert Title="Info alert" Variant="NokninAlertVariant.Info">
-        This is a helpful informational message.
-    </NokninAlert>
-
-    <NokninAlert Title="Success alert" Variant="NokninAlertVariant.Success">
-        Your changes were saved successfully.
-    </NokninAlert>
-
-    <NokninAlert Title="Warning alert" Variant="NokninAlertVariant.Warning">
-        Please review this before continuing.
-    </NokninAlert>
-
-    <NokninAlert Title="Error alert" Variant="NokninAlertVariant.Error">
-        Something went wrong. Please try again.
-    </NokninAlert>
-
-    <NokninAlert Title="Dismissible alert"
-                 Variant="NokninAlertVariant.Neutral"
-                 Dismissible
-                 OnDismiss="HandleAlertDismiss">
-        This alert has a close button.
-    </NokninAlert>
-</div>
-
-@code {
-    private void HandleAlertDismiss()
-    {
-        Console.WriteLine("Alert dismissed");
-    }
-}
+    </NokninModal>
 
 </div>
 
@@ -157,5 +166,28 @@
         _dark = !_dark;
     }
 
-    private string Theme => _dark ? "dark" : "light";
+    private void HandleAlertDismiss()
+    {
+        Console.WriteLine("Alert dismissed");
+    }
+
+    private string Theme
+    {
+        get
+        {
+            return _dark ? "dark" : "light";
+        }
+    }
+
+    private bool _modalOpen;
+
+    private void OpenModal()
+    {
+        _modalOpen = true;
+    }
+
+    private void CloseModal()
+    {
+        _modalOpen = false;
+    }
 }

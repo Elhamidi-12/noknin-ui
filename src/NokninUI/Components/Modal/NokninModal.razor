@@ -1,0 +1,47 @@
+@if (Open)
+{
+    <div class="noknin-modal"
+         role="presentation"
+         @onkeydown="HandleKeyDown">
+
+        <div class="noknin-modal__backdrop"
+             @onclick="HandleBackdropClick"></div>
+
+        <section class="@ClassNames"
+                 role="dialog"
+                 aria-modal="true"
+                 aria-labelledby="@TitleId"
+                 tabindex="-1">
+
+            <header class="noknin-modal__header">
+                @if (!string.IsNullOrWhiteSpace(Title))
+                {
+                    <h2 id="@TitleId" class="noknin-modal__title">
+                        @Title
+                    </h2>
+                }
+
+                @if (ShowCloseButton)
+                {
+                    <button type="button"
+                            class="noknin-modal__close"
+                            aria-label="Close dialog"
+                            @onclick="CloseAsync">
+                        ×
+                    </button>
+                }
+            </header>
+
+            <div class="noknin-modal__body">
+                @ChildContent
+            </div>
+
+            @if (Footer is not null)
+            {
+                <footer class="noknin-modal__footer">
+                    @Footer
+                </footer>
+            }
+        </section>
+    </div>
+}

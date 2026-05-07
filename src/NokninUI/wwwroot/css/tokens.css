@@ -6,6 +6,7 @@
   --noknin-bg-primary: #ffffff;
   --noknin-bg-surface: #f8fafc;
   --noknin-bg-subtle: #f1f5f9;
+  --noknin-bg-overlay: rgb(15 23 42 / .64);
 
   --noknin-text-primary: #0f172a;
   --noknin-text-secondary: #334155;
@@ -36,4 +37,8 @@
   --noknin-duration-100: 100ms;
   --noknin-duration-200: 200ms;
   --noknin-ease-out: cubic-bezier(0, 0, .2, 1);
+
+  --noknin-z-modal: 1000;
+  --noknin-shadow-lg: 0 24px 64px rgb(15 23 42 / .24);
+
 }
