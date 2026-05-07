@@ -533,6 +533,26 @@
         </NokninTable>
     </div>
 
+    <hr style="margin:2rem 0;" />
+
+    <h2>Pagination</h2>
+
+    <div style="display:grid; gap:1.5rem; max-width:720px;">
+        <NokninPagination TotalItems="128" PageSize="10" Page="@_paginationPage"
+                          PageChanged="value => _paginationPage = value" />
+
+        <NokninPagination TotalItems="80" PageSize="10" Size="NokninSize.Small" Page="@_smallPaginationPage"
+                          PageChanged="value => _smallPaginationPage = value" />
+
+        <NokninPagination TotalItems="250" PageSize="25" Size="NokninSize.Large" Page="@_largePaginationPage"
+                          PageChanged="value => _largePaginationPage = value" />
+
+        <NokninPagination TotalItems="50" PageSize="10" Page="1" Disabled />
+
+        <NokninPagination TotalItems="128" PageSize="10" ShowSummary="false" Page="@_compactPaginationPage"
+                          PageChanged="value => _compactPaginationPage = value" />
+    </div>
+
 </div>
 
 @code {
@@ -588,6 +608,11 @@
     private string? _smallTextArea;
     private string? _mediumTextArea;
     private string? _largeTextArea;
+
+    private int _paginationPage = 1;
+    private int _smallPaginationPage = 2;
+    private int _largePaginationPage = 5;
+    private int _compactPaginationPage = 3;
 
     private void HandleAlertDismiss()
     {

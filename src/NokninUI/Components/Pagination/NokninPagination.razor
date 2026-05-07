@@ -1,0 +1,49 @@
+<nav class="@RootClass" style="@Style" aria-label="@AriaLabel">
+    <div class="noknin-pagination__summary">
+        @SummaryText
+    </div>
+
+    <div class="noknin-pagination__controls">
+        <button
+            type="button"
+            class="noknin-pagination__button"
+            disabled="@IsPreviousDisabled"
+            aria-label="Go to previous page"
+            @onclick="GoToPreviousPageAsync">
+            Previous
+        </button>
+
+        <div class="noknin-pagination__pages" aria-label="Pagination pages">
+            @foreach (var pageNumber in VisiblePages)
+            {
+                if (pageNumber is null)
+                {
+                    <span class="noknin-pagination__ellipsis" aria-hidden="true">
+                        …
+                    </span>
+                }
+                else
+                {
+                    <button
+                        type="button"
+                        class="@GetPageButtonClass(pageNumber.Value)"
+                        disabled="@Disabled"
+                        aria-label="@GetPageAriaLabel(pageNumber.Value)"
+                        aria-current="@(pageNumber.Value == Page ? "page" : null)"
+                        @onclick="() => GoToPageAsync(pageNumber.Value)">
+                        @pageNumber
+                    </button>
+                }
+            }
+        </div>
+
+        <button
+            type="button"
+            class="noknin-pagination__button"
+            disabled="@IsNextDisabled"
+            aria-label="Go to next page"
+            @onclick="GoToNextPageAsync">
+            Next
+        </button>
+    </div>
+</nav>

@@ -1,0 +1,131 @@
+.noknin-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--noknin-space-4);
+    width: 100%;
+    color: var(--noknin-text-primary);
+}
+
+.noknin-pagination--no-summary {
+    justify-content: flex-end;
+}
+
+.noknin-pagination__summary {
+    color: var(--noknin-text-muted);
+    font-size: 0.875rem;
+    white-space: nowrap;
+}
+
+.noknin-pagination__controls {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--noknin-space-2);
+}
+
+.noknin-pagination__pages {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--noknin-space-1);
+}
+
+.noknin-pagination__button,
+.noknin-pagination__page {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--noknin-border-default);
+    border-radius: var(--noknin-radius-md);
+    background: var(--noknin-bg-surface);
+    color: var(--noknin-text-primary);
+    font: inherit;
+    cursor: pointer;
+    transition:
+        background-color var(--noknin-duration-200) var(--noknin-ease-out),
+        border-color var(--noknin-duration-200) var(--noknin-ease-out),
+        color var(--noknin-duration-200) var(--noknin-ease-out),
+        box-shadow var(--noknin-duration-200) var(--noknin-ease-out);
+}
+
+.noknin-pagination--small .noknin-pagination__button,
+.noknin-pagination--small .noknin-pagination__page {
+    min-width: 2rem;
+    min-height: 2rem;
+    padding: var(--noknin-space-1) var(--noknin-space-2);
+    font-size: 0.875rem;
+}
+
+.noknin-pagination--medium .noknin-pagination__button,
+.noknin-pagination--medium .noknin-pagination__page {
+    min-width: 2.25rem;
+    min-height: 2.25rem;
+    padding: var(--noknin-space-2) var(--noknin-space-3);
+    font-size: 0.9375rem;
+}
+
+.noknin-pagination--large .noknin-pagination__button,
+.noknin-pagination--large .noknin-pagination__page {
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+    padding: var(--noknin-space-2) var(--noknin-space-4);
+    font-size: 1rem;
+}
+
+.noknin-pagination__button:hover:not(:disabled),
+.noknin-pagination__page:hover:not(:disabled) {
+    background: var(--noknin-bg-subtle);
+    border-color: var(--noknin-brand-primary-hover);
+}
+
+.noknin-pagination__button:active:not(:disabled),
+.noknin-pagination__page:active:not(:disabled) {
+    border-color: var(--noknin-brand-primary-active);
+}
+
+.noknin-pagination__button:focus-visible,
+.noknin-pagination__page:focus-visible {
+    outline: 2px solid var(--noknin-ring);
+    outline-offset: 2px;
+}
+
+.noknin-pagination__page--active {
+    border-color: var(--noknin-brand-primary);
+    background: var(--noknin-brand-primary);
+    color: var(--noknin-text-inverse);
+}
+
+.noknin-pagination__page--active:hover:not(:disabled) {
+    border-color: var(--noknin-brand-primary-hover);
+    background: var(--noknin-brand-primary-hover);
+    color: var(--noknin-text-inverse);
+}
+
+.noknin-pagination__button:disabled,
+.noknin-pagination__page:disabled,
+.noknin-pagination--disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.noknin-pagination__ellipsis {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2rem;
+    color: var(--noknin-text-muted);
+}
+
+@media (max-width: 640px) {
+    .noknin-pagination {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .noknin-pagination__controls {
+        flex-wrap: wrap;
+    }
+
+    .noknin-pagination__pages {
+        flex-wrap: wrap;
+    }
+}
