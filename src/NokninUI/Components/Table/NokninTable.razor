@@ -7,6 +7,28 @@
             </caption>
         }
 
-        @ChildContent
+        @if (Empty)
+        {
+            <tbody class="noknin-table__body">
+                <tr class="noknin-table__row noknin-table__row--empty">
+                    <td class="noknin-table__cell noknin-table__cell--empty" colspan="@EmptyColSpan">
+                        @if (EmptyContent is not null)
+                        {
+                            @EmptyContent
+                        }
+                        else
+                        {
+                            <span class="noknin-table__empty-text">
+                                @EmptyText
+                            </span>
+                        }
+                    </td>
+                </tr>
+            </tbody>
+        }
+        else
+        {
+            @ChildContent
+        }
     </table>
 </div>

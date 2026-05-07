@@ -138,3 +138,18 @@
 .noknin-table ::deep .noknin-table__row--interactive:active {
     background: var(--noknin-bg-subtle);
 }
+
+.noknin-table ::deep .noknin-table__row--empty {
+    background: transparent;
+}
+
+.noknin-table ::deep .noknin-table__cell--empty {
+    padding: var(--noknin-space-8) var(--noknin-space-4);
+    color: var(--noknin-text-muted);
+    text-align: center;
+}
+
+.noknin-table ::deep .noknin-table__empty-text {
+    color: var(--noknin-text-muted);
+    font-size: 0.9375rem;
+}

@@ -7,7 +7,15 @@ public partial class NokninTable
 {
     [Parameter] public RenderFragment? ChildContent { get; set; }
 
+    [Parameter] public RenderFragment? EmptyContent { get; set; }
+
     [Parameter] public string? Caption { get; set; }
+
+    [Parameter] public string EmptyText { get; set; } = "No data available.";
+
+    [Parameter] public bool Empty { get; set; }
+
+    [Parameter] public int EmptyColSpan { get; set; } = 1;
 
     [Parameter] public NokninTableVariant Variant { get; set; } = NokninTableVariant.Default;
 
@@ -50,6 +58,7 @@ public partial class NokninTable
                 $"noknin-table--{Size.ToString().ToLowerInvariant()}",
                 Compact ? "noknin-table--compact" : null,
                 Hoverable ? "noknin-table--hoverable" : null,
+                Empty ? "noknin-table--empty" : null,
                 Class
             }.Where(value => !string.IsNullOrWhiteSpace(value)));
         }
