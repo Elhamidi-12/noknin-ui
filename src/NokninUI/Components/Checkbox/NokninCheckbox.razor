@@ -1,0 +1,56 @@
+<label class="@RootClass" style="@Style">
+    <span class="noknin-checkbox__control-wrap">
+        <input
+            id="@Id"
+            class="noknin-checkbox__input"
+            type="checkbox"
+            checked="@Checked"
+            disabled="@Disabled"
+            required="@Required"
+            aria-invalid="@HasError.ToString().ToLowerInvariant()"
+            aria-describedby="@DescribedBy"
+            @onchange="HandleChangeAsync" />
+
+        <span class="noknin-checkbox__control" aria-hidden="true">
+            @if (Checked)
+            {
+                <span class="noknin-checkbox__checkmark">✓</span>
+            }
+        </span>
+    </span>
+
+    <span class="noknin-checkbox__content">
+        @if (!string.IsNullOrWhiteSpace(Label))
+        {
+            <span class="noknin-checkbox__label">
+                @Label
+
+                @if (Required)
+                {
+                    <span class="noknin-checkbox__required" aria-hidden="true">*</span>
+                }
+            </span>
+        }
+
+        @if (!string.IsNullOrWhiteSpace(Description) && !HasError)
+        {
+            <span id="@DescriptionId" class="noknin-checkbox__description">
+                @Description
+            </span>
+        }
+
+        @if (!string.IsNullOrWhiteSpace(ErrorText))
+        {
+            <span id="@ErrorId" class="noknin-checkbox__error">
+                @ErrorText
+            </span>
+        }
+
+        @if (ChildContent is not null)
+        {
+            <span class="noknin-checkbox__child-content">
+                @ChildContent
+            </span>
+        }
+    </span>
+</label>

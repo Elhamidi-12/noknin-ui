@@ -301,6 +301,32 @@
                       Description="Angular is disabled and should not be selectable." />
     </div>
 
+    <hr style="margin:2rem 0;" />
+
+    <h2>Checkbox</h2>
+
+    <div style="max-width:420px; display:grid; gap:1rem;">
+        <NokninCheckbox Label="Accept terms" Description="I agree to the terms and privacy policy."
+                        @bind-Checked="_acceptedTerms" />
+
+        <NokninCheckbox Label="Required checkbox" Description="This checkbox is required." Required
+                        @bind-Checked="_requiredCheckbox" />
+
+        <NokninCheckbox Label="Error checkbox" ErrorText="You must accept this before continuing."
+                        @bind-Checked="_errorCheckbox" />
+
+        <NokninCheckbox Label="Disabled checkbox" Description="This option is currently unavailable." Disabled />
+
+        <NokninCheckbox Label="Checked disabled checkbox" Description="This option is locked on." Checked="true"
+                        Disabled />
+
+        <NokninCheckbox Label="Small checkbox" Size="NokninSize.Small" @bind-Checked="_smallCheckbox" />
+
+        <NokninCheckbox Label="Medium checkbox" Size="NokninSize.Medium" @bind-Checked="_mediumCheckbox" />
+
+        <NokninCheckbox Label="Large checkbox" Size="NokninSize.Large" @bind-Checked="_largeCheckbox" />
+    </div>
+
 </div>
 
 @code {
@@ -328,6 +354,13 @@
         new() { Value = "pending", Label = "Pending" },
         new() { Value = "archived", Label = "Archived" }
     ];
+
+    private bool _acceptedTerms;
+    private bool _requiredCheckbox;
+    private bool _errorCheckbox;
+    private bool _smallCheckbox;
+    private bool _mediumCheckbox;
+    private bool _largeCheckbox;
 
     private void HandleAlertDismiss()
     {

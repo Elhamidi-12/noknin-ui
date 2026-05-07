@@ -1,0 +1,123 @@
+.noknin-checkbox {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: var(--noknin-space-3);
+    color: var(--noknin-text-primary);
+    cursor: pointer;
+}
+
+.noknin-checkbox__control-wrap {
+    position: relative;
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+}
+
+.noknin-checkbox__input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: inherit;
+}
+
+.noknin-checkbox__control {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--noknin-border-default);
+    border-radius: var(--noknin-radius-sm);
+    background: var(--noknin-bg-surface);
+    color: var(--noknin-text-inverse);
+    transition:
+        background-color var(--noknin-duration-200) var(--noknin-ease-out),
+        border-color var(--noknin-duration-200) var(--noknin-ease-out),
+        box-shadow var(--noknin-duration-200) var(--noknin-ease-out);
+}
+
+.noknin-checkbox--small .noknin-checkbox__control {
+    width: 1rem;
+    height: 1rem;
+}
+
+.noknin-checkbox--medium .noknin-checkbox__control {
+    width: 1.125rem;
+    height: 1.125rem;
+}
+
+.noknin-checkbox--large .noknin-checkbox__control {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.noknin-checkbox:hover:not(.noknin-checkbox--disabled) .noknin-checkbox__control {
+    background: var(--noknin-bg-subtle);
+}
+
+.noknin-checkbox__input:focus-visible + .noknin-checkbox__control {
+    outline: 2px solid var(--noknin-ring);
+    outline-offset: 2px;
+}
+
+.noknin-checkbox--checked .noknin-checkbox__control {
+    border-color: var(--noknin-brand-primary);
+    background: var(--noknin-brand-primary);
+}
+
+.noknin-checkbox--checked:hover:not(.noknin-checkbox--disabled) .noknin-checkbox__control {
+    border-color: var(--noknin-brand-primary-hover);
+    background: var(--noknin-brand-primary-hover);
+}
+
+.noknin-checkbox--error .noknin-checkbox__control {
+    border-color: var(--noknin-status-error);
+}
+
+.noknin-checkbox--disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.noknin-checkbox__checkmark {
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.noknin-checkbox__content {
+    display: inline-flex;
+    flex-direction: column;
+    gap: var(--noknin-space-1);
+    min-width: 0;
+}
+
+.noknin-checkbox__label {
+    color: var(--noknin-text-primary);
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.noknin-checkbox--large .noknin-checkbox__label {
+    font-size: 1rem;
+}
+
+.noknin-checkbox__required {
+    color: var(--noknin-status-error);
+    margin-left: var(--noknin-space-1);
+}
+
+.noknin-checkbox__description,
+.noknin-checkbox__child-content {
+    color: var(--noknin-text-muted);
+    font-size: 0.875rem;
+    line-height: 1.4;
+}
+
+.noknin-checkbox__error {
+    color: var(--noknin-status-error);
+    font-size: 0.875rem;
+    line-height: 1.4;
+}
