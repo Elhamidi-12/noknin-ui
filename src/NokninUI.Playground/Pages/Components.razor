@@ -1,4 +1,4 @@
-@page "/buttons"
+@page "/components"
 @using NokninUI.Data.Enums
 @inject NokninToastService Toasts
 
@@ -392,6 +392,37 @@
         <NokninSwitch Label="Large switch" Size="NokninSize.Large" @bind-Checked="_largeSwitch" />
     </div>
 
+    <hr style="margin:2rem 0;" />
+
+    <h2>Text Area</h2>
+
+    <div style="max-width:520px; display:grid; gap:1rem;">
+        <NokninTextArea Label="Message" Placeholder="Write your message..."
+                        Description="Use this for longer free-form text." @bind-Value="_message" />
+
+        <NokninTextArea Label="Required message" Placeholder="This field is required" Required
+                        @bind-Value="_requiredMessage" />
+
+        <NokninTextArea Label="With character count" Placeholder="Maximum 120 characters" MaxLength="120"
+                        ShowCharacterCount @bind-Value="_limitedMessage" />
+
+        <NokninTextArea Label="Error message" Placeholder="Write something..." ErrorText="Message is required."
+                        @bind-Value="_errorMessage" />
+
+        <NokninTextArea Label="Disabled textarea" Placeholder="Disabled" Disabled />
+
+        <NokninTextArea Label="Read only textarea" Value="This content is read-only." ReadOnly />
+
+        <NokninTextArea Label="Small textarea" Placeholder="Small" Size="NokninSize.Small" Rows="3"
+                        @bind-Value="_smallTextArea" />
+
+        <NokninTextArea Label="Medium textarea" Placeholder="Medium" Size="NokninSize.Medium" Rows="3"
+                        @bind-Value="_mediumTextArea" />
+
+        <NokninTextArea Label="Large textarea" Placeholder="Large" Size="NokninSize.Large" Rows="3"
+                        @bind-Value="_largeTextArea" />
+    </div>
+
 </div>
 
 @code {
@@ -439,6 +470,14 @@
     private bool _smallSwitch;
     private bool _mediumSwitch;
     private bool _largeSwitch;
+
+    private string? _message;
+    private string? _requiredMessage;
+    private string? _limitedMessage;
+    private string? _errorMessage;
+    private string? _smallTextArea;
+    private string? _mediumTextArea;
+    private string? _largeTextArea;
 
     private void HandleAlertDismiss()
     {

@@ -1,0 +1,93 @@
+.noknin-textarea {
+    display: flex;
+    flex-direction: column;
+    gap: var(--noknin-space-2);
+    width: 100%;
+    color: var(--noknin-text-primary);
+}
+
+.noknin-textarea__label {
+    color: var(--noknin-text-primary);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.noknin-textarea__required {
+    color: var(--noknin-status-error);
+    margin-left: var(--noknin-space-1);
+}
+
+.noknin-textarea__control {
+    width: 100%;
+    min-width: 0;
+    border: 1px solid var(--noknin-border-default);
+    border-radius: var(--noknin-radius-md);
+    background: var(--noknin-bg-surface);
+    color: var(--noknin-text-primary);
+    font: inherit;
+    line-height: 1.5;
+    resize: vertical;
+    transition:
+        border-color var(--noknin-duration-200) var(--noknin-ease-out),
+        background-color var(--noknin-duration-200) var(--noknin-ease-out),
+        box-shadow var(--noknin-duration-200) var(--noknin-ease-out);
+}
+
+.noknin-textarea__control::placeholder {
+    color: var(--noknin-text-muted);
+}
+
+.noknin-textarea--small .noknin-textarea__control {
+    padding: var(--noknin-space-2) var(--noknin-space-3);
+    font-size: 0.875rem;
+}
+
+.noknin-textarea--medium .noknin-textarea__control {
+    padding: var(--noknin-space-3) var(--noknin-space-4);
+    font-size: 1rem;
+}
+
+.noknin-textarea--large .noknin-textarea__control {
+    padding: var(--noknin-space-4);
+    font-size: 1rem;
+}
+
+.noknin-textarea__control:hover:not(:disabled):not(:read-only) {
+    background: var(--noknin-bg-subtle);
+}
+
+.noknin-textarea__control:focus-visible {
+    outline: 2px solid var(--noknin-ring);
+    outline-offset: 2px;
+}
+
+.noknin-textarea--error .noknin-textarea__control {
+    border-color: var(--noknin-status-error);
+}
+
+.noknin-textarea__control:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.noknin-textarea__control:read-only {
+    cursor: default;
+}
+
+.noknin-textarea__meta {
+    align-self: flex-end;
+    color: var(--noknin-text-muted);
+    font-size: 0.8125rem;
+}
+
+.noknin-textarea__description {
+    color: var(--noknin-text-muted);
+    font-size: 0.875rem;
+    line-height: 1.4;
+}
+
+.noknin-textarea__error {
+    color: var(--noknin-status-error);
+    font-size: 0.875rem;
+    line-height: 1.4;
+}

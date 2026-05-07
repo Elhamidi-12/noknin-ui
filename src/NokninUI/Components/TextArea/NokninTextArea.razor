@@ -1,0 +1,49 @@
+<div class="@RootClass" style="@Style">
+    @if (!string.IsNullOrWhiteSpace(Label))
+    {
+        <label class="noknin-textarea__label" for="@Id">
+            @Label
+
+            @if (Required)
+            {
+                <span class="noknin-textarea__required" aria-hidden="true">*</span>
+            }
+        </label>
+    }
+
+    <textarea
+        id="@Id"
+        class="noknin-textarea__control"
+        value="@Value"
+        placeholder="@Placeholder"
+        disabled="@Disabled"
+        required="@Required"
+        readonly="@ReadOnly"
+        rows="@Rows"
+        maxlength="@MaxLength"
+        aria-invalid="@HasError.ToString().ToLowerInvariant()"
+        aria-describedby="@DescribedBy"
+        @oninput="HandleInputAsync">
+    </textarea>
+
+    @if (ShowCharacterCount)
+    {
+        <div class="noknin-textarea__meta">
+            @CharacterCountText
+        </div>
+    }
+
+    @if (!string.IsNullOrWhiteSpace(Description) && !HasError)
+    {
+        <div id="@DescriptionId" class="noknin-textarea__description">
+            @Description
+        </div>
+    }
+
+    @if (!string.IsNullOrWhiteSpace(ErrorText))
+    {
+        <div id="@ErrorId" class="noknin-textarea__error">
+            @ErrorText
+        </div>
+    }
+</div>
