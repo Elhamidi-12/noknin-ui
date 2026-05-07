@@ -25,6 +25,30 @@ public partial class NokninTableRow
         }
     }
 
+    private string? TabIndex
+    {
+        get
+        {
+            return IsInteractive ? "0" : null;
+        }
+    }
+
+    private string? Role
+    {
+        get
+        {
+            return IsInteractive ? "button" : null;
+        }
+    }
+
+    private string? AriaDisabled
+    {
+        get
+        {
+            return Disabled ? "true" : null;
+        }
+    }
+
     private string RootClass
     {
         get
@@ -44,11 +68,24 @@ public partial class NokninTableRow
 
     private async Task HandleClickAsync(MouseEventArgs args)
     {
-        if (Disabled || !OnClick.HasDelegate)
+        if (!IsInteractive)
         {
             return;
         }
 
         await OnClick.InvokeAsync(args);
+    }
+
+    private async Task HandleKeyDownAsync(KeyboardEventArgs args)
+    {
+        if (!IsInteractive)
+        {
+            return;
+        }
+
+        if (args.Key is "Enter" or " ")
+        {
+            await OnClick.InvokeAsync(new MouseEventArgs());
+        }
     }
 }

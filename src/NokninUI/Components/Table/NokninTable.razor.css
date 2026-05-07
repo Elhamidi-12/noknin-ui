@@ -114,3 +114,16 @@
     cursor: not-allowed;
     opacity: 0.6;
 }
+
+.noknin-table ::deep .noknin-table__row--interactive:focus-visible {
+    outline: 2px solid var(--noknin-ring);
+    outline-offset: -2px;
+}
+
+.noknin-table ::deep .noknin-table__row--interactive:hover {
+    background: var(--noknin-bg-subtle);
+}
+
+.noknin-table ::deep .noknin-table__row--interactive:active {
+    background: var(--noknin-bg-subtle);
+}
