@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/NokninUI.Playground/NokninUI.Playground.csproj" />
+    <Project Path="src/NokninUI/NokninUI.csproj" />
+  </Folder>
+</Solution>
