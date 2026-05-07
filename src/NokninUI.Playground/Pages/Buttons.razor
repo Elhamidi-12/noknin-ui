@@ -48,6 +48,48 @@
                      Disabled />
 
 </div>
+
+<hr style="margin:2rem 0;" />
+
+<h2>Cards</h2>
+
+<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1rem;">
+    <NokninCard>
+        <Header>
+            Card title
+        </Header>
+
+        <ChildContent>
+            This is a basic elevated card using NokninUI semantic tokens.
+        </ChildContent>
+
+        <Footer>
+            <NokninButton Variant="NokninVariant.Ghost">Cancel</NokninButton>
+            <NokninButton Variant="NokninVariant.Primary">Save</NokninButton>
+        </Footer>
+    </NokninCard>
+
+    <NokninCard Variant="NokninCardVariant.Outlined">
+        <Header>
+            Outlined card
+        </Header>
+
+        <ChildContent>
+            Useful for dashboards, settings pages, and grouped content.
+        </ChildContent>
+    </NokninCard>
+
+    <NokninCard Variant="NokninCardVariant.Ghost" Interactive>
+        <Header>
+            Interactive ghost card
+        </Header>
+
+        <ChildContent>
+            Hover this card to test the interactive state.
+        </ChildContent>
+    </NokninCard>
+</div>
+
 </div>
 
 @code {

@@ -1,0 +1,22 @@
+<article class="@ClassNames">
+    @if (Header is not null)
+    {
+        <header class="noknin-card__header">
+            @Header
+        </header>
+    }
+
+    @if (ChildContent is not null)
+    {
+        <div class="noknin-card__content">
+            @ChildContent
+        </div>
+    }
+
+    @if (Footer is not null)
+    {
+        <footer class="noknin-card__footer">
+            @Footer
+        </footer>
+    }
+</article>
