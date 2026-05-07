@@ -117,3 +117,42 @@
     color: var(--noknin-text-muted);
     font-size: 0.9375rem;
 }
+
+.noknin-datagrid__sort-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: inherit;
+    gap: var(--noknin-space-2);
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-weight: inherit;
+    text-align: inherit;
+    cursor: pointer;
+}
+
+.noknin-datagrid__sort-button:hover {
+    color: var(--noknin-brand-primary);
+}
+
+.noknin-datagrid__sort-button:focus-visible {
+    outline: 2px solid var(--noknin-ring);
+    outline-offset: 2px;
+    border-radius: var(--noknin-radius-sm);
+}
+
+.noknin-datagrid__sort-label {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.noknin-datagrid__sort-indicator {
+    flex: 0 0 auto;
+    color: var(--noknin-text-muted);
+    font-size: 0.875em;
+}

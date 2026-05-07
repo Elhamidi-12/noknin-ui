@@ -21,7 +21,17 @@ public partial class NokninDataGridColumn<TItem> : ComponentBase, IDisposable
 
     [Parameter] public bool NoWrap { get; set; }
 
+    [Parameter] public bool Sortable { get; set; }
+
     [Parameter] public string? Class { get; set; }
+
+    internal bool CanSort
+    {
+        get
+        {
+            return Sortable && !string.IsNullOrWhiteSpace(Field);
+        }
+    }
 
     internal NokninTableCellAlign EffectiveAlign
     {

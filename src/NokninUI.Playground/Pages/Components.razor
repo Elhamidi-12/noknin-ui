@@ -604,9 +604,9 @@
         <NokninDataGrid TItem="ProjectRow" Items="@_projects" Caption="Data grid with template columns" Striped
                         Hoverable>
             <Columns>
-                <NokninDataGridColumn TItem="ProjectRow" Header="Project" Field="Name" />
+                <NokninDataGridColumn TItem="ProjectRow" Header="Project" Field="Name" Sortable />
 
-                <NokninDataGridColumn TItem="ProjectRow" Header="Status" Align="NokninTableCellAlign.Center">
+                <NokninDataGridColumn TItem="ProjectRow" Header="Status" Field="Status" Align="NokninTableCellAlign.Center" Sortable>
                     <Template Context="project">
                         <NokninBadge Variant="@GetProjectBadgeVariant(project.Status)">
                             @project.Status
@@ -614,9 +614,9 @@
                     </Template>
                 </NokninDataGridColumn>
 
-                <NokninDataGridColumn TItem="ProjectRow" Header="Progress" Field="Progress" Numeric />
+                <NokninDataGridColumn TItem="ProjectRow" Header="Progress" Field="Progress" Numeric Sortable/>
 
-                <NokninDataGridColumn TItem="ProjectRow" Header="Updated" Field="Updated" NoWrap />
+                <NokninDataGridColumn TItem="ProjectRow" Header="Updated" Field="Updated" NoWrap Sortable/>
             </Columns>
         </NokninDataGrid>
 

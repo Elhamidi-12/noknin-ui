@@ -17,8 +17,30 @@
             <tr class="noknin-datagrid__row">
                 @foreach (var column in RegisteredColumns)
                 {
-                    <th class="@GetHeaderCellClass(column)" scope="col">
-                        @column.Header
+                    <th
+                        class="@GetHeaderCellClass(column)"
+                        scope="col"
+                        aria-sort="@GetSortAriaSort(column)">
+                        @if (column.CanSort)
+                        {
+                            <button
+                                type="button"
+                                class="noknin-datagrid__sort-button"
+                                aria-label="@GetSortButtonLabel(column)"
+                                @onclick="() => ToggleSortAsync(column)">
+                                <span class="noknin-datagrid__sort-label">
+                                    @column.Header
+                                </span>
+
+                                <span class="noknin-datagrid__sort-indicator" aria-hidden="true">
+                                    @GetSortIndicator(column)
+                                </span>
+                            </button>
+                        }
+                        else
+                        {
+                            @column.Header
+                        }
                     </th>
                 }
             </tr>

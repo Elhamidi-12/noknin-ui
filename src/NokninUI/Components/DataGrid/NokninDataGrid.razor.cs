@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using NokninUI.Data.Enums;
 using System.Reflection;
 
@@ -7,6 +8,9 @@ namespace NokninUI.Components.DataGrid;
 public partial class NokninDataGrid<TItem>
 {
     private readonly List<NokninDataGridColumn<TItem>> _columns = [];
+
+    private string? _sortField;
+    private NokninSortDirection _sortDirection = NokninSortDirection.None;
 
     [Parameter] public IEnumerable<TItem>? Items { get; set; }
 
@@ -50,7 +54,7 @@ public partial class NokninDataGrid<TItem>
     {
         get
         {
-            return Items?.ToList() ?? [];
+            return GetResolvedItems();
         }
     }
 
@@ -113,6 +117,98 @@ public partial class NokninDataGrid<TItem>
         }
     }
 
+    private IReadOnlyList<TItem> GetResolvedItems()
+    {
+        var items = Items?.ToList() ?? [];
+
+        if (string.IsNullOrWhiteSpace(_sortField) || _sortDirection == NokninSortDirection.None)
+        {
+            return items;
+        }
+
+        return _sortDirection == NokninSortDirection.Ascending
+            ? items.OrderBy(item => GetComparableFieldValue(item, _sortField)).ToList()
+            : items.OrderByDescending(item => GetComparableFieldValue(item, _sortField)).ToList();
+    }
+
+    private async Task ToggleSortAsync(NokninDataGridColumn<TItem> column)
+    {
+        if (!column.CanSort || string.IsNullOrWhiteSpace(column.Field))
+        {
+            return;
+        }
+
+        if (_sortField != column.Field)
+        {
+            _sortField = column.Field;
+            _sortDirection = NokninSortDirection.Ascending;
+        }
+        else
+        {
+            _sortDirection = _sortDirection switch
+            {
+                NokninSortDirection.None => NokninSortDirection.Ascending,
+                NokninSortDirection.Ascending => NokninSortDirection.Descending,
+                NokninSortDirection.Descending => NokninSortDirection.None,
+                _ => NokninSortDirection.None
+            };
+
+            if (_sortDirection == NokninSortDirection.None)
+            {
+                _sortField = null;
+            }
+        }
+
+        await Task.CompletedTask;
+    }
+
+    private string GetSortAriaSort(NokninDataGridColumn<TItem> column)
+    {
+        if (!column.CanSort || _sortField != column.Field)
+        {
+            return "none";
+        }
+
+        return _sortDirection switch
+        {
+            NokninSortDirection.Ascending => "ascending",
+            NokninSortDirection.Descending => "descending",
+            _ => "none"
+        };
+    }
+
+    private string GetSortButtonLabel(NokninDataGridColumn<TItem> column)
+    {
+        if (!column.CanSort)
+        {
+            return column.Header;
+        }
+
+        if (_sortField != column.Field || _sortDirection == NokninSortDirection.None)
+        {
+            return $"Sort by {column.Header}";
+        }
+
+        return _sortDirection == NokninSortDirection.Ascending
+            ? $"Sort by {column.Header}, currently ascending"
+            : $"Sort by {column.Header}, currently descending";
+    }
+
+    private string GetSortIndicator(NokninDataGridColumn<TItem> column)
+    {
+        if (!column.CanSort || _sortField != column.Field)
+        {
+            return "↕";
+        }
+
+        return _sortDirection switch
+        {
+            NokninSortDirection.Ascending => "↑",
+            NokninSortDirection.Descending => "↓",
+            _ => "↕"
+        };
+    }
+
     private static string GetHeaderCellClass(NokninDataGridColumn<TItem> column)
     {
         return GetCellClass("noknin-datagrid__head-cell", column);
@@ -133,6 +229,7 @@ public partial class NokninDataGrid<TItem>
                 $"noknin-datagrid__cell--align-{column.EffectiveAlign.ToString().ToLowerInvariant()}",
                 column.Numeric ? "noknin-datagrid__cell--numeric" : null,
                 column.NoWrap ? "noknin-datagrid__cell--nowrap" : null,
+                column.CanSort ? "noknin-datagrid__cell--sortable" : null,
                 column.Class
             }.Where(value => !string.IsNullOrWhiteSpace(value)));
     }
@@ -149,5 +246,22 @@ public partial class NokninDataGrid<TItem>
             BindingFlags.Instance | BindingFlags.Public | BindingFlags.IgnoreCase);
 
         return property?.GetValue(item);
+    }
+
+    private static object? GetComparableFieldValue(TItem item, string fieldName)
+    {
+        var value = GetFieldValue(item, fieldName);
+
+        if (value is null)
+        {
+            return null;
+        }
+
+        if (value is IComparable comparable)
+        {
+            return comparable;
+        }
+
+        return value.ToString();
     }
 }
