@@ -1,109 +1,125 @@
+@using NokninUI.Components.Pagination
 @typeparam TItem
 
 <CascadingValue Value="this">
     @Columns
 </CascadingValue>
 
-<div class="@WrapperClass" style="@Style">
-    <table class="@RootClass">
-        @if (!string.IsNullOrWhiteSpace(Caption))
-        {
-            <caption class="noknin-datagrid__caption">
-                @Caption
-            </caption>
-        }
-
-        <thead class="noknin-datagrid__header">
-            <tr class="noknin-datagrid__row">
-                @foreach (var column in RegisteredColumns)
-                {
-                    <th
-                        class="@GetHeaderCellClass(column)"
-                        scope="col"
-                        aria-sort="@GetSortAriaSort(column)">
-                        @if (column.CanSort)
-                        {
-                            <button
-                                type="button"
-                                class="noknin-datagrid__sort-button"
-                                aria-label="@GetSortButtonLabel(column)"
-                                @onclick="() => ToggleSortAsync(column)">
-                                <span class="noknin-datagrid__sort-label">
-                                    @column.Header
-                                </span>
-
-                                <span class="noknin-datagrid__sort-indicator" aria-hidden="true">
-                                    @GetSortIndicator(column)
-                                </span>
-                            </button>
-                        }
-                        else
-                        {
-                            @column.Header
-                        }
-                    </th>
-                }
-            </tr>
-        </thead>
-
-        <tbody class="noknin-datagrid__body">
-            @if (Loading)
+<div class="noknin-datagrid-container">
+    <div class="@WrapperClass" style="@Style">
+        <table class="@RootClass">
+            @if (!string.IsNullOrWhiteSpace(Caption))
             {
-                <tr class="noknin-datagrid__row noknin-datagrid__row--loading">
-                    <td class="noknin-datagrid__cell noknin-datagrid__cell--state" colspan="@ColumnCount">
-                        @if (LoadingContent is not null)
-                        {
-                            @LoadingContent
-                        }
-                        else
-                        {
-                            <span class="noknin-datagrid__state-text">@LoadingText</span>
-                        }
-                    </td>
-                </tr>
+                <caption class="noknin-datagrid__caption">
+                    @Caption
+                </caption>
             }
-            else if (!ResolvedItems.Any())
-            {
-                <tr class="noknin-datagrid__row noknin-datagrid__row--empty">
-                    <td class="noknin-datagrid__cell noknin-datagrid__cell--state" colspan="@ColumnCount">
-                        @if (EmptyContent is not null)
-                        {
-                            @EmptyContent
-                        }
-                        else
-                        {
-                            <span class="noknin-datagrid__state-text">@EmptyText</span>
-                        }
-                    </td>
+
+            <thead class="noknin-datagrid__header">
+                <tr class="noknin-datagrid__row">
+                    @foreach (var column in RegisteredColumns)
+                    {
+                        <th
+                            class="@GetHeaderCellClass(column)"
+                            scope="col"
+                            aria-sort="@GetSortAriaSort(column)">
+                            @if (column.CanSort)
+                            {
+                                <button
+                                    type="button"
+                                    class="noknin-datagrid__sort-button"
+                                    aria-label="@GetSortButtonLabel(column)"
+                                    @onclick="() => ToggleSortAsync(column)">
+                                    <span class="noknin-datagrid__sort-label">
+                                        @column.Header
+                                    </span>
+
+                                    <span class="noknin-datagrid__sort-indicator" aria-hidden="true">
+                                        @GetSortIndicator(column)
+                                    </span>
+                                </button>
+                            }
+                            else
+                            {
+                                @column.Header
+                            }
+                        </th>
+                    }
                 </tr>
-            }
-            else
-            {
-                @foreach (var item in ResolvedItems)
+            </thead>
+
+            <tbody class="noknin-datagrid__body">
+                @if (Loading)
                 {
-                    <tr
-                        class="@GetRowClass(item)"
-                        tabindex="@GetRowTabIndex()"
-                        role="@GetRowRole()"
-                        aria-selected="@GetRowAriaSelected(item)"
-                        @onclick="() => SelectRowAsync(item)"
-                        @onkeydown="args => HandleRowKeyDownAsync(args, item)">
-                        @foreach (var column in RegisteredColumns)
-                        {
-                            <td class="@GetBodyCellClass(column)">
-                                @if (column.Template is not null)
-                                {
-                                    @column.Template(item)
-                                }
-                                else if (!string.IsNullOrWhiteSpace(column.Field))
-                                {
-                                    @GetFieldValue(item, column.Field)
-                                }
-                            </td>
-                        }
+                    <tr class="noknin-datagrid__row noknin-datagrid__row--loading">
+                        <td class="noknin-datagrid__cell noknin-datagrid__cell--state" colspan="@ColumnCount">
+                            @if (LoadingContent is not null)
+                            {
+                                @LoadingContent
+                            }
+                            else
+                            {
+                                <span class="noknin-datagrid__state-text">@LoadingText</span>
+                            }
+                        </td>
                     </tr>
                 }
-            }
-        </tbody>
-    </table>
+                else if (!ResolvedItems.Any())
+                {
+                    <tr class="noknin-datagrid__row noknin-datagrid__row--empty">
+                        <td class="noknin-datagrid__cell noknin-datagrid__cell--state" colspan="@ColumnCount">
+                            @if (EmptyContent is not null)
+                            {
+                                @EmptyContent
+                            }
+                            else
+                            {
+                                <span class="noknin-datagrid__state-text">@EmptyText</span>
+                            }
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    @foreach (var item in ResolvedItems)
+                    {
+                        <tr
+                            class="@GetRowClass(item)"
+                            tabindex="@GetRowTabIndex()"
+                            role="@GetRowRole()"
+                            aria-selected="@GetRowAriaSelected(item)"
+                            @onclick="() => SelectRowAsync(item)"
+                            @onkeydown="args => HandleRowKeyDownAsync(args, item)">
+                            @foreach (var column in RegisteredColumns)
+                            {
+                                <td class="@GetBodyCellClass(column)">
+                                    @if (column.Template is not null)
+                                    {
+                                        @column.Template(item)
+                                    }
+                                    else if (!string.IsNullOrWhiteSpace(column.Field))
+                                    {
+                                        @GetFieldValue(item, column.Field)
+                                    }
+                                </td>
+                            }
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @if (ShouldShowPagination)
+    {
+        <div class="noknin-datagrid__pagination">
+            <NokninPagination
+                TotalItems="@TotalItems"
+                PageSize="@PageSize"
+                Page="@Page"
+                PageChanged="HandlePageChangedAsync"
+                Size="@Size"
+                ShowSummary="@ShowPaginationSummary" />
+        </div>
+    }
 </div>

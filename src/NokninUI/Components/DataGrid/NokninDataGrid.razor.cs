@@ -44,6 +44,16 @@ public partial class NokninDataGrid<TItem>
 
     [Parameter] public EventCallback<TItem?> SelectedItemChanged { get; set; }
 
+    [Parameter] public bool ShowPagination { get; set; }
+
+    [Parameter] public int Page { get; set; } = 1;
+
+    [Parameter] public EventCallback<int> PageChanged { get; set; }
+
+    [Parameter] public int PageSize { get; set; } = 10;
+
+    [Parameter] public bool ShowPaginationSummary { get; set; } = true;
+
     [Parameter] public string? Class { get; set; }
 
     [Parameter] public string? Style { get; set; }
@@ -56,6 +66,14 @@ public partial class NokninDataGrid<TItem>
         }
     }
 
+    private IReadOnlyList<TItem> SortedItems
+    {
+        get
+        {
+            return GetSortedItems();
+        }
+    }
+
     private IReadOnlyList<TItem> ResolvedItems
     {
         get
@@ -64,11 +82,27 @@ public partial class NokninDataGrid<TItem>
         }
     }
 
+    private int TotalItems
+    {
+        get
+        {
+            return SortedItems.Count;
+        }
+    }
+
     private int ColumnCount
     {
         get
         {
             return Math.Max(_columns.Count, 1);
+        }
+    }
+
+    private bool ShouldShowPagination
+    {
+        get
+        {
+            return ShowPagination && !Loading && TotalItems > 0;
         }
     }
 
@@ -124,7 +158,7 @@ public partial class NokninDataGrid<TItem>
         }
     }
 
-    private IReadOnlyList<TItem> GetResolvedItems()
+    private IReadOnlyList<TItem> GetSortedItems()
     {
         var items = Items?.ToList() ?? [];
 
@@ -136,6 +170,30 @@ public partial class NokninDataGrid<TItem>
         return _sortDirection == NokninSortDirection.Ascending
             ? items.OrderBy(item => GetComparableFieldValue(item, _sortField)).ToList()
             : items.OrderByDescending(item => GetComparableFieldValue(item, _sortField)).ToList();
+    }
+
+    private IReadOnlyList<TItem> GetResolvedItems()
+    {
+        var items = SortedItems;
+
+        if (!ShowPagination || PageSize <= 0)
+        {
+            return items;
+        }
+
+        var totalPages = Math.Max(1, (int)Math.Ceiling((double)items.Count / PageSize));
+        var currentPage = Math.Clamp(Page, 1, totalPages);
+
+        return items
+            .Skip((currentPage - 1) * PageSize)
+            .Take(PageSize)
+            .ToList();
+    }
+
+    private async Task HandlePageChangedAsync(int page)
+    {
+        Page = page;
+        await PageChanged.InvokeAsync(Page);
     }
 
     private async Task ToggleSortAsync(NokninDataGridColumn<TItem> column)
@@ -166,7 +224,11 @@ public partial class NokninDataGrid<TItem>
             }
         }
 
-        await Task.CompletedTask;
+        if (ShowPagination && Page != 1)
+        {
+            Page = 1;
+            await PageChanged.InvokeAsync(Page);
+        }
     }
 
     private async Task SelectRowAsync(TItem item)

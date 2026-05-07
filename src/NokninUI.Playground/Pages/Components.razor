@@ -604,7 +604,8 @@
         <div style="display:grid; gap:1rem;">
             <NokninDataGrid TItem="ProjectRow" Items="@_projects" Caption="Data grid with template columns" Striped
                             Hoverable RowSelectable SelectedItem="@_selectedProject"
-                            SelectedItemChanged="value => _selectedProject = value">
+                            SelectedItemChanged="value => _selectedProject = value" ShowPagination Page="@_dataGridPage"
+                            PageChanged="value => _dataGridPage = value" PageSize="5">
                 <Columns>
                     <NokninDataGridColumn TItem="ProjectRow" Header="Project" Field="Name" Sortable />
 
@@ -740,6 +741,7 @@
 
     private readonly ProjectRow[] _emptyProjects = [];
     private ProjectRow? _selectedProject;
+    private int _dataGridPage = 1;
 
     private void HandleAlertDismiss()
     {

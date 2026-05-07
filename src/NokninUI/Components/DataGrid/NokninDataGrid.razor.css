@@ -1,3 +1,9 @@
+.noknin-datagrid-container {
+    display: grid;
+    gap: var(--noknin-space-4);
+    width: 100%;
+}
+
 .noknin-datagrid-wrapper {
     width: 100%;
 }
@@ -176,4 +182,8 @@
 
 .noknin-datagrid__row--selected .noknin-datagrid__cell:first-child {
     box-shadow: inset 3px 0 0 var(--noknin-brand-primary);
+}
+
+.noknin-datagrid__pagination {
+    width: 100%;
 }
