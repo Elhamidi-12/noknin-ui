@@ -602,7 +602,7 @@
 
     <div style="display:grid; gap:2rem;">
         <div style="display:grid; gap:1rem;">
-            <NokninDataGrid TItem="ProjectRow" Items="@_projects" Caption="Data grid with template columns" Striped
+            <NokninDataGrid TItem="ProjectRow" Items="@_projects" Caption="Sortable, selectable, paginated data grid" Striped
                             Hoverable RowSelectable SelectedItem="@_selectedProject"
                             SelectedItemChanged="value => _selectedProject = value" ShowPagination Page="@_dataGridPage"
                             PageChanged="value => _dataGridPage = value" PageSize="5">
@@ -626,9 +626,15 @@
 
             @if (_selectedProject is not null)
             {
-                <p>
-                    Selected project: <strong>@_selectedProject.Name</strong>
-                </p>
+                <div style="display:flex; gap:.75rem; align-items:center; flex-wrap:wrap;">
+                    <p style="margin:0;">
+                        Selected project: <strong>@_selectedProject.Name</strong>
+                    </p>
+
+                    <NokninButton Variant="NokninVariant.Ghost" Size="NokninSize.Small" OnClick="ClearSelectedProject">
+                        Clear selection
+                    </NokninButton>
+                </div>
             }
         </div>
 
@@ -654,7 +660,7 @@
             </Columns>
         </NokninDataGrid>
 
-        <NokninDataGrid TItem="ProjectRow" Items="@_projects" Caption="Bordered small data grid" Size="NokninSize.Small"
+        <NokninDataGrid TItem="ProjectRow" Items="@_projects" Caption="Bordered small data grid without pagination" Size="NokninSize.Small"
                         Bordered>
             <Columns>
                 <NokninDataGridColumn TItem="ProjectRow" Header="Project" Field="Name" />
@@ -800,6 +806,11 @@
     {
         _pagedTablePage = page;
         return Task.CompletedTask;
+    }
+
+    private void ClearSelectedProject()
+    {
+        _selectedProject = null;
     }
 
     private static NokninBadgeVariant GetProjectBadgeVariant(string status)

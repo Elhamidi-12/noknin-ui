@@ -88,6 +88,7 @@
                             tabindex="@GetRowTabIndex()"
                             role="@GetRowRole()"
                             aria-selected="@GetRowAriaSelected(item)"
+                            title="@GetRowTitle(item)"
                             @onclick="() => SelectRowAsync(item)"
                             @onkeydown="args => HandleRowKeyDownAsync(args, item)">
                             @foreach (var column in RegisteredColumns)

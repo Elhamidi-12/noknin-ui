@@ -279,7 +279,16 @@ public partial class NokninDataGrid<TItem>
 
     private string? GetRowRole()
     {
-        return RowSelectable ? "button" : null;
+        return RowSelectable ? "row" : null;
+    }
+
+    private string? GetRowTitle(TItem item)
+    {
+        return RowSelectable
+            ? IsSelected(item)
+                ? "Selected row"
+                : "Select row"
+            : null;
     }
 
     private string? GetRowAriaSelected(TItem item)
