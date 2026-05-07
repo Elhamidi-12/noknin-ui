@@ -1,0 +1,24 @@
+<div class="@ClassNames"
+     role="@Role"
+     aria-live="@AriaLive">
+
+    <div class="noknin-toast__icon" aria-hidden="true">
+        @Icon
+    </div>
+
+    <div class="noknin-toast__body">
+        <div class="noknin-toast__title">@Message.Title</div>
+
+        @if (!string.IsNullOrWhiteSpace(Message.Message))
+        {
+            <div class="noknin-toast__message">@Message.Message</div>
+        }
+    </div>
+
+    <button type="button"
+            class="noknin-toast__close"
+            aria-label="Dismiss notification"
+            @onclick="Dismiss">
+        ×
+    </button>
+</div>

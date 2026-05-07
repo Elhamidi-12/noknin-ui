@@ -1,0 +1,122 @@
+.noknin-toast {
+    width: min(100%, 24rem);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: var(--noknin-space-3);
+    align-items: start;
+    padding: var(--noknin-space-4);
+    border: 1px solid transparent;
+    border-radius: var(--noknin-radius-lg);
+    background: var(--noknin-bg-surface);
+    color: var(--noknin-text-primary);
+    box-shadow: var(--noknin-shadow-lg, 0 24px 64px rgb(15 23 42 / .24));
+    animation: noknin-toast-enter var(--noknin-duration-200) var(--noknin-ease-out);
+}
+
+.noknin-toast__icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--noknin-radius-full);
+    font-size: var(--noknin-text-xs);
+    font-weight: 700;
+    line-height: 1;
+}
+
+.noknin-toast__title {
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.noknin-toast__message {
+    margin-top: var(--noknin-space-1);
+    color: var(--noknin-text-secondary);
+    line-height: 1.5;
+}
+
+.noknin-toast__close {
+    width: 2rem;
+    height: 2rem;
+    border: 0;
+    border-radius: var(--noknin-radius-md);
+    background: transparent;
+    color: var(--noknin-text-muted);
+    cursor: pointer;
+    font-size: 1.25rem;
+    line-height: 1;
+}
+
+.noknin-toast__close:hover {
+    background: var(--noknin-bg-subtle);
+    color: var(--noknin-text-primary);
+}
+
+.noknin-toast__close:focus-visible {
+    outline: 2px solid var(--noknin-ring);
+    outline-offset: 2px;
+}
+
+.noknin-toast--info {
+    border-color: color-mix(in srgb, var(--noknin-status-info) 24%, transparent);
+}
+
+.noknin-toast--info .noknin-toast__icon {
+    background: var(--noknin-status-info);
+    color: var(--noknin-text-inverse);
+}
+
+.noknin-toast--success {
+    border-color: color-mix(in srgb, var(--noknin-status-success) 24%, transparent);
+}
+
+.noknin-toast--success .noknin-toast__icon {
+    background: var(--noknin-status-success);
+    color: var(--noknin-text-inverse);
+}
+
+.noknin-toast--warning {
+    border-color: color-mix(in srgb, var(--noknin-status-warning) 28%, transparent);
+}
+
+.noknin-toast--warning .noknin-toast__icon {
+    background: var(--noknin-status-warning);
+    color: var(--noknin-text-inverse);
+}
+
+.noknin-toast--error {
+    border-color: color-mix(in srgb, var(--noknin-status-error) 24%, transparent);
+}
+
+.noknin-toast--error .noknin-toast__icon {
+    background: var(--noknin-status-error);
+    color: var(--noknin-text-inverse);
+}
+
+.noknin-toast--neutral {
+    border-color: var(--noknin-border-default);
+}
+
+.noknin-toast--neutral .noknin-toast__icon {
+    background: var(--noknin-bg-subtle);
+    color: var(--noknin-text-muted);
+}
+
+@keyframes noknin-toast-enter {
+    from {
+        opacity: 0;
+        transform: translateY(-6px) scale(.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .noknin-toast {
+        animation: none;
+    }
+}

@@ -1,0 +1,32 @@
+.noknin-toast-container {
+    position: fixed;
+    z-index: var(--noknin-z-toast, 1100);
+    display: grid;
+    gap: var(--noknin-space-3);
+    width: min(24rem, calc(100vw - 2rem));
+    pointer-events: none;
+}
+
+.noknin-toast-container > * {
+    pointer-events: auto;
+}
+
+.noknin-toast-container--topright {
+    top: var(--noknin-space-4);
+    right: var(--noknin-space-4);
+}
+
+.noknin-toast-container--topleft {
+    top: var(--noknin-space-4);
+    left: var(--noknin-space-4);
+}
+
+.noknin-toast-container--bottomright {
+    right: var(--noknin-space-4);
+    bottom: var(--noknin-space-4);
+}
+
+.noknin-toast-container--bottomleft {
+    bottom: var(--noknin-space-4);
+    left: var(--noknin-space-4);
+}

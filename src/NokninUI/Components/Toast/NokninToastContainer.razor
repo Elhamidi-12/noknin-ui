@@ -1,0 +1,10 @@
+@using NokninUI.Services
+@implements IDisposable
+@inject NokninToastService ToastService
+
+<div class="@ClassNames" aria-live="polite" aria-relevant="additions removals">
+    @foreach (var toast in _toasts)
+    {
+        <NokninToast Message="toast" OnDismiss="DismissAsync" />
+    }
+</div>

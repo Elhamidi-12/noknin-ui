@@ -2,10 +2,15 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
+    background: var(--noknin-bg-primary);
+    color: var(--noknin-text-primary);
 }
 
 main {
     flex: 1;
+    background: var(--noknin-bg-primary);
+    color: var(--noknin-text-primary);
 }
 
 .sidebar {
@@ -13,35 +18,65 @@ main {
 }
 
 .top-row {
-    background-color: #f7f7f7;
-    border-bottom: 1px solid #d6d5d5;
+    background: var(--noknin-bg-surface);
+    color: var(--noknin-text-primary);
+    border-bottom: 1px solid var(--noknin-border-default);
     justify-content: flex-end;
+    gap: var(--noknin-space-4);
     height: 3.5rem;
     display: flex;
     align-items: center;
 }
 
-    .top-row ::deep a, .top-row ::deep .btn-link {
-        white-space: nowrap;
-        margin-left: 1.5rem;
-        text-decoration: none;
-    }
+.theme-toggle {
+    border: 1px solid var(--noknin-border-default);
+    border-radius: var(--noknin-radius-md);
+    background: var(--noknin-bg-surface);
+    color: var(--noknin-text-primary);
+    padding: .5rem 1rem;
+    cursor: pointer;
+}
 
-    .top-row ::deep a:hover, .top-row ::deep .btn-link:hover {
-        text-decoration: underline;
-    }
+.theme-toggle:hover {
+    background: var(--noknin-bg-subtle);
+}
 
-    .top-row ::deep a:first-child {
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+.theme-toggle:focus-visible {
+    outline: 2px solid var(--noknin-ring);
+    outline-offset: 2px;
+}
+
+.top-row ::deep a,
+.top-row ::deep .btn-link {
+    color: var(--noknin-text-primary);
+    white-space: nowrap;
+    margin-left: 1.5rem;
+    text-decoration: none;
+}
+
+.top-row ::deep a:hover,
+.top-row ::deep .btn-link:hover {
+    color: var(--noknin-brand-primary);
+    text-decoration: underline;
+}
+
+.top-row ::deep a:first-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+article {
+    background: var(--noknin-bg-primary);
+    color: var(--noknin-text-primary);
+}
 
 @media (max-width: 640.98px) {
     .top-row {
         justify-content: space-between;
     }
 
-    .top-row ::deep a, .top-row ::deep .btn-link {
+    .top-row ::deep a,
+    .top-row ::deep .btn-link {
         margin-left: 0;
     }
 }
@@ -70,7 +105,8 @@ main {
         width: 0;
     }
 
-    .top-row, article {
+    .top-row,
+    article {
         padding-left: 2rem !important;
         padding-right: 1.5rem !important;
     }

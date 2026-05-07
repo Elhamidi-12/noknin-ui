@@ -1,11 +1,16 @@
 ﻿@inherits LayoutComponentBase
-<div class="page">
+
+<div class="page" data-theme="@Theme">
     <div class="sidebar">
         <NavMenu />
     </div>
 
     <main>
         <div class="top-row px-4">
+            <button class="theme-toggle" @onclick="ToggleTheme">
+                Toggle theme
+            </button>
+
             <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
         </div>
 
@@ -13,4 +18,23 @@
             @Body
         </article>
     </main>
+
+    <NokninToastContainer Position="NokninToastPosition.TopRight" />
 </div>
+
+@code {
+    private bool _dark;
+
+    private string Theme
+    {
+        get
+        {
+            return _dark ? "dark" : "light";
+        }
+    }
+
+    private void ToggleTheme()
+    {
+        _dark = !_dark;
+    }
+}
