@@ -1,0 +1,20 @@
+<span class="@ClassNames"
+      @onmouseenter="Show"
+      @onmouseleave="Hide"
+      @onfocusin="Show"
+      @onfocusout="Hide">
+
+    <span class="noknin-tooltip__trigger"
+          aria-describedby="@TooltipId">
+        @ChildContent
+    </span>
+
+    @if (_open && !string.IsNullOrWhiteSpace(Text))
+    {
+        <span id="@TooltipId"
+              class="noknin-tooltip__content"
+              role="tooltip">
+            @Text
+        </span>
+    }
+</span>

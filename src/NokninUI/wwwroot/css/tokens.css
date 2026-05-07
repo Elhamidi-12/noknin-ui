@@ -41,7 +41,9 @@
   --noknin-z-modal: 1000;
   --noknin-z-dropdown: 900;
   --noknin-z-toast: 1100;
+  --noknin-z-tooltip: 1200;
   
+  --noknin-shadow-md: 0 8px 20px rgb(15 23 42 / .12);
   --noknin-shadow-lg: 0 24px 64px rgb(15 23 42 / .24);
 
 }
