@@ -1,0 +1,12 @@
+@if (Header)
+{
+    <th class="@RootClass" style="@Style" scope="@Scope">
+        @ChildContent
+    </th>
+}
+else
+{
+    <td class="@RootClass" style="@Style">
+        @ChildContent
+    </td>
+}

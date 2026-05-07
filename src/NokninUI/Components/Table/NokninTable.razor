@@ -1,0 +1,12 @@
+<div class="@WrapperClass" style="@Style">
+    <table class="@RootClass">
+        @if (!string.IsNullOrWhiteSpace(Caption))
+        {
+            <caption class="noknin-table__caption">
+                @Caption
+            </caption>
+        }
+
+        @ChildContent
+    </table>
+</div>

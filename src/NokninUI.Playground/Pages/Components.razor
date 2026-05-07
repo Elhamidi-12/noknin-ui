@@ -423,6 +423,107 @@
         <NokninSwitch Label="Large switch" Size="NokninSize.Large" @bind-Checked="_largeSwitch" />
     </div>
 
+    <hr style="margin:2rem 0;" />
+
+    <h2>Table</h2>
+
+    <div style="display:grid; gap:2rem;">
+        <NokninTable Caption="Basic project table">
+            <NokninTableHeader>
+                <NokninTableRow>
+                    <NokninTableCell Header>Project</NokninTableCell>
+                    <NokninTableCell Header>Status</NokninTableCell>
+                    <NokninTableCell Header Numeric>Progress</NokninTableCell>
+                    <NokninTableCell Header>No Wrap</NokninTableCell>
+                </NokninTableRow>
+            </NokninTableHeader>
+
+            <NokninTableBody>
+                <NokninTableRow>
+                    <NokninTableCell>NokninUI</NokninTableCell>
+                    <NokninTableCell>
+                        <NokninBadge Variant="NokninBadgeVariant.Success">Active</NokninBadge>
+                    </NokninTableCell>
+                    <NokninTableCell Numeric>80%</NokninTableCell>
+                    <NokninTableCell NoWrap>Updated today</NokninTableCell>
+                </NokninTableRow>
+
+                <NokninTableRow Selected>
+                    <NokninTableCell>Playground</NokninTableCell>
+                    <NokninTableCell>
+                        <NokninBadge Variant="NokninBadgeVariant.Info">Testing</NokninBadge>
+                    </NokninTableCell>
+                    <NokninTableCell Numeric>55%</NokninTableCell>
+                    <NokninTableCell NoWrap>Updated yesterday</NokninTableCell>
+                </NokninTableRow>
+
+                <NokninTableRow Disabled>
+                    <NokninTableCell>Docs</NokninTableCell>
+                    <NokninTableCell>
+                        <NokninBadge Variant="NokninBadgeVariant.Neutral">Paused</NokninBadge>
+                    </NokninTableCell>
+                    <NokninTableCell Numeric>20%</NokninTableCell>
+                    <NokninTableCell NoWrap>Archived</NokninTableCell>
+                </NokninTableRow>
+            </NokninTableBody>
+        </NokninTable>
+
+        <NokninTable Variant="NokninTableVariant.Striped" Hoverable Caption="Striped hoverable table">
+            <NokninTableHeader>
+                <NokninTableRow>
+                    <NokninTableCell Header>Name</NokninTableCell>
+                    <NokninTableCell Header>Role</NokninTableCell>
+                    <NokninTableCell Header Numeric>Issues</NokninTableCell>
+                </NokninTableRow>
+            </NokninTableHeader>
+
+            <NokninTableBody>
+                <NokninTableRow OnClick="HandleTableRowClick">
+                    <NokninTableCell>Ada</NokninTableCell>
+                    <NokninTableCell>Engineer</NokninTableCell>
+                    <NokninTableCell Numeric>12</NokninTableCell>
+                </NokninTableRow>
+
+                <NokninTableRow OnClick="HandleTableRowClick">
+                    <NokninTableCell>Linus</NokninTableCell>
+                    <NokninTableCell>Designer</NokninTableCell>
+                    <NokninTableCell Numeric>7</NokninTableCell>
+                </NokninTableRow>
+
+                <NokninTableRow OnClick="HandleTableRowClick">
+                    <NokninTableCell>Grace</NokninTableCell>
+                    <NokninTableCell>Product</NokninTableCell>
+                    <NokninTableCell Numeric>4</NokninTableCell>
+                </NokninTableRow>
+            </NokninTableBody>
+        </NokninTable>
+
+        <NokninTable Variant="NokninTableVariant.Bordered" Size="NokninSize.Small" Compact
+                     Caption="Bordered compact table">
+            <NokninTableHeader>
+                <NokninTableRow>
+                    <NokninTableCell Header>Package</NokninTableCell>
+                    <NokninTableCell Header>Version</NokninTableCell>
+                    <NokninTableCell Header>Status</NokninTableCell>
+                </NokninTableRow>
+            </NokninTableHeader>
+
+            <NokninTableBody>
+                <NokninTableRow>
+                    <NokninTableCell>NokninUI</NokninTableCell>
+                    <NokninTableCell>0.1.0</NokninTableCell>
+                    <NokninTableCell>Local</NokninTableCell>
+                </NokninTableRow>
+
+                <NokninTableRow>
+                    <NokninTableCell>NokninUI.Playground</NokninTableCell>
+                    <NokninTableCell>0.1.0</NokninTableCell>
+                    <NokninTableCell>Running</NokninTableCell>
+                </NokninTableRow>
+            </NokninTableBody>
+        </NokninTable>
+    </div>
+
 </div>
 
 @code {
@@ -514,5 +615,10 @@
     private void ShowErrorToast()
     {
         Toasts.Error("Error", "Something went wrong.");
+    }
+
+    private void HandleTableRowClick()
+    {
+        Toasts.Info("Table row", "You clicked a table row.");
     }
 }

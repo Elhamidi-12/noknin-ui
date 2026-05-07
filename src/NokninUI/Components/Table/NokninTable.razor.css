@@ -1,0 +1,116 @@
+.noknin-table-wrapper {
+    width: 100%;
+}
+
+.noknin-table-wrapper--responsive {
+    overflow-x: auto;
+}
+
+.noknin-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    color: var(--noknin-text-primary);
+    background: var(--noknin-bg-surface);
+}
+
+.noknin-table__caption {
+    caption-side: bottom;
+    padding-top: var(--noknin-space-3);
+    color: var(--noknin-text-muted);
+    font-size: 0.875rem;
+    text-align: left;
+}
+
+.noknin-table--small {
+    font-size: 0.875rem;
+}
+
+.noknin-table--medium {
+    font-size: 0.9375rem;
+}
+
+.noknin-table--large {
+    font-size: 1rem;
+}
+
+.noknin-table--bordered {
+    border: 1px solid var(--noknin-border-default);
+}
+
+.noknin-table--bordered ::deep th,
+.noknin-table--bordered ::deep td {
+    border-right: 1px solid var(--noknin-border-default);
+}
+
+.noknin-table--bordered ::deep th:last-child,
+.noknin-table--bordered ::deep td:last-child {
+    border-right: 0;
+}
+
+.noknin-table--striped ::deep tbody tr:nth-child(even) {
+    background: var(--noknin-bg-subtle);
+}
+
+.noknin-table--hoverable ::deep tbody tr:hover {
+    background: var(--noknin-bg-subtle);
+}
+
+.noknin-table ::deep .noknin-table__header {
+    background: var(--noknin-bg-subtle);
+}
+
+.noknin-table ::deep .noknin-table__head-cell {
+    padding: var(--noknin-space-3) var(--noknin-space-4);
+    border-bottom: 1px solid var(--noknin-border-default);
+    color: var(--noknin-text-secondary);
+    font-weight: 600;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.noknin-table ::deep .noknin-table__cell {
+    padding: var(--noknin-space-3) var(--noknin-space-4);
+    border-bottom: 1px solid var(--noknin-border-default);
+    color: var(--noknin-text-primary);
+    text-align: left;
+    vertical-align: middle;
+}
+
+.noknin-table--small ::deep .noknin-table__head-cell,
+.noknin-table--small ::deep .noknin-table__cell {
+    padding: var(--noknin-space-2) var(--noknin-space-3);
+}
+
+.noknin-table--large ::deep .noknin-table__head-cell,
+.noknin-table--large ::deep .noknin-table__cell {
+    padding: var(--noknin-space-4);
+}
+
+.noknin-table--compact ::deep .noknin-table__head-cell,
+.noknin-table--compact ::deep .noknin-table__cell {
+    padding-top: var(--noknin-space-2);
+    padding-bottom: var(--noknin-space-2);
+}
+
+.noknin-table ::deep .noknin-table__cell--numeric {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.noknin-table ::deep .noknin-table__cell--nowrap {
+    white-space: nowrap;
+}
+
+.noknin-table ::deep .noknin-table__row--selected {
+    background: var(--noknin-bg-subtle);
+}
+
+.noknin-table ::deep .noknin-table__row--interactive {
+    cursor: pointer;
+}
+
+.noknin-table ::deep .noknin-table__row--disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
