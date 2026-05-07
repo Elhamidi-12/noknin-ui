@@ -93,8 +93,19 @@
     padding-bottom: var(--noknin-space-2);
 }
 
-.noknin-table ::deep .noknin-table__cell--numeric {
+.noknin-table ::deep .noknin-table__cell--align-start {
+    text-align: left;
+}
+
+.noknin-table ::deep .noknin-table__cell--align-center {
+    text-align: center;
+}
+
+.noknin-table ::deep .noknin-table__cell--align-end {
     text-align: right;
+}
+
+.noknin-table ::deep .noknin-table__cell--numeric {
     font-variant-numeric: tabular-nums;
 }
 
