@@ -601,30 +601,43 @@
     <h2>Data Grid</h2>
 
     <div style="display:grid; gap:2rem;">
-        <NokninDataGrid TItem="ProjectRow" Items="@_projects" Caption="Data grid with template columns" Striped
-                        Hoverable>
-            <Columns>
-                <NokninDataGridColumn TItem="ProjectRow" Header="Project" Field="Name" Sortable />
+        <div style="display:grid; gap:1rem;">
+            <NokninDataGrid TItem="ProjectRow" Items="@_projects" Caption="Data grid with template columns" Striped
+                            Hoverable RowSelectable SelectedItem="@_selectedProject"
+                            SelectedItemChanged="value => _selectedProject = value">
+                <Columns>
+                    <NokninDataGridColumn TItem="ProjectRow" Header="Project" Field="Name" Sortable />
 
-                <NokninDataGridColumn TItem="ProjectRow" Header="Status" Field="Status" Align="NokninTableCellAlign.Center" Sortable>
-                    <Template Context="project">
-                        <NokninBadge Variant="@GetProjectBadgeVariant(project.Status)">
-                            @project.Status
-                        </NokninBadge>
-                    </Template>
-                </NokninDataGridColumn>
+                    <NokninDataGridColumn TItem="ProjectRow" Header="Status" Field="Status"
+                                          Align="NokninTableCellAlign.Center" Sortable>
+                        <Template Context="project">
+                            <NokninBadge Variant="@GetProjectBadgeVariant(project.Status)">
+                                @project.Status
+                            </NokninBadge>
+                        </Template>
+                    </NokninDataGridColumn>
 
-                <NokninDataGridColumn TItem="ProjectRow" Header="Progress" Field="Progress" Numeric Sortable/>
+                    <NokninDataGridColumn TItem="ProjectRow" Header="Progress" Field="Progress" Numeric Sortable />
 
-                <NokninDataGridColumn TItem="ProjectRow" Header="Updated" Field="Updated" NoWrap Sortable/>
-            </Columns>
-        </NokninDataGrid>
+                    <NokninDataGridColumn TItem="ProjectRow" Header="Updated" Field="Updated" NoWrap Sortable />
+                </Columns>
+            </NokninDataGrid>
+
+            @if (_selectedProject is not null)
+            {
+                <p>
+                    Selected project: <strong>@_selectedProject.Name</strong>
+                </p>
+            }
+        </div>
 
         <NokninDataGrid TItem="ProjectRow" Items="@_emptyProjects" EmptyText="No projects found."
                         Caption="Empty data grid">
             <Columns>
                 <NokninDataGridColumn TItem="ProjectRow" Header="Project" Field="Name" />
+
                 <NokninDataGridColumn TItem="ProjectRow" Header="Status" Field="Status" />
+
                 <NokninDataGridColumn TItem="ProjectRow" Header="Progress" Field="Progress" Numeric />
             </Columns>
         </NokninDataGrid>
@@ -633,7 +646,9 @@
                         Caption="Loading data grid">
             <Columns>
                 <NokninDataGridColumn TItem="ProjectRow" Header="Project" Field="Name" />
+
                 <NokninDataGridColumn TItem="ProjectRow" Header="Status" Field="Status" />
+
                 <NokninDataGridColumn TItem="ProjectRow" Header="Progress" Field="Progress" Numeric />
             </Columns>
         </NokninDataGrid>
@@ -643,7 +658,8 @@
             <Columns>
                 <NokninDataGridColumn TItem="ProjectRow" Header="Project" Field="Name" />
 
-                <NokninDataGridColumn TItem="ProjectRow" Header="Status" Align="NokninTableCellAlign.Center">
+                <NokninDataGridColumn TItem="ProjectRow" Header="Status" Field="Status"
+                                      Align="NokninTableCellAlign.Center">
                     <Template Context="project">
                         <NokninBadge Variant="@GetProjectBadgeVariant(project.Status)">
                             @project.Status
@@ -656,7 +672,6 @@
                 <NokninDataGridColumn TItem="ProjectRow" Header="Updated" Field="Updated" NoWrap />
             </Columns>
         </NokninDataGrid>
-
     </div>
 
 </div>
@@ -724,6 +739,7 @@
     private int _pagedTablePageSize = 5;
 
     private readonly ProjectRow[] _emptyProjects = [];
+    private ProjectRow? _selectedProject;
 
     private void HandleAlertDismiss()
     {

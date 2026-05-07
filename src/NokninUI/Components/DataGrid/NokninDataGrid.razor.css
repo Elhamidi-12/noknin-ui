@@ -156,3 +156,24 @@
     color: var(--noknin-text-muted);
     font-size: 0.875em;
 }
+
+.noknin-datagrid__row--selectable {
+    cursor: pointer;
+}
+
+.noknin-datagrid__row--selectable:hover {
+    background: var(--noknin-bg-subtle);
+}
+
+.noknin-datagrid__row--selectable:focus-visible {
+    outline: 2px solid var(--noknin-ring);
+    outline-offset: -2px;
+}
+
+.noknin-datagrid__row--selected {
+    background: var(--noknin-bg-subtle);
+}
+
+.noknin-datagrid__row--selected .noknin-datagrid__cell:first-child {
+    box-shadow: inset 3px 0 0 var(--noknin-brand-primary);
+}

@@ -81,7 +81,13 @@
             {
                 @foreach (var item in ResolvedItems)
                 {
-                    <tr class="noknin-datagrid__row">
+                    <tr
+                        class="@GetRowClass(item)"
+                        tabindex="@GetRowTabIndex()"
+                        role="@GetRowRole()"
+                        aria-selected="@GetRowAriaSelected(item)"
+                        @onclick="() => SelectRowAsync(item)"
+                        @onkeydown="args => HandleRowKeyDownAsync(args, item)">
                         @foreach (var column in RegisteredColumns)
                         {
                             <td class="@GetBodyCellClass(column)">

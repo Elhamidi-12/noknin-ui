@@ -38,6 +38,12 @@ public partial class NokninDataGrid<TItem>
 
     [Parameter] public bool Responsive { get; set; } = true;
 
+    [Parameter] public bool RowSelectable { get; set; }
+
+    [Parameter] public TItem? SelectedItem { get; set; }
+
+    [Parameter] public EventCallback<TItem?> SelectedItemChanged { get; set; }
+
     [Parameter] public string? Class { get; set; }
 
     [Parameter] public string? Style { get; set; }
@@ -93,6 +99,7 @@ public partial class NokninDataGrid<TItem>
                 Striped ? "noknin-datagrid--striped" : null,
                 Bordered ? "noknin-datagrid--bordered" : null,
                 Hoverable ? "noknin-datagrid--hoverable" : null,
+                RowSelectable ? "noknin-datagrid--selectable" : null,
                 Class
             }.Where(value => !string.IsNullOrWhiteSpace(value)));
         }
@@ -160,6 +167,62 @@ public partial class NokninDataGrid<TItem>
         }
 
         await Task.CompletedTask;
+    }
+
+    private async Task SelectRowAsync(TItem item)
+    {
+        if (!RowSelectable)
+        {
+            return;
+        }
+
+        SelectedItem = item;
+        await SelectedItemChanged.InvokeAsync(SelectedItem);
+    }
+
+    private async Task HandleRowKeyDownAsync(KeyboardEventArgs args, TItem item)
+    {
+        if (!RowSelectable)
+        {
+            return;
+        }
+
+        if (args.Key is "Enter" or " ")
+        {
+            await SelectRowAsync(item);
+        }
+    }
+
+    private bool IsSelected(TItem item)
+    {
+        return EqualityComparer<TItem>.Default.Equals(SelectedItem, item);
+    }
+
+    private string GetRowClass(TItem item)
+    {
+        return string.Join(
+            " ",
+            new[]
+            {
+                "noknin-datagrid__row",
+                RowSelectable ? "noknin-datagrid__row--selectable" : null,
+                IsSelected(item) ? "noknin-datagrid__row--selected" : null
+            }.Where(value => !string.IsNullOrWhiteSpace(value)));
+    }
+
+    private string? GetRowTabIndex()
+    {
+        return RowSelectable ? "0" : null;
+    }
+
+    private string? GetRowRole()
+    {
+        return RowSelectable ? "button" : null;
+    }
+
+    private string? GetRowAriaSelected(TItem item)
+    {
+        return RowSelectable ? IsSelected(item).ToString().ToLowerInvariant() : null;
     }
 
     private string GetSortAriaSort(NokninDataGridColumn<TItem> column)
