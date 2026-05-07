@@ -1,0 +1,71 @@
+.noknin-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    border: 1px solid transparent;
+    border-radius: var(--noknin-radius-full, 999px);
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.noknin-badge--small {
+    min-height: 1.25rem;
+    padding: 0 var(--noknin-space-2);
+    font-size: var(--noknin-text-xs, .6875rem);
+}
+
+.noknin-badge--medium {
+    min-height: 1.5rem;
+    padding: 0 var(--noknin-space-3);
+    font-size: var(--noknin-text-sm, .8125rem);
+}
+
+.noknin-badge--large {
+    min-height: 1.75rem;
+    padding: 0 var(--noknin-space-4);
+    font-size: var(--noknin-text-sm, .8125rem);
+}
+
+.noknin-badge--primary {
+    background: color-mix(in srgb, var(--noknin-brand-primary) 14%, transparent);
+    color: var(--noknin-brand-primary);
+    border-color: color-mix(in srgb, var(--noknin-brand-primary) 24%, transparent);
+}
+
+.noknin-badge--secondary {
+    background: var(--noknin-bg-subtle);
+    color: var(--noknin-text-secondary);
+    border-color: var(--noknin-border-default);
+}
+
+.noknin-badge--success {
+    background: color-mix(in srgb, var(--noknin-status-success) 14%, transparent);
+    color: var(--noknin-status-success);
+    border-color: color-mix(in srgb, var(--noknin-status-success) 24%, transparent);
+}
+
+.noknin-badge--warning {
+    background: color-mix(in srgb, var(--noknin-status-warning) 16%, transparent);
+    color: var(--noknin-status-warning);
+    border-color: color-mix(in srgb, var(--noknin-status-warning) 28%, transparent);
+}
+
+.noknin-badge--error {
+    background: color-mix(in srgb, var(--noknin-status-error) 14%, transparent);
+    color: var(--noknin-status-error);
+    border-color: color-mix(in srgb, var(--noknin-status-error) 24%, transparent);
+}
+
+.noknin-badge--info {
+    background: color-mix(in srgb, var(--noknin-status-info) 14%, transparent);
+    color: var(--noknin-status-info);
+    border-color: color-mix(in srgb, var(--noknin-status-info) 24%, transparent);
+}
+
+.noknin-badge--neutral {
+    background: var(--noknin-bg-surface);
+    color: var(--noknin-text-muted);
+    border-color: var(--noknin-border-default);
+}

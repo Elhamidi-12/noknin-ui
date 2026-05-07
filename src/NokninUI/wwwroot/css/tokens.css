@@ -11,9 +11,16 @@
   --noknin-text-secondary: #334155;
   --noknin-text-muted: #64748b;
   --noknin-text-inverse: #ffffff;
+  --noknin-text-sm: .8125rem;
+  --noknin-text-xs: .6875rem;
 
   --noknin-border-default: #e2e8f0;
   --noknin-ring: #6366f1;
+
+  --noknin-status-success: #22c55e;
+  --noknin-status-warning: #f59e0b;
+  --noknin-status-error: #ef4444;
+  --noknin-status-info: #3b82f6;
 
   --noknin-space-1: .25rem;
   --noknin-space-2: .5rem;
@@ -24,6 +31,7 @@
   --noknin-radius-sm: .375rem;
   --noknin-radius-md: .5rem;
   --noknin-radius-lg: .75rem;
+  --noknin-radius-full: 999px;
 
   --noknin-duration-100: 100ms;
   --noknin-duration-200: 200ms;

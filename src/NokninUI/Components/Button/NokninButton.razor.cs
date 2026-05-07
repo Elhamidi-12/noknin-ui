@@ -14,6 +14,11 @@ public partial class NokninButton
     [Parameter] public string? Class { get; set; }
     [Parameter] public EventCallback<MouseEventArgs> OnClick { get; set; }
 
-    private string ClassNames =>
-        $"noknin-button noknin-button--{Variant.ToString().ToLowerInvariant()} noknin-button--{Size.ToString().ToLowerInvariant()} {Class}".Trim();
+    private string ClassNames
+    {
+        get
+        {
+            return $"noknin-button noknin-button--{Variant.ToString().ToLowerInvariant()} noknin-button--{Size.ToString().ToLowerInvariant()} {Class}".Trim();
+        }
+    }
 }

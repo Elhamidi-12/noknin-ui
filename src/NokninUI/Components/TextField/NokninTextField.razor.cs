@@ -26,13 +26,21 @@ public partial class NokninTextField
     private string DescriptionId => $"{InputId}-description";
     private string ErrorId => $"{InputId}-error";
 
-    private string? DescribedBy =>
-        HasError ? ErrorId :
-        !string.IsNullOrWhiteSpace(Description) ? DescriptionId :
-        null;
+    private string? DescribedBy
+    {
+        get
+        {
+            return HasError ? ErrorId : !string.IsNullOrWhiteSpace(Description) ? DescriptionId : null;
+        }
+    }
 
-    private string WrapperClassNames =>
-        $"noknin-text-field noknin-text-field--{Size.ToString().ToLowerInvariant()} {(Disabled ? "noknin-text-field--disabled" : "")} {(HasError ? "noknin-text-field--error" : "")} {Class}".Trim();
+    private string WrapperClassNames
+    {
+        get
+        {
+            return $"noknin-text-field noknin-text-field--{Size.ToString().ToLowerInvariant()} {(Disabled ? "noknin-text-field--disabled" : "")} {(HasError ? "noknin-text-field--error" : "")} {Class}".Trim();
+        }
+    }
 
     private async Task HandleInput(ChangeEventArgs args)
     {
