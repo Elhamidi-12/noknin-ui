@@ -110,6 +110,42 @@
     <NokninBadge Size="NokninSize.Large">Large</NokninBadge>
 </div>
 
+<hr style="margin:2rem 0;" />
+
+<h2>Alerts</h2>
+
+<div style="display:grid; gap:1rem; max-width:720px;">
+    <NokninAlert Title="Info alert" Variant="NokninAlertVariant.Info">
+        This is a helpful informational message.
+    </NokninAlert>
+
+    <NokninAlert Title="Success alert" Variant="NokninAlertVariant.Success">
+        Your changes were saved successfully.
+    </NokninAlert>
+
+    <NokninAlert Title="Warning alert" Variant="NokninAlertVariant.Warning">
+        Please review this before continuing.
+    </NokninAlert>
+
+    <NokninAlert Title="Error alert" Variant="NokninAlertVariant.Error">
+        Something went wrong. Please try again.
+    </NokninAlert>
+
+    <NokninAlert Title="Dismissible alert"
+                 Variant="NokninAlertVariant.Neutral"
+                 Dismissible
+                 OnDismiss="HandleAlertDismiss">
+        This alert has a close button.
+    </NokninAlert>
+</div>
+
+@code {
+    private void HandleAlertDismiss()
+    {
+        Console.WriteLine("Alert dismissed");
+    }
+}
+
 </div>
 
 @code {

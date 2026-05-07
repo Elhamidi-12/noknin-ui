@@ -1,0 +1,122 @@
+.noknin-alert {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: start;
+    gap: var(--noknin-space-3);
+    border: 1px solid transparent;
+    border-radius: var(--noknin-radius-lg);
+    color: var(--noknin-text-primary);
+}
+
+.noknin-alert--small {
+    padding: var(--noknin-space-3);
+}
+
+.noknin-alert--medium {
+    padding: var(--noknin-space-4);
+}
+
+.noknin-alert--large {
+    padding: var(--noknin-space-6);
+}
+
+.noknin-alert__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: var(--noknin-radius-full, 999px);
+    font-size: var(--noknin-text-xs, .6875rem);
+    font-weight: 700;
+    line-height: 1;
+}
+
+.noknin-alert__body {
+    min-width: 0;
+}
+
+.noknin-alert__title {
+    margin-bottom: var(--noknin-space-1);
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.noknin-alert__content {
+    color: var(--noknin-text-secondary);
+    line-height: 1.5;
+}
+
+.noknin-alert__dismiss {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border: 0;
+    border-radius: var(--noknin-radius-md);
+    background: transparent;
+    color: currentColor;
+    cursor: pointer;
+    font-size: 1.25rem;
+    line-height: 1;
+}
+
+.noknin-alert__dismiss:hover {
+    background: color-mix(in srgb, currentColor 10%, transparent);
+}
+
+.noknin-alert__dismiss:focus-visible {
+    outline: 2px solid var(--noknin-ring);
+    outline-offset: 2px;
+}
+
+.noknin-alert--info {
+    background: color-mix(in srgb, var(--noknin-status-info) 12%, transparent);
+    border-color: color-mix(in srgb, var(--noknin-status-info) 24%, transparent);
+}
+
+.noknin-alert--info .noknin-alert__icon {
+    background: var(--noknin-status-info);
+    color: var(--noknin-text-inverse);
+}
+
+.noknin-alert--success {
+    background: color-mix(in srgb, var(--noknin-status-success) 12%, transparent);
+    border-color: color-mix(in srgb, var(--noknin-status-success) 24%, transparent);
+}
+
+.noknin-alert--success .noknin-alert__icon {
+    background: var(--noknin-status-success);
+    color: var(--noknin-text-inverse);
+}
+
+.noknin-alert--warning {
+    background: color-mix(in srgb, var(--noknin-status-warning) 14%, transparent);
+    border-color: color-mix(in srgb, var(--noknin-status-warning) 28%, transparent);
+}
+
+.noknin-alert--warning .noknin-alert__icon {
+    background: var(--noknin-status-warning);
+    color: var(--noknin-text-inverse);
+}
+
+.noknin-alert--error {
+    background: color-mix(in srgb, var(--noknin-status-error) 12%, transparent);
+    border-color: color-mix(in srgb, var(--noknin-status-error) 24%, transparent);
+}
+
+.noknin-alert--error .noknin-alert__icon {
+    background: var(--noknin-status-error);
+    color: var(--noknin-text-inverse);
+}
+
+.noknin-alert--neutral {
+    background: var(--noknin-bg-surface);
+    border-color: var(--noknin-border-default);
+}
+
+.noknin-alert--neutral .noknin-alert__icon {
+    background: var(--noknin-bg-subtle);
+    color: var(--noknin-text-muted);
+}

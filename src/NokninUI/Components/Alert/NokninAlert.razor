@@ -1,0 +1,36 @@
+<div class="@ClassNames"
+     role="@ComputedRole"
+     aria-live="@ComputedAriaLive">
+    @if (ShowIcon)
+    {
+        <span class="noknin-alert__icon" aria-hidden="true">
+            @Icon
+        </span>
+    }
+
+    <div class="noknin-alert__body">
+        @if (!string.IsNullOrWhiteSpace(Title))
+        {
+            <div class="noknin-alert__title">
+                @Title
+            </div>
+        }
+
+        @if (ChildContent is not null)
+        {
+            <div class="noknin-alert__content">
+                @ChildContent
+            </div>
+        }
+    </div>
+
+    @if (Dismissible)
+    {
+        <button class="noknin-alert__dismiss"
+                type="button"
+                aria-label="Dismiss alert"
+                @onclick="OnDismiss">
+            ×
+        </button>
+    }
+</div>
