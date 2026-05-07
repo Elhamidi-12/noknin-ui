@@ -1,0 +1,119 @@
+.noknin-datagrid-wrapper {
+    width: 100%;
+}
+
+.noknin-datagrid-wrapper--responsive {
+    overflow-x: auto;
+}
+
+.noknin-datagrid {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    background: var(--noknin-bg-surface);
+    color: var(--noknin-text-primary);
+}
+
+.noknin-datagrid__caption {
+    caption-side: bottom;
+    padding-top: var(--noknin-space-3);
+    color: var(--noknin-text-muted);
+    font-size: 0.875rem;
+    text-align: left;
+}
+
+.noknin-datagrid__header {
+    background: var(--noknin-bg-subtle);
+}
+
+.noknin-datagrid__head-cell {
+    padding: var(--noknin-space-3) var(--noknin-space-4);
+    border-bottom: 1px solid var(--noknin-border-default);
+    color: var(--noknin-text-secondary);
+    font-weight: 600;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.noknin-datagrid__cell {
+    padding: var(--noknin-space-3) var(--noknin-space-4);
+    border-bottom: 1px solid var(--noknin-border-default);
+    color: var(--noknin-text-primary);
+    text-align: left;
+    vertical-align: middle;
+}
+
+.noknin-datagrid--small {
+    font-size: 0.875rem;
+}
+
+.noknin-datagrid--medium {
+    font-size: 0.9375rem;
+}
+
+.noknin-datagrid--large {
+    font-size: 1rem;
+}
+
+.noknin-datagrid--small .noknin-datagrid__head-cell,
+.noknin-datagrid--small .noknin-datagrid__cell {
+    padding: var(--noknin-space-2) var(--noknin-space-3);
+}
+
+.noknin-datagrid--large .noknin-datagrid__head-cell,
+.noknin-datagrid--large .noknin-datagrid__cell {
+    padding: var(--noknin-space-4);
+}
+
+.noknin-datagrid--bordered {
+    border: 1px solid var(--noknin-border-default);
+}
+
+.noknin-datagrid--bordered .noknin-datagrid__head-cell,
+.noknin-datagrid--bordered .noknin-datagrid__cell {
+    border-right: 1px solid var(--noknin-border-default);
+}
+
+.noknin-datagrid--bordered .noknin-datagrid__head-cell:last-child,
+.noknin-datagrid--bordered .noknin-datagrid__cell:last-child {
+    border-right: 0;
+}
+
+.noknin-datagrid--striped .noknin-datagrid__body .noknin-datagrid__row:nth-child(even) {
+    background: var(--noknin-bg-subtle);
+}
+
+.noknin-datagrid--hoverable .noknin-datagrid__body .noknin-datagrid__row:hover {
+    background: var(--noknin-bg-subtle);
+}
+
+.noknin-datagrid__cell--align-start {
+    text-align: left;
+}
+
+.noknin-datagrid__cell--align-center {
+    text-align: center;
+}
+
+.noknin-datagrid__cell--align-end {
+    text-align: right;
+}
+
+.noknin-datagrid__cell--numeric {
+    font-variant-numeric: tabular-nums;
+}
+
+.noknin-datagrid__cell--nowrap {
+    white-space: nowrap;
+}
+
+.noknin-datagrid__cell--state {
+    padding: var(--noknin-space-8) var(--noknin-space-4);
+    color: var(--noknin-text-muted);
+    text-align: center;
+}
+
+.noknin-datagrid__state-text {
+    color: var(--noknin-text-muted);
+    font-size: 0.9375rem;
+}

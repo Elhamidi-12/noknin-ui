@@ -596,6 +596,49 @@
                           PageChanged="HandlePagedTablePageChanged" />
     </div>
 
+    <hr style="margin:2rem 0;" />
+
+    <h2>Data Grid</h2>
+
+    <div style="display:grid; gap:2rem;">
+        <NokninDataGrid TItem="ProjectRow" Items="@_projects" Caption="Data grid with template columns" Striped
+                        Hoverable>
+            <Columns>
+                <NokninDataGridColumn TItem="ProjectRow" Header="Project" Field="Name" />
+
+                <NokninDataGridColumn TItem="ProjectRow" Header="Status" Align="NokninTableCellAlign.Center">
+                    <Template Context="project">
+                        <NokninBadge Variant="@GetProjectBadgeVariant(project.Status)">
+                            @project.Status
+                        </NokninBadge>
+                    </Template>
+                </NokninDataGridColumn>
+
+                <NokninDataGridColumn TItem="ProjectRow" Header="Progress" Field="Progress" Numeric />
+
+                <NokninDataGridColumn TItem="ProjectRow" Header="Updated" Field="Updated" NoWrap />
+            </Columns>
+        </NokninDataGrid>
+
+        <NokninDataGrid TItem="ProjectRow" Items="@_emptyProjects" EmptyText="No projects found."
+                        Caption="Empty data grid">
+            <Columns>
+                <NokninDataGridColumn TItem="ProjectRow" Header="Project" Field="Name" />
+                <NokninDataGridColumn TItem="ProjectRow" Header="Status" Field="Status" />
+                <NokninDataGridColumn TItem="ProjectRow" Header="Progress" Field="Progress" Numeric />
+            </Columns>
+        </NokninDataGrid>
+
+        <NokninDataGrid TItem="ProjectRow" Items="@_emptyProjects" Loading LoadingText="Loading projects..."
+                        Caption="Loading data grid">
+            <Columns>
+                <NokninDataGridColumn TItem="ProjectRow" Header="Project" Field="Name" />
+                <NokninDataGridColumn TItem="ProjectRow" Header="Status" Field="Status" />
+                <NokninDataGridColumn TItem="ProjectRow" Header="Progress" Field="Progress" Numeric />
+            </Columns>
+        </NokninDataGrid>
+    </div>
+
 </div>
 
 @code {
@@ -660,6 +703,7 @@
     private int _pagedTablePage = 1;
     private int _pagedTablePageSize = 5;
 
+    private readonly ProjectRow[] _emptyProjects = [];
 
     private void HandleAlertDismiss()
     {

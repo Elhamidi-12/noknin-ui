@@ -1,0 +1,81 @@
+@typeparam TItem
+
+<CascadingValue Value="this">
+    @Columns
+</CascadingValue>
+
+<div class="@WrapperClass" style="@Style">
+    <table class="@RootClass">
+        @if (!string.IsNullOrWhiteSpace(Caption))
+        {
+            <caption class="noknin-datagrid__caption">
+                @Caption
+            </caption>
+        }
+
+        <thead class="noknin-datagrid__header">
+            <tr class="noknin-datagrid__row">
+                @foreach (var column in RegisteredColumns)
+                {
+                    <th class="@GetHeaderCellClass(column)" scope="col">
+                        @column.Header
+                    </th>
+                }
+            </tr>
+        </thead>
+
+        <tbody class="noknin-datagrid__body">
+            @if (Loading)
+            {
+                <tr class="noknin-datagrid__row noknin-datagrid__row--loading">
+                    <td class="noknin-datagrid__cell noknin-datagrid__cell--state" colspan="@ColumnCount">
+                        @if (LoadingContent is not null)
+                        {
+                            @LoadingContent
+                        }
+                        else
+                        {
+                            <span class="noknin-datagrid__state-text">@LoadingText</span>
+                        }
+                    </td>
+                </tr>
+            }
+            else if (!ResolvedItems.Any())
+            {
+                <tr class="noknin-datagrid__row noknin-datagrid__row--empty">
+                    <td class="noknin-datagrid__cell noknin-datagrid__cell--state" colspan="@ColumnCount">
+                        @if (EmptyContent is not null)
+                        {
+                            @EmptyContent
+                        }
+                        else
+                        {
+                            <span class="noknin-datagrid__state-text">@EmptyText</span>
+                        }
+                    </td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var item in ResolvedItems)
+                {
+                    <tr class="noknin-datagrid__row">
+                        @foreach (var column in RegisteredColumns)
+                        {
+                            <td class="@GetBodyCellClass(column)">
+                                @if (column.Template is not null)
+                                {
+                                    @column.Template(item)
+                                }
+                                else if (!string.IsNullOrWhiteSpace(column.Field))
+                                {
+                                    @GetFieldValue(item, column.Field)
+                                }
+                            </td>
+                        }
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
