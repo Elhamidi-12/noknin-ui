@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using NokninUI.Data.Enums;
 
 namespace NokninUI.Components.Button;
 
@@ -15,19 +16,4 @@ public partial class NokninButton
 
     private string ClassNames =>
         $"noknin-button noknin-button--{Variant.ToString().ToLowerInvariant()} noknin-button--{Size.ToString().ToLowerInvariant()} {Class}".Trim();
-}
-
-public enum NokninVariant
-{
-    Primary,
-    Secondary,
-    Ghost,
-    Destructive
-}
-
-public enum NokninSize
-{
-    Small,
-    Medium,
-    Large
 }

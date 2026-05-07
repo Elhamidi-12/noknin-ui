@@ -1,0 +1,73 @@
+.noknin-text-field {
+    display: grid;
+    gap: var(--noknin-space-2);
+    color: var(--noknin-text-primary);
+}
+
+.noknin-text-field__label {
+    font-size: var(--noknin-text-sm, .8125rem);
+    font-weight: 600;
+    line-height: 1.15;
+}
+
+.noknin-text-field__input {
+    width: 100%;
+    border: 1px solid var(--noknin-border-default);
+    border-radius: var(--noknin-radius-md);
+    background: var(--noknin-bg-surface);
+    color: var(--noknin-text-primary);
+    font: inherit;
+    transition:
+        border-color var(--noknin-duration-200) var(--noknin-ease-out),
+        box-shadow var(--noknin-duration-200) var(--noknin-ease-out),
+        background-color var(--noknin-duration-200) var(--noknin-ease-out);
+}
+
+.noknin-text-field__input::placeholder {
+    color: var(--noknin-text-muted);
+}
+
+.noknin-text-field__input:hover:not(:disabled) {
+    border-color: var(--noknin-brand-primary);
+}
+
+.noknin-text-field__input:focus-visible {
+    outline: 2px solid var(--noknin-ring);
+    outline-offset: 2px;
+}
+
+.noknin-text-field--small .noknin-text-field__input {
+    min-height: 2rem;
+    padding: 0 var(--noknin-space-3);
+}
+
+.noknin-text-field--medium .noknin-text-field__input {
+    min-height: 2.5rem;
+    padding: 0 var(--noknin-space-4);
+}
+
+.noknin-text-field--large .noknin-text-field__input {
+    min-height: 3rem;
+    padding: 0 var(--noknin-space-4);
+}
+
+.noknin-text-field__description {
+    margin: 0;
+    color: var(--noknin-text-muted);
+    font-size: var(--noknin-text-sm, .8125rem);
+}
+
+.noknin-text-field__error {
+    margin: 0;
+    color: var(--noknin-status-error, #ef4444);
+    font-size: var(--noknin-text-sm, .8125rem);
+}
+
+.noknin-text-field--error .noknin-text-field__input {
+    border-color: var(--noknin-status-error, #ef4444);
+}
+
+.noknin-text-field__input:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+}

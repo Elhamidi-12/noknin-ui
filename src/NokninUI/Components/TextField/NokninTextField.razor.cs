@@ -1,0 +1,42 @@
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
+using NokninUI.Data.Enums;
+
+namespace NokninUI.Components.TextField;
+
+public partial class NokninTextField
+{
+    private readonly string _generatedId = $"noknin-text-field-{Guid.NewGuid():N}";
+
+    [Parameter] public string? Id { get; set; }
+    [Parameter] public string? Label { get; set; }
+    [Parameter] public string? Value { get; set; }
+    [Parameter] public EventCallback<string?> ValueChanged { get; set; }
+    [Parameter] public string? Placeholder { get; set; }
+    [Parameter] public string? Description { get; set; }
+    [Parameter] public string? ErrorText { get; set; }
+    [Parameter] public NokninSize Size { get; set; } = NokninSize.Medium;
+    [Parameter] public bool Disabled { get; set; }
+    [Parameter] public bool Required { get; set; }
+    [Parameter] public string? Class { get; set; }
+
+    private bool HasError => !string.IsNullOrWhiteSpace(ErrorText);
+
+    private string InputId => Id ?? _generatedId;
+    private string DescriptionId => $"{InputId}-description";
+    private string ErrorId => $"{InputId}-error";
+
+    private string? DescribedBy =>
+        HasError ? ErrorId :
+        !string.IsNullOrWhiteSpace(Description) ? DescriptionId :
+        null;
+
+    private string WrapperClassNames =>
+        $"noknin-text-field noknin-text-field--{Size.ToString().ToLowerInvariant()} {(Disabled ? "noknin-text-field--disabled" : "")} {(HasError ? "noknin-text-field--error" : "")} {Class}".Trim();
+
+    private async Task HandleInput(ChangeEventArgs args)
+    {
+        Value = args.Value?.ToString();
+        await ValueChanged.InvokeAsync(Value);
+    }
+}

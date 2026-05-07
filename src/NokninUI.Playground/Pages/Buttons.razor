@@ -1,4 +1,5 @@
 @page "/buttons"
+@using NokninUI.Data.Enums
 
 <PageTitle>Buttons</PageTitle>
 
@@ -24,10 +25,34 @@
         <NokninButton Size="NokninSize.Large">Large</NokninButton>
         <NokninButton Disabled>Disabled</NokninButton>
     </div>
+    <hr style="margin:2rem 0;" />
+
+<h2>Text Fields</h2>
+
+<div style="max-width: 400px; display:grid; gap:1rem;">
+
+    <NokninTextField Label="Email"
+                     Placeholder="you@example.com"
+                     Description="Enter your work email." />
+
+    <NokninTextField Label="Full name"
+                     Placeholder="John Doe"
+                     Required />
+
+    <NokninTextField Label="Username"
+                     Placeholder="@noknin"
+                     ErrorText="Username is already taken." />
+
+    <NokninTextField Label="Disabled field"
+                     Placeholder="Disabled"
+                     Disabled />
+
+</div>
 </div>
 
 @code {
     private bool _dark;
+    private String noknin = "Noknin";
 
     private void ToggleTheme()
     {

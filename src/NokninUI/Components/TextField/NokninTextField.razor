@@ -1,0 +1,36 @@
+<div class="@WrapperClassNames">
+    @if (!string.IsNullOrWhiteSpace(Label))
+    {
+        <label class="noknin-text-field__label" for="@Id">
+            @Label
+            @if (Required)
+            {
+                <span aria-hidden="true">*</span>
+            }
+        </label>
+    }
+
+    <input id="@Id"
+           class="noknin-text-field__input"
+           value="@Value"
+           placeholder="@Placeholder"
+           disabled="@Disabled"
+           required="@Required"
+           aria-invalid="@HasError"
+           aria-describedby="@DescribedBy"
+           @oninput="HandleInput" />
+
+    @if (!string.IsNullOrWhiteSpace(Description) && !HasError)
+    {
+        <p id="@DescriptionId" class="noknin-text-field__description">
+            @Description
+        </p>
+    }
+
+    @if (HasError)
+    {
+        <p id="@ErrorId" class="noknin-text-field__error">
+            @ErrorText
+        </p>
+    }
+</div>
