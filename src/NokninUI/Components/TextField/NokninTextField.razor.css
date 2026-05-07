@@ -1,16 +1,16 @@
-.noknin-text-field {
+.noknin-textfield {
     display: grid;
     gap: var(--noknin-space-2);
     color: var(--noknin-text-primary);
 }
 
-.noknin-text-field__label {
+.noknin-textfield__label {
     font-size: var(--noknin-text-sm, .8125rem);
     font-weight: 600;
     line-height: 1.15;
 }
 
-.noknin-text-field__input {
+.noknin-textfield__input {
     width: 100%;
     border: 1px solid var(--noknin-border-default);
     border-radius: var(--noknin-radius-md);
@@ -23,51 +23,56 @@
         background-color var(--noknin-duration-200) var(--noknin-ease-out);
 }
 
-.noknin-text-field__input::placeholder {
+.noknin-textfield__input::placeholder {
     color: var(--noknin-text-muted);
 }
 
-.noknin-text-field__input:hover:not(:disabled) {
+.noknin-textfield__input:hover:not(:disabled) {
     border-color: var(--noknin-brand-primary);
 }
 
-.noknin-text-field__input:focus-visible {
+.noknin-textfield__input:focus-visible {
     outline: 2px solid var(--noknin-ring);
     outline-offset: 2px;
 }
 
-.noknin-text-field--small .noknin-text-field__input {
+.noknin-textfield--small .noknin-textfield__input {
     min-height: 2rem;
     padding: 0 var(--noknin-space-3);
 }
 
-.noknin-text-field--medium .noknin-text-field__input {
+.noknin-textfield--medium .noknin-textfield__input {
     min-height: 2.5rem;
     padding: 0 var(--noknin-space-4);
 }
 
-.noknin-text-field--large .noknin-text-field__input {
+.noknin-textfield--large .noknin-textfield__input {
     min-height: 3rem;
     padding: 0 var(--noknin-space-4);
 }
 
-.noknin-text-field__description {
+.noknin-textfield__description {
     margin: 0;
     color: var(--noknin-text-muted);
     font-size: var(--noknin-text-sm, .8125rem);
 }
 
-.noknin-text-field__error {
+.noknin-textfield__error {
     margin: 0;
-    color: var(--noknin-status-error, #ef4444);
+    color: var(--noknin-status-error);
     font-size: var(--noknin-text-sm, .8125rem);
 }
 
-.noknin-text-field--error .noknin-text-field__input {
-    border-color: var(--noknin-status-error, #ef4444);
+.noknin-textfield--error .noknin-textfield__input {
+    border-color: var(--noknin-status-error);
 }
 
-.noknin-text-field__input:disabled {
+.noknin-textfield__input:disabled {
     opacity: .6;
     cursor: not-allowed;
+}
+
+.noknin-textfield__required {
+    color: var(--noknin-status-error);
+    margin-left: var(--noknin-space-1);
 }

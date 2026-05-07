@@ -35,8 +35,6 @@ public partial class NokninSelect : IAsyncDisposable
     [Parameter] public bool Required { get; set; }
     [Parameter] public string? Description { get; set; }
 
-    [Parameter] public string? HelperText { get; set; }
-
     [Parameter] public string? ErrorText { get; set; }
 
     [Parameter] public string? Class { get; set; }
@@ -72,6 +70,40 @@ public partial class NokninSelect : IAsyncDisposable
         get
         {
             return $"{_componentId}-listbox";
+        }
+    }
+
+    private string DescriptionId
+    {
+        get
+        {
+            return $"{_componentId}-description";
+        }
+    }
+
+    private string ErrorId
+    {
+        get
+        {
+            return $"{_componentId}-error";
+        }
+    }
+
+    private string? DescribedBy
+    {
+        get
+        {
+            if (HasError)
+            {
+                return ErrorId;
+            }
+
+            if (!string.IsNullOrWhiteSpace(Description))
+            {
+                return DescriptionId;
+            }
+
+            return null;
         }
     }
 

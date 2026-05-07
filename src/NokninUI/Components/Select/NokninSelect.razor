@@ -13,7 +13,7 @@
 
     <button id="@TriggerId" type="button" class="noknin-select__trigger" role="combobox" aria-haspopup="listbox"
             aria-expanded="@IsOpen.ToString().ToLowerInvariant()" aria-controls="@ListboxId"
-            aria-labelledby="@AriaLabelledBy" aria-activedescendant="@ActiveDescendantId"
+            aria-labelledby="@AriaLabelledBy" aria-describedby="@DescribedBy" aria-activedescendant="@ActiveDescendantId"
             aria-required="@Required.ToString().ToLowerInvariant()" aria-invalid="@HasError.ToString().ToLowerInvariant()"
             aria-disabled="@Disabled.ToString().ToLowerInvariant()" disabled="@Disabled" @onclick="ToggleAsync"
             @onkeydown="HandleKeyDownAsync">
@@ -46,16 +46,16 @@
         </ul>
     }
 
-    @if (!string.IsNullOrWhiteSpace(HelperText) && !HasError)
+    @if (!string.IsNullOrWhiteSpace(Description) && !HasError)
     {
-        <div class="noknin-select__helper">
-            @HelperText
+        <div id="@DescriptionId" class="noknin-select__description">
+            @Description
         </div>
     }
 
     @if (!string.IsNullOrWhiteSpace(ErrorText))
     {
-        <div class="noknin-select__error">
+        <div id="@ErrorId" class="noknin-select__error">
             @ErrorText
         </div>
     }

@@ -1,17 +1,17 @@
-<div class="@WrapperClassNames">
+<div class="@WrapperClassNames" style="@Style">
     @if (!string.IsNullOrWhiteSpace(Label))
     {
-        <label class="noknin-text-field__label" for="@Id">
+        <label class="noknin-textfield__label" for="@InputId">
             @Label
             @if (Required)
             {
-                <span aria-hidden="true">*</span>
+                <span class="noknin-textfield__required" aria-hidden="true">*</span>
             }
         </label>
     }
 
-    <input id="@Id"
-           class="noknin-text-field__input"
+    <input id="@InputId"
+           class="noknin-textfield__input"
            value="@Value"
            placeholder="@Placeholder"
            disabled="@Disabled"
@@ -22,14 +22,14 @@
 
     @if (!string.IsNullOrWhiteSpace(Description) && !HasError)
     {
-        <p id="@DescriptionId" class="noknin-text-field__description">
+        <p id="@DescriptionId" class="noknin-textfield__description">
             @Description
         </p>
     }
 
     @if (HasError)
     {
-        <p id="@ErrorId" class="noknin-text-field__error">
+        <p id="@ErrorId" class="noknin-textfield__error">
             @ErrorText
         </p>
     }
