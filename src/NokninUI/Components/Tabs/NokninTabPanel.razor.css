@@ -1,0 +1,12 @@
+.noknin-tab-panel {
+    padding: var(--noknin-space-4);
+    border: 1px solid var(--noknin-border-default);
+    border-radius: var(--noknin-radius-lg);
+    background: var(--noknin-bg-surface);
+    color: var(--noknin-text-secondary);
+    line-height: 1.6;
+}
+
+.noknin-tab-panel[hidden] {
+    display: none;
+}

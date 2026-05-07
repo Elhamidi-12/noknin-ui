@@ -1,0 +1,20 @@
+<button type="button"
+        class="@ClassNames"
+        role="tab"
+        aria-selected="@Selected"
+        aria-controls="@PanelId"
+        id="@TabId"
+        disabled="@Disabled"
+        tabindex="@TabIndex"
+        @onclick="SelectAsync">
+    @if (Icon is not null)
+    {
+        <span class="noknin-tab__icon" aria-hidden="true">
+            @Icon
+        </span>
+    }
+
+    <span class="noknin-tab__label">
+        @ChildContent
+    </span>
+</button>

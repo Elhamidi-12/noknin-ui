@@ -183,11 +183,39 @@
         </ChildContent>
     </NokninDropdown>
 
+    <hr style="margin:2rem 0;" />
+
+    <h2>Tabs</h2>
+
+    <NokninTabs Value="@_activeTab" ValueChanged="value => _activeTab = value">
+        <Tabs>
+            <NokninTab Value="overview">Overview</NokninTab>
+            <NokninTab Value="usage">Usage</NokninTab>
+            <NokninTab Value="settings">Settings</NokninTab>
+            <NokninTab Value="disabled" Disabled>Disabled</NokninTab>
+        </Tabs>
+
+        <ChildContent>
+            <NokninTabPanel Value="overview">
+                Overview content for NokninUI tabs.
+            </NokninTabPanel>
+
+            <NokninTabPanel Value="usage">
+                Usage examples and implementation notes.
+            </NokninTabPanel>
+
+            <NokninTabPanel Value="settings">
+                Settings and configuration content.
+            </NokninTabPanel>
+        </ChildContent>
+    </NokninTabs>
+
 </div>
 
 @code {
     private bool _dark;
     private String noknin = "Noknin";
+    private string? _activeTab = "overview";
 
     private void ToggleTheme()
     {

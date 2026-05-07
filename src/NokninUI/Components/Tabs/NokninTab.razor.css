@@ -1,0 +1,51 @@
+.noknin-tab {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--noknin-space-2);
+    min-height: 2.5rem;
+    padding: 0 var(--noknin-space-4);
+    border: 0;
+    border-radius: var(--noknin-radius-md) var(--noknin-radius-md) 0 0;
+    background: transparent;
+    color: var(--noknin-text-muted);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.noknin-tab:hover:not(:disabled) {
+    color: var(--noknin-text-primary);
+    background: var(--noknin-bg-subtle);
+}
+
+.noknin-tab--selected {
+    color: var(--noknin-brand-primary);
+}
+
+.noknin-tab--selected::after {
+    content: "";
+    position: absolute;
+    left: var(--noknin-space-2);
+    right: var(--noknin-space-2);
+    bottom: -1px;
+    height: 2px;
+    background: var(--noknin-brand-primary);
+    border-radius: var(--noknin-radius-full);
+}
+
+.noknin-tab:focus-visible {
+    outline: 2px solid var(--noknin-ring);
+    outline-offset: 2px;
+}
+
+.noknin-tab:disabled,
+.noknin-tab--disabled {
+    opacity: .55;
+    cursor: not-allowed;
+}
+
+.noknin-tab__icon {
+    display: inline-flex;
+}

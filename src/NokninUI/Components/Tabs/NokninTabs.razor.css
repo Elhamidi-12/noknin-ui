@@ -1,0 +1,27 @@
+.noknin-tabs {
+    display: grid;
+    gap: var(--noknin-space-4);
+    color: var(--noknin-text-primary);
+}
+
+.noknin-tabs--vertical {
+    grid-template-columns: 14rem 1fr;
+    align-items: start;
+}
+
+.noknin-tabs__list {
+    display: flex;
+    gap: var(--noknin-space-1);
+    border-bottom: 1px solid var(--noknin-border-default);
+}
+
+.noknin-tabs--vertical .noknin-tabs__list {
+    flex-direction: column;
+    border-bottom: 0;
+    border-right: 1px solid var(--noknin-border-default);
+    padding-right: var(--noknin-space-2);
+}
+
+.noknin-tabs__panels {
+    min-width: 0;
+}

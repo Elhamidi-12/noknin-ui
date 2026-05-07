@@ -1,0 +1,10 @@
+@if (Selected || !Lazy)
+{
+    <section class="@ClassNames"
+             role="tabpanel"
+             id="@PanelId"
+             aria-labelledby="@TabId"
+             hidden="@(!Selected)">
+        @ChildContent
+    </section>
+}
