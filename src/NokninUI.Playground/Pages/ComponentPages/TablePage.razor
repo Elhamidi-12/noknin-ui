@@ -1,0 +1,132 @@
+@page "/components/table"
+@using NokninUI.Data.Enums
+@inject NokninToastService Toasts
+
+<PageTitle>Table - NokninUI</PageTitle>
+
+<div class="demo-page">
+    <div class="demo-header">
+        <p class="demo-eyebrow">Component</p>
+        <h1>Table</h1>
+        <p>Use table primitives to display structured tabular data with semantic HTML.</p>
+    </div>
+
+    <h2>Basic table</h2>
+
+    <div style="display:grid; gap:2rem;">
+        <NokninTable Caption="Basic project table">
+            <NokninTableHeader>
+                <NokninTableRow>
+                    <NokninTableCell Header>Project</NokninTableCell>
+                    <NokninTableCell Header Align="NokninTableCellAlign.Center">Status</NokninTableCell>
+                    <NokninTableCell Header Numeric>Progress</NokninTableCell>
+                    <NokninTableCell Header>No Wrap</NokninTableCell>
+                </NokninTableRow>
+            </NokninTableHeader>
+
+            <NokninTableBody>
+                <NokninTableRow>
+                    <NokninTableCell>NokninUI</NokninTableCell>
+                    <NokninTableCell Align="NokninTableCellAlign.Center">
+                        <NokninBadge Variant="NokninBadgeVariant.Success">Active</NokninBadge>
+                    </NokninTableCell>
+                    <NokninTableCell Numeric>80%</NokninTableCell>
+                    <NokninTableCell NoWrap>Updated today</NokninTableCell>
+                </NokninTableRow>
+
+                <NokninTableRow Selected>
+                    <NokninTableCell>Playground</NokninTableCell>
+                    <NokninTableCell Align="NokninTableCellAlign.Center">
+                        <NokninBadge Variant="NokninBadgeVariant.Info">Testing</NokninBadge>
+                    </NokninTableCell>
+                    <NokninTableCell Numeric>55%</NokninTableCell>
+                    <NokninTableCell NoWrap>Updated yesterday</NokninTableCell>
+                </NokninTableRow>
+
+                <NokninTableRow Disabled>
+                    <NokninTableCell>Docs</NokninTableCell>
+                    <NokninTableCell Align="NokninTableCellAlign.Center">
+                        <NokninBadge Variant="NokninBadgeVariant.Neutral">Paused</NokninBadge>
+                    </NokninTableCell>
+                    <NokninTableCell Numeric>20%</NokninTableCell>
+                    <NokninTableCell NoWrap>Archived</NokninTableCell>
+                </NokninTableRow>
+            </NokninTableBody>
+        </NokninTable>
+
+        <NokninTable Variant="NokninTableVariant.Striped"
+                     Hoverable
+                     Caption="Striped hoverable table">
+            <NokninTableHeader>
+                <NokninTableRow>
+                    <NokninTableCell Header>Name</NokninTableCell>
+                    <NokninTableCell Header Align="NokninTableCellAlign.Center">Role</NokninTableCell>
+                    <NokninTableCell Header Numeric>Issues</NokninTableCell>
+                </NokninTableRow>
+            </NokninTableHeader>
+
+            <NokninTableBody>
+                <NokninTableRow OnClick="HandleTableRowClick">
+                    <NokninTableCell>Ada</NokninTableCell>
+                    <NokninTableCell Align="NokninTableCellAlign.Center">Engineer</NokninTableCell>
+                    <NokninTableCell Numeric>12</NokninTableCell>
+                </NokninTableRow>
+
+                <NokninTableRow OnClick="HandleTableRowClick">
+                    <NokninTableCell>Linus</NokninTableCell>
+                    <NokninTableCell Align="NokninTableCellAlign.Center">Designer</NokninTableCell>
+                    <NokninTableCell Numeric>7</NokninTableCell>
+                </NokninTableRow>
+
+                <NokninTableRow OnClick="HandleTableRowClick">
+                    <NokninTableCell>Grace</NokninTableCell>
+                    <NokninTableCell Align="NokninTableCellAlign.Center">Product</NokninTableCell>
+                    <NokninTableCell Numeric>4</NokninTableCell>
+                </NokninTableRow>
+            </NokninTableBody>
+        </NokninTable>
+
+        <NokninTable Variant="NokninTableVariant.Bordered"
+                     Size="NokninSize.Small"
+                     Compact
+                     Caption="Bordered compact table">
+            <NokninTableHeader>
+                <NokninTableRow>
+                    <NokninTableCell Header>Package</NokninTableCell>
+                    <NokninTableCell Header Align="NokninTableCellAlign.Center">Version</NokninTableCell>
+                    <NokninTableCell Header Align="NokninTableCellAlign.End">Status</NokninTableCell>
+                </NokninTableRow>
+            </NokninTableHeader>
+
+            <NokninTableBody>
+                <NokninTableRow>
+                    <NokninTableCell>NokninUI</NokninTableCell>
+                    <NokninTableCell Align="NokninTableCellAlign.Center">0.1.0</NokninTableCell>
+                    <NokninTableCell Align="NokninTableCellAlign.End">Local</NokninTableCell>
+                </NokninTableRow>
+
+                <NokninTableRow>
+                    <NokninTableCell>NokninUI.Playground</NokninTableCell>
+                    <NokninTableCell Align="NokninTableCellAlign.Center">0.1.0</NokninTableCell>
+                    <NokninTableCell Align="NokninTableCellAlign.End">Running</NokninTableCell>
+                </NokninTableRow>
+            </NokninTableBody>
+        </NokninTable>
+
+        <NokninTable Empty EmptyColSpan="3" Caption="Empty table state">
+            <EmptyContent>
+                <div style="display:grid; gap:.5rem; justify-items:center;">
+                    <strong>No projects found</strong>
+                    <span>Try changing your filters or create a new project.</span>
+                </div>
+            </EmptyContent>
+        </NokninTable>
+    </div>
+</div>
+
+@code {
+    private void HandleTableRowClick()
+    {
+        Toasts.Info("Table row", "You clicked a table row.");
+    }
+}
