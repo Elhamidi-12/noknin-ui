@@ -30,6 +30,8 @@ public partial class NokninDataGrid<TItem>
 
     [Parameter] public NokninSize Size { get; set; } = NokninSize.Medium;
 
+    [Parameter] public NokninDataGridVariant Variant { get; set; } = NokninDataGridVariant.Default;
+
     [Parameter] public bool Striped { get; set; }
 
     [Parameter] public bool Bordered { get; set; }
@@ -130,12 +132,28 @@ public partial class NokninDataGrid<TItem>
             {
                 "noknin-datagrid",
                 $"noknin-datagrid--{Size.ToString().ToLowerInvariant()}",
-                Striped ? "noknin-datagrid--striped" : null,
-                Bordered ? "noknin-datagrid--bordered" : null,
+                IsStriped ? "noknin-datagrid--striped" : null,
+                IsBordered ? "noknin-datagrid--bordered" : null,
                 Hoverable ? "noknin-datagrid--hoverable" : null,
                 RowSelectable ? "noknin-datagrid--selectable" : null,
                 Class
             }.Where(value => !string.IsNullOrWhiteSpace(value)));
+        }
+    }
+
+    private bool IsStriped
+    {
+        get
+        {
+            return Striped || Variant == NokninDataGridVariant.Striped;
+        }
+    }
+
+    private bool IsBordered
+    {
+        get
+        {
+            return Bordered || Variant == NokninDataGridVariant.Bordered;
         }
     }
 
