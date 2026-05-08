@@ -28,6 +28,12 @@ public partial class NokninDataGrid<TItem>
 
     [Parameter] public bool Loading { get; set; }
 
+    [Parameter] public bool Error { get; set; }
+
+    [Parameter] public string ErrorText { get; set; } = "Something went wrong.";
+
+    [Parameter] public RenderFragment? ErrorContent { get; set; }
+
     [Parameter] public NokninSize Size { get; set; } = NokninSize.Medium;
 
     [Parameter] public NokninDataGridVariant Variant { get; set; } = NokninDataGridVariant.Default;
@@ -104,7 +110,7 @@ public partial class NokninDataGrid<TItem>
     {
         get
         {
-            return ShowPagination && !Loading && TotalItems > 0;
+            return ShowPagination && !Loading && !Error && TotalItems > 0;
         }
     }
 

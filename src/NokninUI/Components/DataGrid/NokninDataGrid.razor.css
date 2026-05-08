@@ -124,6 +124,10 @@
     font-size: 0.9375rem;
 }
 
+.noknin-datagrid__state-text--error {
+    color: var(--noknin-status-error);
+}
+
 .noknin-datagrid__sort-button {
     display: inline-flex;
     align-items: center;

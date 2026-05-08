@@ -64,6 +64,21 @@
                         </td>
                     </tr>
                 }
+                else if (Error)
+                {
+                    <tr class="noknin-datagrid__row noknin-datagrid__row--error">
+                        <td class="noknin-datagrid__cell noknin-datagrid__cell--state" colspan="@ColumnCount">
+                            @if (ErrorContent is not null)
+                            {
+                                @ErrorContent
+                            }
+                            else
+                            {
+                                <span class="noknin-datagrid__state-text noknin-datagrid__state-text--error">@ErrorText</span>
+                            }
+                        </td>
+                    </tr>
+                }
                 else if (!ResolvedItems.Any())
                 {
                     <tr class="noknin-datagrid__row noknin-datagrid__row--empty">
