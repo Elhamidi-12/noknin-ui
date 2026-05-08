@@ -25,6 +25,8 @@ public partial class NokninDataGridColumn<TItem> : ComponentBase, IDisposable
 
     [Parameter] public string? Class { get; set; }
 
+    [Parameter] public string? Style { get; set; }
+
     internal bool CanSort
     {
         get
