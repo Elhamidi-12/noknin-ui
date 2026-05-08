@@ -23,7 +23,7 @@
                         aria-controls="docs-navigation"
                         aria-expanded="@_mobileNavOpen"
                         @onclick="ToggleMobileNav">
-                    ☰
+                    <DocsIcon Name="menu" />
                 </button>
 
                 <button class="noknin-docs-icon-button noknin-docs-collapse-button"
@@ -32,7 +32,7 @@
                         aria-controls="docs-navigation"
                         aria-expanded="@(!_navCollapsed)"
                         @onclick="ToggleNav">
-                    @CollapseIcon
+                    <DocsIcon Name="@CollapseIconName" />
                 </button>
 
                 <div>
@@ -47,13 +47,14 @@
                         aria-label="@ThemeLabel"
                         title="@ThemeLabel"
                         @onclick="ToggleTheme">
-                    <span aria-hidden="true">@ThemeIcon</span>
+                    <DocsIcon Name="@ThemeIconName" />
                 </button>
 
                 <a class="noknin-docs-link"
                    href="https://github.com/Elhamidi-12/noknin-ui"
                    target="_blank"
                    rel="noopener noreferrer">
+                    <DocsIcon Name="github" Size="16" Class="noknin-docs-link-icon" />
                     GitHub
                 </a>
             </div>
@@ -76,11 +77,11 @@
 
     private string ThemeLabel => _dark ? "Switch to light theme" : "Switch to dark theme";
 
-    private string ThemeIcon => _dark ? "☀" : "☾";
+    private string ThemeIconName => _dark ? "sun" : "moon";
 
     private string CollapseLabel => _navCollapsed ? "Expand navigation" : "Collapse navigation";
 
-    private string CollapseIcon => _navCollapsed ? "→" : "←";
+    private string CollapseIconName => _navCollapsed ? "chevron-right" : "chevron-left";
 
     private string ShellClass => _mobileNavOpen
         ? "noknin-docs-shell noknin-docs-shell--nav-open"
