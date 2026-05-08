@@ -1,0 +1,211 @@
+@page "/components/datagrid"
+@using NokninUI.Data.Enums
+
+<PageTitle>DataGrid - NokninUI</PageTitle>
+
+<div class="demo-page">
+    <div class="demo-header">
+        <p class="demo-eyebrow">Component</p>
+        <h1>DataGrid</h1>
+        <p>
+            Use DataGrid for structured data with columns, sorting, row selection, pagination, and explicit loading,
+            empty, and error states.
+        </p>
+    </div>
+
+    <h2>Interactive grid</h2>
+
+    <div style="display:grid; gap:1rem;">
+        <NokninDataGrid TItem="ProjectRow"
+                        Items="@_projects"
+                        Caption="Legacy boolean styling with sorting, selection, and pagination"
+                        Striped
+                        Hoverable
+                        RowSelectable
+                        SelectedItem="@_selectedProject"
+                        SelectedItemChanged="value => _selectedProject = value"
+                        ShowPagination
+                        Page="@_dataGridPage"
+                        PageChanged="value => _dataGridPage = value"
+                        PageSize="5">
+            <Columns>
+                <NokninDataGridColumn TItem="ProjectRow" Header="Project" Field="Name" Sortable />
+
+                <NokninDataGridColumn TItem="ProjectRow"
+                                      Header="Status"
+                                      Field="Status"
+                                      Align="NokninTableCellAlign.Center"
+                                      Sortable>
+                    <Template Context="project">
+                        <NokninBadge Variant="@GetProjectBadgeVariant(project.Status)">
+                            @project.Status
+                        </NokninBadge>
+                    </Template>
+                </NokninDataGridColumn>
+
+                <NokninDataGridColumn TItem="ProjectRow" Header="Progress" Field="Progress" Numeric Sortable />
+
+                <NokninDataGridColumn TItem="ProjectRow" Header="Updated" Field="Updated" NoWrap Sortable />
+            </Columns>
+        </NokninDataGrid>
+
+        @if (_selectedProject is not null)
+        {
+            <div style="display:flex; gap:.75rem; align-items:center; flex-wrap:wrap;">
+                <p style="margin:0;">
+                    Selected project: <strong>@_selectedProject.Name</strong>
+                </p>
+
+                <NokninButton Variant="NokninVariant.Ghost"
+                              Size="NokninSize.Small"
+                              OnClick="ClearSelectedProject">
+                    Clear selection
+                </NokninButton>
+            </div>
+        }
+    </div>
+
+    <hr style="margin:2rem 0;" />
+
+    <h2>Variant enum</h2>
+
+    <div style="display:grid; gap:2rem;">
+        <NokninDataGrid TItem="ProjectRow"
+                        Items="@_projects"
+                        Variant="NokninDataGridVariant.Striped"
+                        Caption="Variant enum styling with Variant=Striped">
+            <Columns>
+                <NokninDataGridColumn TItem="ProjectRow" Header="Project" Field="Name" />
+                <NokninDataGridColumn TItem="ProjectRow" Header="Status" Field="Status" />
+                <NokninDataGridColumn TItem="ProjectRow" Header="Progress" Field="Progress" Numeric />
+            </Columns>
+        </NokninDataGrid>
+
+        <NokninDataGrid TItem="ProjectRow"
+                        Items="@_projects"
+                        Variant="NokninDataGridVariant.Bordered"
+                        Caption="Variant enum styling with Variant=Bordered">
+            <Columns>
+                <NokninDataGridColumn TItem="ProjectRow" Header="Project" Field="Name" />
+                <NokninDataGridColumn TItem="ProjectRow" Header="Status" Field="Status" />
+                <NokninDataGridColumn TItem="ProjectRow" Header="Progress" Field="Progress" Numeric />
+            </Columns>
+        </NokninDataGrid>
+    </div>
+
+    <hr style="margin:2rem 0;" />
+
+    <h2>States</h2>
+
+    <div style="display:grid; gap:2rem;">
+        <NokninDataGrid TItem="ProjectRow"
+                        Items="@_emptyProjects"
+                        EmptyText="No projects found."
+                        Caption="Empty data grid state">
+            <Columns>
+                <NokninDataGridColumn TItem="ProjectRow" Header="Project" Field="Name" />
+                <NokninDataGridColumn TItem="ProjectRow" Header="Status" Field="Status" />
+                <NokninDataGridColumn TItem="ProjectRow" Header="Progress" Field="Progress" Numeric />
+            </Columns>
+        </NokninDataGrid>
+
+        <NokninDataGrid TItem="ProjectRow"
+                        Items="@_emptyProjects"
+                        Loading
+                        LoadingText="Loading projects..."
+                        Caption="Loading data grid state">
+            <Columns>
+                <NokninDataGridColumn TItem="ProjectRow" Header="Project" Field="Name" />
+                <NokninDataGridColumn TItem="ProjectRow" Header="Status" Field="Status" />
+                <NokninDataGridColumn TItem="ProjectRow" Header="Progress" Field="Progress" Numeric />
+            </Columns>
+        </NokninDataGrid>
+
+        <NokninDataGrid TItem="ProjectRow"
+                        Items="@_projects"
+                        Error
+                        ErrorText="Could not load project data."
+                        Caption="Error data grid state">
+            <Columns>
+                <NokninDataGridColumn TItem="ProjectRow" Header="Project" Field="Name" />
+                <NokninDataGridColumn TItem="ProjectRow" Header="Status" Field="Status" />
+                <NokninDataGridColumn TItem="ProjectRow" Header="Progress" Field="Progress" Numeric />
+            </Columns>
+        </NokninDataGrid>
+    </div>
+
+    <hr style="margin:2rem 0;" />
+
+    <h2>Compact bordered grid</h2>
+
+    <NokninDataGrid TItem="ProjectRow"
+                    Items="@_projects"
+                    Caption="Bordered small data grid without pagination"
+                    Size="NokninSize.Small"
+                    Bordered>
+        <Columns>
+            <NokninDataGridColumn TItem="ProjectRow" Header="Project" Field="Name" />
+
+            <NokninDataGridColumn TItem="ProjectRow"
+                                  Header="Status"
+                                  Field="Status"
+                                  Align="NokninTableCellAlign.Center">
+                <Template Context="project">
+                    <NokninBadge Variant="@GetProjectBadgeVariant(project.Status)">
+                        @project.Status
+                    </NokninBadge>
+                </Template>
+            </NokninDataGridColumn>
+
+            <NokninDataGridColumn TItem="ProjectRow" Header="Progress" Field="Progress" Numeric />
+
+            <NokninDataGridColumn TItem="ProjectRow" Header="Updated" Field="Updated" NoWrap />
+        </Columns>
+    </NokninDataGrid>
+</div>
+
+@code {
+    private readonly ProjectRow[] _emptyProjects = [];
+    private ProjectRow? _selectedProject;
+    private int _dataGridPage = 1;
+
+    private void ClearSelectedProject()
+    {
+        _selectedProject = null;
+    }
+
+    private static NokninBadgeVariant GetProjectBadgeVariant(string status)
+    {
+        return status switch
+        {
+            "Active" => NokninBadgeVariant.Success,
+            "Testing" => NokninBadgeVariant.Info,
+            "Paused" => NokninBadgeVariant.Neutral,
+            "Blocked" => NokninBadgeVariant.Error,
+            "Planning" => NokninBadgeVariant.Warning,
+            _ => NokninBadgeVariant.Neutral
+        };
+    }
+
+    private sealed record ProjectRow(
+        string Name,
+        string Status,
+        int Progress,
+        string Updated);
+
+    private readonly IReadOnlyList<ProjectRow> _projects =
+    [
+        new("NokninUI", "Active", 82, "Today"),
+        new("Playground", "Testing", 64, "Yesterday"),
+        new("Docs", "Paused", 20, "2 days ago"),
+        new("Theme provider", "Planning", 10, "3 days ago"),
+        new("Overlay service", "Planning", 5, "4 days ago"),
+        new("Focus trap", "Blocked", 35, "5 days ago"),
+        new("Data grid", "Planning", 0, "1 week ago"),
+        new("Icon system", "Active", 48, "1 week ago"),
+        new("Theme persistence", "Testing", 70, "2 weeks ago"),
+        new("System theme sync", "Paused", 25, "2 weeks ago"),
+        new("Table primitives", "Active", 90, "Today"),
+        new("Pagination", "Testing", 75, "Yesterday")
+    ];
+}
