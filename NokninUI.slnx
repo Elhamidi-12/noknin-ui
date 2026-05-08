@@ -3,4 +3,7 @@
     <Project Path="src/NokninUI.Playground/NokninUI.Playground.csproj" />
     <Project Path="src/NokninUI/NokninUI.csproj" />
   </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/NokninUI.Tests/NokninUI.Tests.csproj" />
+  </Folder>
 </Solution>

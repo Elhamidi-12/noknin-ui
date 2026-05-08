@@ -27,5 +27,8 @@ jobs:
       - name: Build
         run: dotnet build NokninUI.slnx -c Release --no-restore
 
+      - name: Test
+        run: dotnet test NokninUI.slnx -c Release --no-build
+
       - name: Pack
         run: dotnet pack src/NokninUI/NokninUI.csproj -c Release --no-build
