@@ -21,6 +21,7 @@ public partial class NokninSelect
     [Parameter] public bool Disabled { get; set; }
     [Parameter] public bool Required { get; set; }
     [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
 
     private bool HasError
     {
