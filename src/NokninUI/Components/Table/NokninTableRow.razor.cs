@@ -33,14 +33,6 @@ public partial class NokninTableRow
         }
     }
 
-    private string? Role
-    {
-        get
-        {
-            return IsInteractive ? "button" : null;
-        }
-    }
-
     private string? AriaDisabled
     {
         get
