@@ -1,34 +1,43 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">NokninUI.Playground</a>
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+﻿<nav class="noknin-docs-nav" aria-label="NokninUI playground navigation">
+    <div class="noknin-docs-brand">
+        <a class="noknin-docs-brand-link" href="">
+            <span class="noknin-docs-logo" aria-hidden="true">N</span>
+            <span>
+                <strong>NokninUI</strong>
+                <span>v0.1.0</span>
+            </span>
+        </a>
     </div>
-</div>
 
-<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
-    <nav class="nav flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="components">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Components
-            </NavLink>
-        </div>
-    </nav>
-</div>
+    <div class="noknin-docs-nav-section">
+        <p class="noknin-docs-nav-heading">Getting started</p>
 
-@code {
-    private bool collapseNavMenu = true;
+        <NavLink class="noknin-docs-nav-link" href="" Match="NavLinkMatch.All">
+            Overview
+        </NavLink>
+    </div>
 
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    <div class="noknin-docs-nav-section">
+        <p class="noknin-docs-nav-heading">Components</p>
 
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
-}
+        <NavLink class="noknin-docs-nav-link" href="components">Accordion</NavLink>
+        <NavLink class="noknin-docs-nav-link" href="components">Alert</NavLink>
+        <NavLink class="noknin-docs-nav-link" href="components">Badge</NavLink>
+        <NavLink class="noknin-docs-nav-link" href="components">Button</NavLink>
+        <NavLink class="noknin-docs-nav-link" href="components">Card</NavLink>
+        <NavLink class="noknin-docs-nav-link" href="components">Checkbox</NavLink>
+        <NavLink class="noknin-docs-nav-link" href="components">DataGrid</NavLink>
+        <NavLink class="noknin-docs-nav-link" href="components">Dropdown</NavLink>
+        <NavLink class="noknin-docs-nav-link" href="components">Modal</NavLink>
+        <NavLink class="noknin-docs-nav-link" href="components">Pagination</NavLink>
+        <NavLink class="noknin-docs-nav-link" href="components">Radio</NavLink>
+        <NavLink class="noknin-docs-nav-link" href="components">Select</NavLink>
+        <NavLink class="noknin-docs-nav-link" href="components">Switch</NavLink>
+        <NavLink class="noknin-docs-nav-link" href="components">Table</NavLink>
+        <NavLink class="noknin-docs-nav-link" href="components">Tabs</NavLink>
+        <NavLink class="noknin-docs-nav-link" href="components">TextArea</NavLink>
+        <NavLink class="noknin-docs-nav-link" href="components">TextField</NavLink>
+        <NavLink class="noknin-docs-nav-link" href="components">Toast</NavLink>
+        <NavLink class="noknin-docs-nav-link" href="components">Tooltip</NavLink>
+    </div>
+</nav>

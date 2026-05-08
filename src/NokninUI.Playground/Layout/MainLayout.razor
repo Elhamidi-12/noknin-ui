@@ -1,23 +1,35 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="page" data-theme="@Theme">
-    <div class="sidebar">
+<div class="noknin-docs-shell" data-theme="@Theme">
+    <aside class="noknin-docs-sidebar">
         <NavMenu />
-    </div>
+    </aside>
 
-    <main>
-        <div class="top-row px-4">
-            <button class="theme-toggle" @onclick="ToggleTheme">
-                Toggle theme
-            </button>
+    <div class="noknin-docs-main">
+        <header class="noknin-docs-header">
+            <div>
+                <p class="noknin-docs-eyebrow">NokninUI Playground</p>
+                <h1 class="noknin-docs-title">Semantic Blazor components</h1>
+            </div>
 
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-        </div>
+            <div class="noknin-docs-actions">
+                <button class="noknin-docs-theme-toggle" type="button" @onclick="ToggleTheme">
+                    @ThemeLabel
+                </button>
 
-        <article class="content px-4">
+                <a class="noknin-docs-link"
+                   href="https://github.com/Elhamidi-12/noknin-ui"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    GitHub
+                </a>
+            </div>
+        </header>
+
+        <main class="noknin-docs-content">
             @Body
-        </article>
-    </main>
+        </main>
+    </div>
 
     <NokninToastContainer Position="NokninToastPosition.TopRight" />
 </div>
@@ -25,13 +37,9 @@
 @code {
     private bool _dark;
 
-    private string Theme
-    {
-        get
-        {
-            return _dark ? "dark" : "light";
-        }
-    }
+    private string Theme => _dark ? "dark" : "light";
+
+    private string ThemeLabel => _dark ? "Light theme" : "Dark theme";
 
     private void ToggleTheme()
     {
