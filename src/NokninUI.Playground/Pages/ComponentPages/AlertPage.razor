@@ -1,0 +1,72 @@
+@page "/components/alert"
+@using NokninUI.Data.Enums
+
+<PageTitle>Alert - NokninUI</PageTitle>
+
+<div class="demo-page">
+    <div class="demo-header">
+        <p class="demo-eyebrow">Component</p>
+        <h1>Alert</h1>
+        <p>Use alerts for contextual feedback, status messages, warnings, and errors.</p>
+    </div>
+
+    <h2>Variants</h2>
+
+    <div style="display:grid; gap:1rem; max-width:720px;">
+        <NokninAlert Title="Info alert" Variant="NokninAlertVariant.Info">
+            This is a helpful informational message.
+        </NokninAlert>
+
+        <NokninAlert Title="Success alert" Variant="NokninAlertVariant.Success">
+            Your changes were saved successfully.
+        </NokninAlert>
+
+        <NokninAlert Title="Warning alert" Variant="NokninAlertVariant.Warning">
+            Please review this before continuing.
+        </NokninAlert>
+
+        <NokninAlert Title="Error alert" Variant="NokninAlertVariant.Error">
+            Something went wrong. Please try again.
+        </NokninAlert>
+
+        <NokninAlert Title="Neutral alert" Variant="NokninAlertVariant.Neutral">
+            This is a neutral status message.
+        </NokninAlert>
+    </div>
+
+    <hr style="margin:2rem 0;" />
+
+    <h2>Dismissible</h2>
+
+    <div style="display:grid; gap:1rem; max-width:720px;">
+        @if (!_dismissed)
+        {
+            <NokninAlert Title="Dismissible alert"
+                         Variant="NokninAlertVariant.Info"
+                         Dismissible
+                         OnDismiss="HandleDismiss">
+                This alert can be dismissed.
+            </NokninAlert>
+        }
+        else
+        {
+            <NokninButton Variant="NokninVariant.Secondary" OnClick="ResetAlert">
+                Show alert again
+            </NokninButton>
+        }
+    </div>
+</div>
+
+@code {
+    private bool _dismissed;
+
+    private void HandleDismiss()
+    {
+        _dismissed = true;
+    }
+
+    private void ResetAlert()
+    {
+        _dismissed = false;
+    }
+}

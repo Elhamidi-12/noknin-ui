@@ -1,0 +1,37 @@
+@page "/components/text-field"
+@using NokninUI.Data.Enums
+
+<PageTitle>TextField - NokninUI</PageTitle>
+
+<div class="demo-page">
+    <div class="demo-header">
+        <p class="demo-eyebrow">Component</p>
+        <h1>TextField</h1>
+        <p>Use text fields for short, single-line user input.</p>
+    </div>
+
+    <h2>Examples</h2>
+
+    <div style="max-width:400px; display:grid; gap:1rem;">
+        <NokninTextField Label="Email"
+                         Placeholder="you@example.com"
+                         Description="Enter your work email." />
+
+        <NokninTextField Label="Full name"
+                         Placeholder="John Doe"
+                         Required />
+
+        <NokninTextField Label="Username"
+                         Placeholder="@noknin"
+                         ErrorText="Username is already taken." />
+
+        <NokninTextField Label="Disabled field"
+                         Placeholder="Disabled"
+                         Disabled />
+    </div>
+</div>
+
+@code
+{
+        private string? noknin = "NokninUI";
+}
