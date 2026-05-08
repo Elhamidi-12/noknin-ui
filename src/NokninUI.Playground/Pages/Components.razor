@@ -551,6 +551,8 @@
 
         <NokninPagination TotalItems="128" PageSize="10" ShowSummary="false" Page="@_compactPaginationPage"
                           PageChanged="value => _compactPaginationPage = value" />
+
+        <NokninPagination TotalItems="0" PageSize="10" Page="1" AriaLabel="Empty results pagination" />
     </div>
 
     <hr style="margin:2rem 0;" />
@@ -602,7 +604,7 @@
 
     <div style="display:grid; gap:2rem;">
         <div style="display:grid; gap:1rem;">
-            <NokninDataGrid TItem="ProjectRow" Items="@_projects" Caption="Sortable, selectable, paginated data grid" Striped
+            <NokninDataGrid TItem="ProjectRow" Items="@_projects" Caption="Legacy boolean styling (Striped=true) with sorting, selection, and pagination" Striped
                             Hoverable RowSelectable SelectedItem="@_selectedProject"
                             SelectedItemChanged="value => _selectedProject = value" ShowPagination Page="@_dataGridPage"
                             PageChanged="value => _dataGridPage = value" PageSize="5">
@@ -638,8 +640,30 @@
             }
         </div>
 
+        <NokninDataGrid TItem="ProjectRow" Items="@_projects" Variant="NokninDataGridVariant.Striped"
+                        Caption="Variant enum styling (Variant=Striped)">
+            <Columns>
+                <NokninDataGridColumn TItem="ProjectRow" Header="Project" Field="Name" />
+
+                <NokninDataGridColumn TItem="ProjectRow" Header="Status" Field="Status" />
+
+                <NokninDataGridColumn TItem="ProjectRow" Header="Progress" Field="Progress" Numeric />
+            </Columns>
+        </NokninDataGrid>
+
+        <NokninDataGrid TItem="ProjectRow" Items="@_projects" Variant="NokninDataGridVariant.Bordered"
+                        Caption="Variant enum styling (Variant=Bordered)">
+            <Columns>
+                <NokninDataGridColumn TItem="ProjectRow" Header="Project" Field="Name" />
+
+                <NokninDataGridColumn TItem="ProjectRow" Header="Status" Field="Status" />
+
+                <NokninDataGridColumn TItem="ProjectRow" Header="Progress" Field="Progress" Numeric />
+            </Columns>
+        </NokninDataGrid>
+
         <NokninDataGrid TItem="ProjectRow" Items="@_emptyProjects" EmptyText="No projects found."
-                        Caption="Empty data grid">
+                        Caption="Empty data grid state">
             <Columns>
                 <NokninDataGridColumn TItem="ProjectRow" Header="Project" Field="Name" />
 
@@ -650,7 +674,18 @@
         </NokninDataGrid>
 
         <NokninDataGrid TItem="ProjectRow" Items="@_emptyProjects" Loading LoadingText="Loading projects..."
-                        Caption="Loading data grid">
+                        Caption="Loading data grid state">
+            <Columns>
+                <NokninDataGridColumn TItem="ProjectRow" Header="Project" Field="Name" />
+
+                <NokninDataGridColumn TItem="ProjectRow" Header="Status" Field="Status" />
+
+                <NokninDataGridColumn TItem="ProjectRow" Header="Progress" Field="Progress" Numeric />
+            </Columns>
+        </NokninDataGrid>
+
+        <NokninDataGrid TItem="ProjectRow" Items="@_projects" Error ErrorText="Could not load project data."
+                        Caption="Error data grid state">
             <Columns>
                 <NokninDataGridColumn TItem="ProjectRow" Header="Project" Field="Name" />
 
