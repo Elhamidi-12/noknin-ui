@@ -1,0 +1,40 @@
+@page "/components/tabs"
+
+<PageTitle>Tabs - NokninUI</PageTitle>
+
+<div class="demo-page">
+    <div class="demo-header">
+        <p class="demo-eyebrow">Component</p>
+        <h1>Tabs</h1>
+        <p>Use tabs to switch between related panels of content without leaving the page.</p>
+    </div>
+
+    <h2>Example</h2>
+
+    <NokninTabs Value="@_activeTab" ValueChanged="value => _activeTab = value">
+        <Tabs>
+            <NokninTab Value="overview">Overview</NokninTab>
+            <NokninTab Value="usage">Usage</NokninTab>
+            <NokninTab Value="settings">Settings</NokninTab>
+            <NokninTab Value="disabled" Disabled>Disabled</NokninTab>
+        </Tabs>
+
+        <ChildContent>
+            <NokninTabPanel Value="overview">
+                Overview content for NokninUI tabs.
+            </NokninTabPanel>
+
+            <NokninTabPanel Value="usage">
+                Usage examples and implementation notes.
+            </NokninTabPanel>
+
+            <NokninTabPanel Value="settings">
+                Settings and configuration content.
+            </NokninTabPanel>
+        </ChildContent>
+    </NokninTabs>
+</div>
+
+@code {
+    private string? _activeTab = "overview";
+}

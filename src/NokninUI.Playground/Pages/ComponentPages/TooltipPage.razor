@@ -1,0 +1,32 @@
+@page "/components/tooltip"
+@using NokninUI.Data.Enums
+
+<PageTitle>Tooltip - NokninUI</PageTitle>
+
+<div class="demo-page">
+    <div class="demo-header">
+        <p class="demo-eyebrow">Component</p>
+        <h1>Tooltip</h1>
+        <p>Use tooltips to provide short contextual help for controls or content.</p>
+    </div>
+
+    <h2>Positions</h2>
+
+    <div style="display:flex; gap:1rem; flex-wrap:wrap; align-items:center;">
+        <NokninTooltip Text="This tooltip appears above." Position="NokninTooltipPosition.Top">
+            <NokninButton Variant="NokninVariant.Secondary">Top</NokninButton>
+        </NokninTooltip>
+
+        <NokninTooltip Text="This tooltip appears below." Position="NokninTooltipPosition.Bottom">
+            <NokninButton Variant="NokninVariant.Secondary">Bottom</NokninButton>
+        </NokninTooltip>
+
+        <NokninTooltip Text="This tooltip appears left." Position="NokninTooltipPosition.Left">
+            <NokninButton Variant="NokninVariant.Secondary">Left</NokninButton>
+        </NokninTooltip>
+
+        <NokninTooltip Text="This tooltip appears right." Position="NokninTooltipPosition.Right">
+            <NokninButton Variant="NokninVariant.Secondary">Right</NokninButton>
+        </NokninTooltip>
+    </div>
+</div>

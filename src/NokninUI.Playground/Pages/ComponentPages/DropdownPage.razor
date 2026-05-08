@@ -1,0 +1,56 @@
+@page "/components/dropdown"
+@using NokninUI.Data.Enums
+@inject NokninToastService Toasts
+
+<PageTitle>Dropdown - NokninUI</PageTitle>
+
+<div class="demo-page">
+    <div class="demo-header">
+        <p class="demo-eyebrow">Component</p>
+        <h1>Dropdown</h1>
+        <p>Use dropdowns to group secondary actions behind a trigger.</p>
+    </div>
+
+    <h2>Example</h2>
+
+    <NokninDropdown Align="NokninDropdownAlign.Start">
+        <Trigger>
+            Actions ▾
+        </Trigger>
+
+        <ChildContent>
+            <NokninDropdownItem OnClick="HandleEdit">
+                Edit
+            </NokninDropdownItem>
+
+            <NokninDropdownItem OnClick="HandleDuplicate">
+                Duplicate
+            </NokninDropdownItem>
+
+            <NokninDropdownItem Disabled>
+                Archive
+            </NokninDropdownItem>
+
+            <NokninDropdownItem OnClick="HandleDelete">
+                Delete
+            </NokninDropdownItem>
+        </ChildContent>
+    </NokninDropdown>
+</div>
+
+@code {
+    private void HandleEdit()
+    {
+        Toasts.Info("Dropdown", "Edit clicked.");
+    }
+
+    private void HandleDuplicate()
+    {
+        Toasts.Info("Dropdown", "Duplicate clicked.");
+    }
+
+    private void HandleDelete()
+    {
+        Toasts.Error("Dropdown", "Delete clicked.");
+    }
+}
