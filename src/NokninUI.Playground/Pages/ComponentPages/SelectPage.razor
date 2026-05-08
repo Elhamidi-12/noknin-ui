@@ -1,0 +1,88 @@
+@page "/components/select"
+@using NokninUI.Data.Enums
+
+<PageTitle>Select - NokninUI</PageTitle>
+
+<div class="demo-page">
+    <div class="demo-header">
+        <p class="demo-eyebrow">Component</p>
+        <h1>Select</h1>
+        <p>Use selects when users need to choose one option from a list.</p>
+    </div>
+
+    <h2>Examples</h2>
+
+    <div style="max-width:400px; display:grid; gap:1rem;">
+        <NokninSelect Label="Framework"
+                      Placeholder="Choose framework"
+                      Options="@_frameworkOptions"
+                      Value="@_selectedFramework"
+                      ValueChanged="value => _selectedFramework = value"
+                      Description="Select the framework you use most." />
+
+        <NokninSelect Label="Required status"
+                      Placeholder="Choose status"
+                      Options="@_statusOptions"
+                      Value="@_selectedStatus"
+                      ValueChanged="value => _selectedStatus = value"
+                      ErrorText="Status is required."
+                      Required />
+
+        <NokninSelect Label="Disabled select"
+                      Placeholder="Unavailable"
+                      Options="@_frameworkOptions"
+                      Disabled />
+
+        <NokninSelect Label="Small select"
+                      Placeholder="Choose framework"
+                      Size="NokninSize.Small"
+                      Options="@_frameworkOptions"
+                      Value="@_smallFramework"
+                      ValueChanged="value => _smallFramework = value" />
+
+        <NokninSelect Label="Medium select"
+                      Placeholder="Choose framework"
+                      Size="NokninSize.Medium"
+                      Options="@_frameworkOptions"
+                      Value="@_mediumFramework"
+                      ValueChanged="value => _mediumFramework = value" />
+
+        <NokninSelect Label="Large select"
+                      Placeholder="Choose framework"
+                      Size="NokninSize.Large"
+                      Options="@_frameworkOptions"
+                      Value="@_largeFramework"
+                      ValueChanged="value => _largeFramework = value" />
+
+        <NokninSelect Label="With disabled option"
+                      Placeholder="Try selecting Angular"
+                      Options="@_frameworkOptions"
+                      Value="@_disabledOptionFramework"
+                      ValueChanged="value => _disabledOptionFramework = value"
+                      Description="Angular is disabled and should not be selectable." />
+    </div>
+</div>
+
+@code {
+    private string? _selectedFramework;
+    private string? _selectedStatus;
+    private string? _smallFramework;
+    private string? _mediumFramework;
+    private string? _largeFramework;
+    private string? _disabledOptionFramework;
+
+    private readonly IReadOnlyList<NokninSelectOption> _frameworkOptions =
+    [
+        new() { Value = "blazor", Label = "Blazor" },
+        new() { Value = "react", Label = "React" },
+        new() { Value = "vue", Label = "Vue" },
+        new() { Value = "angular", Label = "Angular", Disabled = true }
+    ];
+
+    private readonly IReadOnlyList<NokninSelectOption> _statusOptions =
+    [
+        new() { Value = "active", Label = "Active" },
+        new() { Value = "pending", Label = "Pending" },
+        new() { Value = "archived", Label = "Archived" }
+    ];
+}

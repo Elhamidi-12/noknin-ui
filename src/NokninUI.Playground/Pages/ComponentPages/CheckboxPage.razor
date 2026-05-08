@@ -1,0 +1,59 @@
+@page "/components/checkbox"
+@using NokninUI.Data.Enums
+
+<PageTitle>Checkbox - NokninUI</PageTitle>
+
+<div class="demo-page">
+    <div class="demo-header">
+        <p class="demo-eyebrow">Component</p>
+        <h1>Checkbox</h1>
+        <p>Use checkboxes for independent true or false choices.</p>
+    </div>
+
+    <h2>Examples</h2>
+
+    <div style="max-width:420px; display:grid; gap:1rem;">
+        <NokninCheckbox Label="Accept terms"
+                        Description="I agree to the terms and privacy policy."
+                        @bind-Checked="_acceptedTerms" />
+
+        <NokninCheckbox Label="Required checkbox"
+                        Description="This checkbox is required."
+                        Required
+                        @bind-Checked="_requiredCheckbox" />
+
+        <NokninCheckbox Label="Error checkbox"
+                        ErrorText="You must accept this before continuing."
+                        @bind-Checked="_errorCheckbox" />
+
+        <NokninCheckbox Label="Disabled checkbox"
+                        Description="This option is currently unavailable."
+                        Disabled />
+
+        <NokninCheckbox Label="Checked disabled checkbox"
+                        Description="This option is locked on."
+                        Checked="true"
+                        Disabled />
+
+        <NokninCheckbox Label="Small checkbox"
+                        Size="NokninSize.Small"
+                        @bind-Checked="_smallCheckbox" />
+
+        <NokninCheckbox Label="Medium checkbox"
+                        Size="NokninSize.Medium"
+                        @bind-Checked="_mediumCheckbox" />
+
+        <NokninCheckbox Label="Large checkbox"
+                        Size="NokninSize.Large"
+                        @bind-Checked="_largeCheckbox" />
+    </div>
+</div>
+
+@code {
+    private bool _acceptedTerms;
+    private bool _requiredCheckbox;
+    private bool _errorCheckbox;
+    private bool _smallCheckbox;
+    private bool _mediumCheckbox;
+    private bool _largeCheckbox;
+}

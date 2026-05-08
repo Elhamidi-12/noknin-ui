@@ -1,0 +1,68 @@
+@page "/components/radio"
+@using NokninUI.Data.Enums
+
+<PageTitle>Radio - NokninUI</PageTitle>
+
+<div class="demo-page">
+    <div class="demo-header">
+        <p class="demo-eyebrow">Component</p>
+        <h1>Radio</h1>
+        <p>Use radio groups when users need to choose one option from a small set.</p>
+    </div>
+
+    <h2>Examples</h2>
+
+    <div style="max-width:520px; display:grid; gap:1.5rem;">
+        <NokninRadioGroup Label="Framework"
+                          Description="Choose the framework you use most."
+                          Value="@_selectedRadioFramework"
+                          ValueChanged="value => _selectedRadioFramework = value">
+            <NokninRadio Value="blazor" Label="Blazor" Description="A .NET web UI framework." />
+            <NokninRadio Value="react" Label="React" Description="A JavaScript UI library." />
+            <NokninRadio Value="vue" Label="Vue" Description="A progressive JavaScript framework." />
+        </NokninRadioGroup>
+
+        <NokninRadioGroup Label="Horizontal options"
+                          Orientation="NokninRadioOrientation.Horizontal"
+                          Value="@_selectedRadioSize"
+                          ValueChanged="value => _selectedRadioSize = value">
+            <NokninRadio Value="small" Label="Small" />
+            <NokninRadio Value="medium" Label="Medium" />
+            <NokninRadio Value="large" Label="Large" />
+        </NokninRadioGroup>
+
+        <NokninRadioGroup Label="Required status"
+                          Required
+                          ErrorText="Please select a status."
+                          Value="@_selectedRadioStatus"
+                          ValueChanged="value => _selectedRadioStatus = value">
+            <NokninRadio Value="active" Label="Active" />
+            <NokninRadio Value="pending" Label="Pending" />
+            <NokninRadio Value="archived" Label="Archived" />
+        </NokninRadioGroup>
+
+        <NokninRadioGroup Label="Disabled group"
+                          Disabled
+                          Value="@_disabledRadioValue"
+                          ValueChanged="value => _disabledRadioValue = value">
+            <NokninRadio Value="one" Label="One" />
+            <NokninRadio Value="two" Label="Two" />
+        </NokninRadioGroup>
+
+        <NokninRadioGroup Label="Sizes"
+                          Value="@_selectedRadioExampleSize"
+                          ValueChanged="value => _selectedRadioExampleSize = value">
+            <NokninRadio Value="small" Label="Small radio" Size="NokninSize.Small" />
+            <NokninRadio Value="medium" Label="Medium radio" Size="NokninSize.Medium" />
+            <NokninRadio Value="large" Label="Large radio" Size="NokninSize.Large" />
+        </NokninRadioGroup>
+    </div>
+</div>
+
+@code {
+    private string? _selectedRadioFramework;
+    private string? _selectedRadioSize;
+    private string? _selectedRadioStatus;
+    private string? _selectedRadioExampleSize;
+    private string? _disabledRadioValue = "one";
+}
