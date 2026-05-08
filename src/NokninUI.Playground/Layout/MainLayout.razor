@@ -1,20 +1,53 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="noknin-docs-shell" data-theme="@Theme">
-    <aside class="noknin-docs-sidebar">
-        <NavMenu />
+<div class="@ShellClass" data-theme="@Theme">
+    <aside class="@SidebarClass" id="docs-navigation">
+        <NavMenu Collapsed="_navCollapsed" OnNavigate="CloseMobileNav" />
     </aside>
+
+    @if (_mobileNavOpen)
+    {
+        <button class="noknin-docs-backdrop"
+                type="button"
+                aria-label="Close navigation"
+                @onclick="CloseMobileNav">
+        </button>
+    }
 
     <div class="noknin-docs-main">
         <header class="noknin-docs-header">
-            <div>
-                <p class="noknin-docs-eyebrow">NokninUI Playground</p>
-                <h1 class="noknin-docs-title">Semantic Blazor components</h1>
+            <div class="noknin-docs-header__start">
+                <button class="noknin-docs-icon-button noknin-docs-mobile-menu"
+                        type="button"
+                        aria-label="Open navigation"
+                        aria-controls="docs-navigation"
+                        aria-expanded="@_mobileNavOpen"
+                        @onclick="ToggleMobileNav">
+                    ☰
+                </button>
+
+                <button class="noknin-docs-icon-button noknin-docs-collapse-button"
+                        type="button"
+                        aria-label="@CollapseLabel"
+                        aria-controls="docs-navigation"
+                        aria-expanded="@(!_navCollapsed)"
+                        @onclick="ToggleNav">
+                    @CollapseIcon
+                </button>
+
+                <div>
+                    <p class="noknin-docs-eyebrow">NokninUI Playground</p>
+                    <h1 class="noknin-docs-title">Semantic Blazor components</h1>
+                </div>
             </div>
 
             <div class="noknin-docs-actions">
-                <button class="noknin-docs-theme-toggle" type="button" @onclick="ToggleTheme">
-                    @ThemeLabel
+                <button class="noknin-docs-theme-toggle"
+                        type="button"
+                        aria-label="@ThemeLabel"
+                        title="@ThemeLabel"
+                        @onclick="ToggleTheme">
+                    <span aria-hidden="true">@ThemeIcon</span>
                 </button>
 
                 <a class="noknin-docs-link"
@@ -36,13 +69,44 @@
 
 @code {
     private bool _dark;
+    private bool _navCollapsed;
+    private bool _mobileNavOpen;
 
     private string Theme => _dark ? "dark" : "light";
 
-    private string ThemeLabel => _dark ? "Light theme" : "Dark theme";
+    private string ThemeLabel => _dark ? "Switch to light theme" : "Switch to dark theme";
+
+    private string ThemeIcon => _dark ? "☀" : "☾";
+
+    private string CollapseLabel => _navCollapsed ? "Expand navigation" : "Collapse navigation";
+
+    private string CollapseIcon => _navCollapsed ? "→" : "←";
+
+    private string ShellClass => _mobileNavOpen
+        ? "noknin-docs-shell noknin-docs-shell--nav-open"
+        : "noknin-docs-shell";
+
+    private string SidebarClass => _navCollapsed
+        ? "noknin-docs-sidebar noknin-docs-sidebar--collapsed"
+        : "noknin-docs-sidebar";
 
     private void ToggleTheme()
     {
         _dark = !_dark;
+    }
+
+    private void ToggleNav()
+    {
+        _navCollapsed = !_navCollapsed;
+    }
+
+    private void ToggleMobileNav()
+    {
+        _mobileNavOpen = !_mobileNavOpen;
+    }
+
+    private void CloseMobileNav()
+    {
+        _mobileNavOpen = false;
     }
 }

@@ -1,43 +1,152 @@
-﻿<nav class="noknin-docs-nav" aria-label="NokninUI playground navigation">
+﻿<nav class="@NavClass" aria-label="NokninUI playground navigation">
     <div class="noknin-docs-brand">
-        <a class="noknin-docs-brand-link" href="">
+        <a class="noknin-docs-brand-link" href="" title="NokninUI" @onclick="HandleNavigate">
             <span class="noknin-docs-logo" aria-hidden="true">N</span>
-            <span>
-                <strong>NokninUI</strong>
-                <span>v0.1.0</span>
-            </span>
+
+            @if (!Collapsed)
+            {
+                <span class="noknin-docs-brand-text">
+                    <strong>NokninUI</strong>
+                    <span>v0.1.0</span>
+                </span>
+            }
         </a>
     </div>
 
-    <div class="noknin-docs-nav-section">
-        <p class="noknin-docs-nav-heading">Getting started</p>
+    <div class="noknin-docs-nav-scroll">
+        <div class="noknin-docs-nav-section">
+            @if (!Collapsed)
+            {
+                <p class="noknin-docs-nav-heading">Getting started</p>
+            }
 
-        <NavLink class="noknin-docs-nav-link" href="" Match="NavLinkMatch.All">
-            Overview
-        </NavLink>
-    </div>
+            <NavLink class="noknin-docs-nav-link" href="" Match="NavLinkMatch.All" title="Overview" @onclick="HandleNavigate">
+                <span class="noknin-docs-nav-icon" aria-hidden="true">⌂</span>
 
-    <div class="noknin-docs-nav-section">
-        <p class="noknin-docs-nav-heading">Components</p>
+                @if (!Collapsed)
+                {
+                    <span>Overview</span>
+                }
+            </NavLink>
+        </div>
 
-        <NavLink class="noknin-docs-nav-link" href="components/accordion">Accordion</NavLink>
-        <NavLink class="noknin-docs-nav-link" href="components/alert">Alert</NavLink>
-        <NavLink class="noknin-docs-nav-link" href="components/badge">Badge</NavLink>
-        <NavLink class="noknin-docs-nav-link" href="components/button">Button</NavLink>
-        <NavLink class="noknin-docs-nav-link" href="components/card">Card</NavLink>
-        <NavLink class="noknin-docs-nav-link" href="components/checkbox">Checkbox</NavLink>
-        <NavLink class="noknin-docs-nav-link" href="components/datagrid">DataGrid</NavLink>
-        <NavLink class="noknin-docs-nav-link" href="components/dropdown">Dropdown</NavLink>
-        <NavLink class="noknin-docs-nav-link" href="components/modal">Modal</NavLink>
-        <NavLink class="noknin-docs-nav-link" href="components/pagination">Pagination</NavLink>
-        <NavLink class="noknin-docs-nav-link" href="components/radio">Radio</NavLink>
-        <NavLink class="noknin-docs-nav-link" href="components/select">Select</NavLink>
-        <NavLink class="noknin-docs-nav-link" href="components/switch">Switch</NavLink>
-        <NavLink class="noknin-docs-nav-link" href="components/table">Table</NavLink>
-        <NavLink class="noknin-docs-nav-link" href="components/tabs">Tabs</NavLink>
-        <NavLink class="noknin-docs-nav-link" href="components/text-area">TextArea</NavLink>
-        <NavLink class="noknin-docs-nav-link" href="components/text-field">TextField</NavLink>
-        <NavLink class="noknin-docs-nav-link" href="components/toast">Toast</NavLink>
-        <NavLink class="noknin-docs-nav-link" href="components/tooltip">Tooltip</NavLink>
+        <div class="noknin-docs-nav-section">
+            @if (!Collapsed)
+            {
+                <p class="noknin-docs-nav-heading">Components</p>
+            }
+
+            <NavLink class="noknin-docs-nav-link" href="components/accordion" title="Accordion" @onclick="HandleNavigate">
+                <span class="noknin-docs-nav-icon" aria-hidden="true">A</span>
+                @if (!Collapsed) { <span>Accordion</span> }
+            </NavLink>
+
+            <NavLink class="noknin-docs-nav-link" href="components/alert" title="Alert" @onclick="HandleNavigate">
+                <span class="noknin-docs-nav-icon" aria-hidden="true">!</span>
+                @if (!Collapsed) { <span>Alert</span> }
+            </NavLink>
+
+            <NavLink class="noknin-docs-nav-link" href="components/badge" title="Badge" @onclick="HandleNavigate">
+                <span class="noknin-docs-nav-icon" aria-hidden="true">B</span>
+                @if (!Collapsed) { <span>Badge</span> }
+            </NavLink>
+
+            <NavLink class="noknin-docs-nav-link" href="components/button" title="Button" @onclick="HandleNavigate">
+                <span class="noknin-docs-nav-icon" aria-hidden="true">↵</span>
+                @if (!Collapsed) { <span>Button</span> }
+            </NavLink>
+
+            <NavLink class="noknin-docs-nav-link" href="components/card" title="Card" @onclick="HandleNavigate">
+                <span class="noknin-docs-nav-icon" aria-hidden="true">C</span>
+                @if (!Collapsed) { <span>Card</span> }
+            </NavLink>
+
+            <NavLink class="noknin-docs-nav-link" href="components/checkbox" title="Checkbox" @onclick="HandleNavigate">
+                <span class="noknin-docs-nav-icon" aria-hidden="true">☑</span>
+                @if (!Collapsed) { <span>Checkbox</span> }
+            </NavLink>
+
+            <NavLink class="noknin-docs-nav-link" href="components/datagrid" title="DataGrid" @onclick="HandleNavigate">
+                <span class="noknin-docs-nav-icon" aria-hidden="true">▦</span>
+                @if (!Collapsed) { <span>DataGrid</span> }
+            </NavLink>
+
+            <NavLink class="noknin-docs-nav-link" href="components/dropdown" title="Dropdown" @onclick="HandleNavigate">
+                <span class="noknin-docs-nav-icon" aria-hidden="true">⌄</span>
+                @if (!Collapsed) { <span>Dropdown</span> }
+            </NavLink>
+
+            <NavLink class="noknin-docs-nav-link" href="components/modal" title="Modal" @onclick="HandleNavigate">
+                <span class="noknin-docs-nav-icon" aria-hidden="true">□</span>
+                @if (!Collapsed) { <span>Modal</span> }
+            </NavLink>
+
+            <NavLink class="noknin-docs-nav-link" href="components/pagination" title="Pagination" @onclick="HandleNavigate">
+                <span class="noknin-docs-nav-icon" aria-hidden="true">#</span>
+                @if (!Collapsed) { <span>Pagination</span> }
+            </NavLink>
+
+            <NavLink class="noknin-docs-nav-link" href="components/radio" title="Radio" @onclick="HandleNavigate">
+                <span class="noknin-docs-nav-icon" aria-hidden="true">◉</span>
+                @if (!Collapsed) { <span>Radio</span> }
+            </NavLink>
+
+            <NavLink class="noknin-docs-nav-link" href="components/select" title="Select" @onclick="HandleNavigate">
+                <span class="noknin-docs-nav-icon" aria-hidden="true">⌵</span>
+                @if (!Collapsed) { <span>Select</span> }
+            </NavLink>
+
+            <NavLink class="noknin-docs-nav-link" href="components/switch" title="Switch" @onclick="HandleNavigate">
+                <span class="noknin-docs-nav-icon" aria-hidden="true">●</span>
+                @if (!Collapsed) { <span>Switch</span> }
+            </NavLink>
+
+            <NavLink class="noknin-docs-nav-link" href="components/table" title="Table" @onclick="HandleNavigate">
+                <span class="noknin-docs-nav-icon" aria-hidden="true">T</span>
+                @if (!Collapsed) { <span>Table</span> }
+            </NavLink>
+
+            <NavLink class="noknin-docs-nav-link" href="components/tabs" title="Tabs" @onclick="HandleNavigate">
+                <span class="noknin-docs-nav-icon" aria-hidden="true">≡</span>
+                @if (!Collapsed) { <span>Tabs</span> }
+            </NavLink>
+
+            <NavLink class="noknin-docs-nav-link" href="components/text-area" title="TextArea" @onclick="HandleNavigate">
+                <span class="noknin-docs-nav-icon" aria-hidden="true">¶</span>
+                @if (!Collapsed) { <span>TextArea</span> }
+            </NavLink>
+
+            <NavLink class="noknin-docs-nav-link" href="components/text-field" title="TextField" @onclick="HandleNavigate">
+                <span class="noknin-docs-nav-icon" aria-hidden="true">I</span>
+                @if (!Collapsed) { <span>TextField</span> }
+            </NavLink>
+
+            <NavLink class="noknin-docs-nav-link" href="components/toast" title="Toast" @onclick="HandleNavigate">
+                <span class="noknin-docs-nav-icon" aria-hidden="true">◒</span>
+                @if (!Collapsed) { <span>Toast</span> }
+            </NavLink>
+
+            <NavLink class="noknin-docs-nav-link" href="components/tooltip" title="Tooltip" @onclick="HandleNavigate">
+                <span class="noknin-docs-nav-icon" aria-hidden="true">?</span>
+                @if (!Collapsed) { <span>Tooltip</span> }
+            </NavLink>
+        </div>
     </div>
 </nav>
+
+@code {
+    [Parameter]
+    public bool Collapsed { get; set; }
+
+    [Parameter]
+    public EventCallback OnNavigate { get; set; }
+
+    private string NavClass => Collapsed
+        ? "noknin-docs-nav noknin-docs-nav--collapsed"
+        : "noknin-docs-nav";
+
+    private Task HandleNavigate()
+    {
+        return OnNavigate.InvokeAsync();
+    }
+}
