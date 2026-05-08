@@ -50,8 +50,16 @@
 }
 
 .noknin-button--destructive {
-  background: #ef4444;
-  color: white;
+  background: var(--noknin-status-error);
+  color: var(--noknin-text-inverse);
+}
+
+.noknin-button--destructive:hover {
+  background: var(--noknin-status-error-hover);
+}
+
+.noknin-button--destructive:active {
+  background: var(--noknin-status-error-active);
 }
 
 .noknin-button:focus-visible {

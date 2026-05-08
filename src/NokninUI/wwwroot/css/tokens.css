@@ -21,6 +21,8 @@
   --noknin-status-success: #22c55e;
   --noknin-status-warning: #f59e0b;
   --noknin-status-error: #ef4444;
+  --noknin-status-error-hover: #dc2626;
+  --noknin-status-error-active: #b91c1c;
   --noknin-status-info: #3b82f6;
 
   --noknin-space-1: .25rem;
@@ -28,6 +30,7 @@
   --noknin-space-3: .75rem;
   --noknin-space-4: 1rem;
   --noknin-space-6: 1.5rem;
+  --noknin-space-8: 2rem;
 
   --noknin-radius-sm: .375rem;
   --noknin-radius-md: .5rem;
