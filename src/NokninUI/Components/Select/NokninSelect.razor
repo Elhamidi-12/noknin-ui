@@ -1,62 +1,72 @@
-<div class="@RootClass" style="@Style" @ref="_rootElement">
+<div class="@ClassNames">
     @if (!string.IsNullOrWhiteSpace(Label))
     {
         <label class="noknin-select__label" id="@LabelId">
             @Label
-
             @if (Required)
             {
-                <span class="noknin-select__required" aria-hidden="true">*</span>
+                <span aria-hidden="true">*</span>
             }
         </label>
     }
 
-    <button id="@TriggerId" type="button" class="noknin-select__trigger" role="combobox" aria-haspopup="listbox"
-            aria-expanded="@IsOpen.ToString().ToLowerInvariant()" aria-controls="@ListboxId"
-            aria-labelledby="@AriaLabelledBy" aria-describedby="@DescribedBy" aria-activedescendant="@ActiveDescendantId"
-            aria-required="@Required.ToString().ToLowerInvariant()" aria-invalid="@HasError.ToString().ToLowerInvariant()"
-            aria-disabled="@Disabled.ToString().ToLowerInvariant()" disabled="@Disabled" @onclick="ToggleAsync"
-            @onkeydown="HandleKeyDownAsync">
-        <span class="@ValueClass">
+    <button type="button"
+            class="noknin-select__trigger"
+            disabled="@Disabled"
+            aria-haspopup="listbox"
+            aria-expanded="@_open"
+            aria-labelledby="@LabelledBy"
+            aria-describedby="@DescribedBy"
+            aria-invalid="@HasError"
+            aria-controls="@ListId"
+            aria-activedescendant="@ActiveDescendant"
+            @onclick="Toggle"
+            @onkeydown="HandleTriggerKeyDown">
+
+        <span class="@ValueClassNames">
             @SelectedLabel
         </span>
 
-        <span class="noknin-select__chevron" aria-hidden="true">
-            ▾
-        </span>
+        <span class="noknin-select__chevron" aria-hidden="true">˅</span>
     </button>
 
-    @if (IsOpen)
+    @if (_open)
     {
-        <ul id="@ListboxId" class="noknin-select__listbox" role="listbox" aria-labelledby="@LabelId">
+        <div id="@ListId"
+             class="noknin-select__list"
+             role="listbox"
+             aria-labelledby="@LabelId"
+             tabindex="-1"
+             @onkeydown="HandleListKeyDown">
+
             @for (var index = 0; index < Options.Count; index++)
             {
-                var optionIndex = index;
-                var option = Options[optionIndex];
-                var isSelected = IsSelected(option);
-                var isActive = optionIndex == _activeIndex;
+                var option = Options[index];
 
-                <li id="@GetOptionId(optionIndex)" class="@GetOptionClass(option, optionIndex)" role="option"
-                    aria-selected="@isSelected.ToString().ToLowerInvariant()"
-                    aria-disabled="@option.Disabled.ToString().ToLowerInvariant()"
-                    @onclick="() => SelectOptionAsync(optionIndex)">
+                <button type="button"
+                        id="@GetOptionId(index)"
+                        class="@GetOptionClassNames(option, index)"
+                        role="option"
+                        aria-selected="@(option.Value == Value)"
+                        disabled="@option.Disabled"
+                        @onclick="() => SelectAsync(option)">
                     @option.Label
-                </li>
+                </button>
             }
-        </ul>
+        </div>
     }
 
     @if (!string.IsNullOrWhiteSpace(Description) && !HasError)
     {
-        <div id="@DescriptionId" class="noknin-select__description">
+        <p id="@DescriptionId" class="noknin-select__description">
             @Description
-        </div>
+        </p>
     }
 
-    @if (!string.IsNullOrWhiteSpace(ErrorText))
+    @if (HasError)
     {
-        <div id="@ErrorId" class="noknin-select__error">
+        <p id="@ErrorId" class="noknin-select__error">
             @ErrorText
-        </div>
+        </p>
     }
 </div>

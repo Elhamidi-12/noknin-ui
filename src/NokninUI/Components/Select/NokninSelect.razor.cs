@@ -1,45 +1,26 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using Microsoft.JSInterop;
 using NokninUI.Data.Enums;
 
 namespace NokninUI.Components.Select;
 
-public partial class NokninSelect : IAsyncDisposable
+public partial class NokninSelect
 {
-    private readonly string _componentId = $"noknin-select-{Guid.NewGuid():N}";
-
-    private ElementReference _rootElement;
-    private DotNetObjectReference<NokninSelect>? _dotNetReference;
-    private IJSObjectReference? _module;
-
-    private bool IsOpen { get; set; }
+    private readonly string _id = $"noknin-select-{Guid.NewGuid():N}";
+    private bool _open;
     private int _activeIndex = -1;
 
-    [Inject] private IJSRuntime JSRuntime { get; set; } = default!;
-
     [Parameter] public string? Label { get; set; }
-
-    [Parameter] public IReadOnlyList<NokninSelectOption> Options { get; set; } = Array.Empty<NokninSelectOption>();
-
     [Parameter] public string? Value { get; set; }
-
     [Parameter] public EventCallback<string?> ValueChanged { get; set; }
-
-    [Parameter] public string? Placeholder { get; set; } = "Select an option";
-
-    [Parameter] public NokninSize Size { get; set; } = NokninSize.Medium;
-
-    [Parameter] public bool Disabled { get; set; }
-
-    [Parameter] public bool Required { get; set; }
+    [Parameter] public IReadOnlyList<NokninSelectOption> Options { get; set; } = [];
+    [Parameter] public string Placeholder { get; set; } = "Select an option";
     [Parameter] public string? Description { get; set; }
-
     [Parameter] public string? ErrorText { get; set; }
-
+    [Parameter] public NokninSize Size { get; set; } = NokninSize.Medium;
+    [Parameter] public bool Disabled { get; set; }
+    [Parameter] public bool Required { get; set; }
     [Parameter] public string? Class { get; set; }
-
-    [Parameter] public string? Style { get; set; }
 
     private bool HasError
     {
@@ -49,27 +30,19 @@ public partial class NokninSelect : IAsyncDisposable
         }
     }
 
-    private string TriggerId
-    {
-        get
-        {
-            return $"{_componentId}-trigger";
-        }
-    }
-
     private string LabelId
     {
         get
         {
-            return $"{_componentId}-label";
+            return $"{_id}-label";
         }
     }
 
-    private string ListboxId
+    private string ListId
     {
         get
         {
-            return $"{_componentId}-listbox";
+            return $"{_id}-listbox";
         }
     }
 
@@ -77,7 +50,7 @@ public partial class NokninSelect : IAsyncDisposable
     {
         get
         {
-            return $"{_componentId}-description";
+            return $"{_id}-description";
         }
     }
 
@@ -85,7 +58,7 @@ public partial class NokninSelect : IAsyncDisposable
     {
         get
         {
-            return $"{_componentId}-error";
+            return $"{_id}-error";
         }
     }
 
@@ -93,37 +66,17 @@ public partial class NokninSelect : IAsyncDisposable
     {
         get
         {
-            if (HasError)
-            {
-                return ErrorId;
-            }
-
-            if (!string.IsNullOrWhiteSpace(Description))
-            {
-                return DescriptionId;
-            }
-
-            return null;
+            return HasError ? ErrorId :
+        !string.IsNullOrWhiteSpace(Description) ? DescriptionId :
+        null;
         }
     }
 
-    private string? ActiveDescendantId
+    private string LabelledBy
     {
         get
         {
-            return IsOpen && IsValidActiveIndex(_activeIndex)
-            ? GetOptionId(_activeIndex)
-            : null;
-        }
-    }
-
-    private string AriaLabelledBy
-    {
-        get
-        {
-            return string.IsNullOrWhiteSpace(Label)
-            ? TriggerId
-            : $"{LabelId} {TriggerId}";
+            return !string.IsNullOrWhiteSpace(Label) ? LabelId : string.Empty;
         }
     }
 
@@ -131,7 +84,7 @@ public partial class NokninSelect : IAsyncDisposable
     {
         get
         {
-            return Options.FirstOrDefault(option => option.Value == Value);
+            return Options.FirstOrDefault(x => x.Value == Value);
         }
     }
 
@@ -139,100 +92,115 @@ public partial class NokninSelect : IAsyncDisposable
     {
         get
         {
-            return SelectedOption?.Label
-        ?? Placeholder
-        ?? string.Empty;
+            return SelectedOption?.Label ?? Placeholder;
         }
     }
 
-    private string RootClass
+    private string? ActiveDescendant
     {
         get
         {
-            return string.Join(
-            " ",
-            new[]
-            {
-                "noknin-select",
-                $"noknin-select--{Size.ToString().ToLowerInvariant()}",
-                IsOpen ? "noknin-select--open" : null,
-                Disabled ? "noknin-select--disabled" : null,
-                HasError ? "noknin-select--error" : null,
-                Class
-            }.Where(value => !string.IsNullOrWhiteSpace(value)));
+            return _open && _activeIndex >= 0 ? GetOptionId(_activeIndex) : null;
         }
     }
 
-    private string ValueClass
+    private string ValueClassNames
     {
         get
         {
-            return string.Join(
-            " ",
-            new[]
-            {
-                "noknin-select__value",
-                SelectedOption is null ? "noknin-select__value--placeholder" : null
-            }.Where(value => !string.IsNullOrWhiteSpace(value)));
+            return SelectedOption is null
+            ? "noknin-select__value noknin-select__value--placeholder"
+            : "noknin-select__value";
         }
     }
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    private string ClassNames
     {
-        if (!firstRender)
+        get
         {
-            return;
+            return $"noknin-select noknin-select--{Size.ToString().ToLowerInvariant()} {(_open ? "noknin-select--open" : "")} {(Disabled ? "noknin-select--disabled" : "")} {(HasError ? "noknin-select--error" : "")} {Class}".Trim();
         }
-
-        _dotNetReference = DotNetObjectReference.Create(this);
-
-        _module = await JSRuntime.InvokeAsync<IJSObjectReference>(
-            "import",
-            "./_content/NokninUI/js/noknin-select.js");
-
-        await _module.InvokeVoidAsync(
-            "registerOutsideClick",
-            _rootElement,
-            _dotNetReference);
     }
 
-    private async Task ToggleAsync()
+    private void Toggle()
     {
         if (Disabled)
         {
             return;
         }
 
-        if (IsOpen)
+        if (_open)
         {
             Close();
-        }
-        else
-        {
-            Open();
+            return;
         }
 
-        await Task.CompletedTask;
+        Open();
     }
 
     private void Open()
     {
-        if (Disabled || IsOpen)
+        if (Disabled)
         {
             return;
         }
 
-        IsOpen = true;
-        SetInitialActiveIndex();
+        _open = true;
+        _activeIndex = GetInitialActiveIndex();
     }
 
     private void Close()
     {
-        IsOpen = false;
+        _open = false;
         _activeIndex = -1;
     }
 
-    private async Task HandleKeyDownAsync(KeyboardEventArgs args)
+    private int GetInitialActiveIndex()
+    {
+        var selectedIndex = Options
+            .Select((option, index) => new { option, index })
+            .FirstOrDefault(x => x.option.Value == Value && !x.option.Disabled)
+            ?.index;
+
+        if (selectedIndex is not null)
+        {
+            return selectedIndex.Value;
+        }
+
+        return GetNextEnabledIndex(-1, 1);
+    }
+
+    private async Task SelectAsync(NokninSelectOption option)
+    {
+        if (option.Disabled)
+        {
+            return;
+        }
+
+        Value = option.Value;
+        Close();
+
+        await ValueChanged.InvokeAsync(Value);
+    }
+
+    private async Task SelectActiveAsync()
+    {
+        if (_activeIndex < 0 || _activeIndex >= Options.Count)
+        {
+            return;
+        }
+
+        var option = Options[_activeIndex];
+
+        if (option.Disabled)
+        {
+            return;
+        }
+
+        await SelectAsync(option);
+    }
+
+    private async Task HandleTriggerKeyDown(KeyboardEventArgs args)
     {
         if (Disabled)
         {
@@ -241,124 +209,96 @@ public partial class NokninSelect : IAsyncDisposable
 
         switch (args.Key)
         {
-            case "ArrowDown":
-                if (!IsOpen)
+            case "Enter":
+            case " ":
+                if (!_open)
                 {
                     Open();
                 }
                 else
                 {
-                    MoveActiveIndex(1);
+                    await SelectActiveAsync();
                 }
+                break;
 
+            case "ArrowDown":
+                if (!_open)
+                {
+                    Open();
+                }
+                else
+                {
+                    MoveActive(1);
+                }
                 break;
 
             case "ArrowUp":
-                if (!IsOpen)
+                if (!_open)
                 {
                     Open();
                 }
                 else
                 {
-                    MoveActiveIndex(-1);
+                    MoveActive(-1);
                 }
-
                 break;
 
             case "Home":
-                if (!IsOpen)
+                if (!_open)
                 {
                     Open();
                 }
 
-                SetFirstEnabledActiveIndex();
+                MoveToFirst();
                 break;
 
             case "End":
-                if (!IsOpen)
+                if (!_open)
                 {
                     Open();
                 }
 
-                SetLastEnabledActiveIndex();
-                break;
-
-            case "Enter":
-            case " ":
-                if (!IsOpen)
-                {
-                    Open();
-                }
-                else if (IsValidActiveIndex(_activeIndex))
-                {
-                    await SelectOptionAsync(_activeIndex);
-                }
-
+                MoveToLast();
                 break;
 
             case "Escape":
                 Close();
                 break;
+        }
+    }
 
-            case "Tab":
+    private async Task HandleListKeyDown(KeyboardEventArgs args)
+    {
+        switch (args.Key)
+        {
+            case "Enter":
+            case " ":
+                await SelectActiveAsync();
+                break;
+
+            case "ArrowDown":
+                MoveActive(1);
+                break;
+
+            case "ArrowUp":
+                MoveActive(-1);
+                break;
+
+            case "Home":
+                MoveToFirst();
+                break;
+
+            case "End":
+                MoveToLast();
+                break;
+
+            case "Escape":
                 Close();
                 break;
         }
     }
 
-    private async Task SelectOptionAsync(int index)
-    {
-        if (!IsValidActiveIndex(index))
-        {
-            return;
-        }
-
-        var option = Options[index];
-
-        if (option.Disabled)
-        {
-            return;
-        }
-
-        Value = option.Value;
-        await ValueChanged.InvokeAsync(Value);
-
-        Close();
-    }
-
-    private void SetInitialActiveIndex()
-    {
-        var selectedIndex = Options.ToList().FindIndex(option => option.Value == Value && !option.Disabled);
-
-        if (selectedIndex >= 0)
-        {
-            _activeIndex = selectedIndex;
-            return;
-        }
-
-        SetFirstEnabledActiveIndex();
-    }
-
-    private void SetFirstEnabledActiveIndex()
-    {
-        _activeIndex = Options.ToList().FindIndex(option => !option.Disabled);
-    }
-
-    private void SetLastEnabledActiveIndex()
-    {
-        for (var index = Options.Count - 1; index >= 0; index--)
-        {
-            if (!Options[index].Disabled)
-            {
-                _activeIndex = index;
-                return;
-            }
-        }
-
-        _activeIndex = -1;
-    }
-
-    private void MoveActiveIndex(int direction)
+    private void MoveActive(int direction)
     {
         if (Options.Count == 0)
         {
@@ -366,82 +306,62 @@ public partial class NokninSelect : IAsyncDisposable
             return;
         }
 
-        var startIndex = IsValidActiveIndex(_activeIndex)
-            ? _activeIndex
-            : direction > 0
-                ? -1
-                : Options.Count;
+        _activeIndex = GetNextEnabledIndex(_activeIndex, direction);
+    }
 
-        for (var step = 1; step <= Options.Count; step++)
+    private void MoveToFirst()
+    {
+        _activeIndex = GetNextEnabledIndex(-1, 1);
+    }
+
+    private void MoveToLast()
+    {
+        _activeIndex = GetNextEnabledIndex(Options.Count, -1);
+    }
+
+    private int GetNextEnabledIndex(int startIndex, int direction)
+    {
+        if (Options.Count == 0)
         {
-            var nextIndex = (startIndex + direction * step + Options.Count) % Options.Count;
+            return -1;
+        }
 
-            if (!Options[nextIndex].Disabled)
+        var index = startIndex;
+
+        for (var i = 0; i < Options.Count; i++)
+        {
+            index += direction;
+
+            if (index < 0)
             {
-                _activeIndex = nextIndex;
-                return;
+                index = Options.Count - 1;
+            }
+
+            if (index >= Options.Count)
+            {
+                index = 0;
+            }
+
+            if (!Options[index].Disabled)
+            {
+                return index;
             }
         }
 
-        _activeIndex = -1;
-    }
-
-    private bool IsValidActiveIndex(int index)
-    {
-        return index >= 0 && index < Options.Count;
-    }
-
-    private bool IsSelected(NokninSelectOption option)
-    {
-        return option.Value == Value;
+        return -1;
     }
 
     private string GetOptionId(int index)
     {
-        return $"{_componentId}-option-{index}";
+        return $"{_id}-option-{index}";
     }
 
-    private string GetOptionClass(NokninSelectOption option, int index)
+    private string GetOptionClassNames(NokninSelectOption option, int index)
     {
-        return string.Join(
-            " ",
-            new[]
-            {
-                "noknin-select__option",
-                IsSelected(option) ? "noknin-select__option--selected" : null,
-                index == _activeIndex ? "noknin-select__option--active" : null,
-                option.Disabled ? "noknin-select__option--disabled" : null
-            }.Where(value => !string.IsNullOrWhiteSpace(value)));
-    }
+        var selected = option.Value == Value ? "noknin-select__option--selected" : "";
+        var active = index == _activeIndex ? "noknin-select__option--active" : "";
+        var disabled = option.Disabled ? "noknin-select__option--disabled" : "";
 
-    [JSInvokable]
-    public Task CloseFromOutsideClickAsync()
-    {
-        if (!IsOpen)
-        {
-            return Task.CompletedTask;
-        }
-
-        Close();
-        StateHasChanged();
-
-        return Task.CompletedTask;
-    }
-
-    public async ValueTask DisposeAsync()
-    {
-        if (_module is not null)
-        {
-            try
-            {
-                await _module.InvokeVoidAsync("unregisterOutsideClick", _rootElement);
-                await _module.DisposeAsync();
-            }
-            catch (JSDisconnectedException)
-            {
-            }
-        }
-
-        _dotNetReference?.Dispose();
+        return $"noknin-select__option {selected} {active} {disabled}".Trim();
     }
 }

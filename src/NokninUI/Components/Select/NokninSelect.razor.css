@@ -9,8 +9,9 @@
 
 .noknin-select__label {
     color: var(--noknin-text-primary);
-    font-size: 0.875rem;
-    font-weight: 500;
+    font-size: var(--noknin-text-sm, 0.875rem);
+    font-weight: 600;
+    line-height: 1.15;
 }
 
 .noknin-select__required {
@@ -28,6 +29,7 @@
     border-radius: var(--noknin-radius-md);
     background: var(--noknin-bg-surface);
     color: var(--noknin-text-primary);
+    font: inherit;
     cursor: pointer;
     transition:
         border-color var(--noknin-duration-200) var(--noknin-ease-out),
@@ -38,19 +40,19 @@
 .noknin-select--small .noknin-select__trigger {
     min-height: 2rem;
     padding: var(--noknin-space-1) var(--noknin-space-3);
-    font-size: 0.875rem;
+    font-size: var(--noknin-text-sm, 0.875rem);
 }
 
 .noknin-select--medium .noknin-select__trigger {
     min-height: 2.5rem;
     padding: var(--noknin-space-2) var(--noknin-space-4);
-    font-size: 1rem;
+    font-size: var(--noknin-text-base, 1rem);
 }
 
 .noknin-select--large .noknin-select__trigger {
     min-height: 3rem;
     padding: var(--noknin-space-3) var(--noknin-space-4);
-    font-size: 1rem;
+    font-size: var(--noknin-text-base, 1rem);
 }
 
 .noknin-select__trigger:hover:not(:disabled) {
@@ -117,37 +119,56 @@
     background: var(--noknin-bg-surface);
     color: var(--noknin-text-primary);
     box-shadow: var(--noknin-shadow-lg);
+    animation: noknin-select-enter var(--noknin-duration-200) var(--noknin-ease-out);
 }
 
 .noknin-select__option {
     display: flex;
     align-items: center;
+    width: 100%;
     min-height: 2.25rem;
     padding: var(--noknin-space-2) var(--noknin-space-3);
+    border: 0;
     border-radius: var(--noknin-radius-sm);
+    background: transparent;
     color: var(--noknin-text-primary);
+    font: inherit;
+    text-align: left;
     cursor: pointer;
     transition:
         background-color var(--noknin-duration-100) var(--noknin-ease-out),
         color var(--noknin-duration-100) var(--noknin-ease-out);
 }
 
+.noknin-select__option:hover:not(:disabled),
 .noknin-select__option:hover:not(.noknin-select__option--disabled),
 .noknin-select__option--active {
     background: var(--noknin-bg-subtle);
 }
 
+.noknin-select__option--active:not(.noknin-select__option--selected) {
+    color: var(--noknin-text-primary);
+}
+
 .noknin-select__option--selected {
     background: var(--noknin-brand-primary);
     color: var(--noknin-text-inverse);
+    font-weight: 700;
 }
 
+.noknin-select__option--selected:hover:not(:disabled),
 .noknin-select__option--selected:hover:not(.noknin-select__option--disabled),
 .noknin-select__option--selected.noknin-select__option--active {
     background: var(--noknin-brand-primary-hover);
     color: var(--noknin-text-inverse);
 }
 
+.noknin-select__option:focus-visible {
+    outline: 2px solid var(--noknin-ring);
+    outline-offset: 2px;
+}
+
+.noknin-select__option:disabled,
 .noknin-select__option--disabled {
     color: var(--noknin-text-muted);
     cursor: not-allowed;
@@ -155,11 +176,35 @@
 }
 
 .noknin-select__description {
+    margin: 0;
     color: var(--noknin-text-muted);
-    font-size: 0.875rem;
+    font-size: var(--noknin-text-sm, 0.875rem);
+    line-height: 1.5;
 }
 
 .noknin-select__error {
+    margin: 0;
     color: var(--noknin-status-error);
-    font-size: 0.875rem;
+    font-size: var(--noknin-text-sm, 0.875rem);
+    line-height: 1.5;
+}
+
+@keyframes noknin-select-enter {
+    from {
+        opacity: 0;
+        transform: translateY(-4px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .noknin-select__listbox,
+    .noknin-select__chevron {
+        animation: none;
+        transition: none;
+    }
 }
