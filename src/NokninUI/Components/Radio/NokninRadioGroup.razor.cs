@@ -59,6 +59,14 @@ public partial class NokninRadioGroup
         }
     }
 
+    private string? LabelledBy
+    {
+        get
+        {
+            return !string.IsNullOrWhiteSpace(Label) ? LabelId : null;
+        }
+    }
+
     private string DescriptionId
     {
         get

@@ -72,11 +72,11 @@ public partial class NokninSelect
         }
     }
 
-    private string LabelledBy
+    private string? LabelledBy
     {
         get
         {
-            return !string.IsNullOrWhiteSpace(Label) ? LabelId : string.Empty;
+            return !string.IsNullOrWhiteSpace(Label) ? LabelId : null;
         }
     }
 
