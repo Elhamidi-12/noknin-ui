@@ -1,0 +1,46 @@
+@page "/components/toast"
+@using NokninUI.Data.Enums
+@inject NokninToastService Toasts
+
+<PageTitle>Toast - NokninUI</PageTitle>
+
+<div class="demo-page">
+    <div class="demo-header">
+        <p class="demo-eyebrow">Component</p>
+        <h1>Toast</h1>
+        <p>Use NokninToastService with NokninToastContainer to show short status messages.</p>
+    </div>
+
+    <h2>Examples</h2>
+
+    <div style="display:flex; gap:.75rem; flex-wrap:wrap;">
+        <NokninButton Variant="NokninVariant.Primary" OnClick="ShowInfoToast">
+            Show info toast
+        </NokninButton>
+
+        <NokninButton Variant="NokninVariant.Primary" OnClick="ShowSuccessToast">
+            Show success toast
+        </NokninButton>
+
+        <NokninButton Variant="NokninVariant.Destructive" OnClick="ShowErrorToast">
+            Show error toast
+        </NokninButton>
+    </div>
+</div>
+
+@code {
+    private void ShowInfoToast()
+    {
+        Toasts.Info("NokninUI", "This is an informational toast.");
+    }
+
+    private void ShowSuccessToast()
+    {
+        Toasts.Success("Saved", "Your changes were saved successfully.");
+    }
+
+    private void ShowErrorToast()
+    {
+        Toasts.Error("Error", "Something went wrong.");
+    }
+}

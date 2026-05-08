@@ -1,0 +1,40 @@
+@page "/components/button"
+@using NokninUI.Data.Enums
+
+<PageTitle>Button - NokninUI</PageTitle>
+
+<div class="demo-page">
+    <div class="demo-header">
+        <p class="demo-eyebrow">Component</p>
+        <h1>Button</h1>
+        <p>Use buttons for primary actions, secondary actions, ghost actions, and destructive actions.</p>
+    </div>
+
+    <h2>Variants</h2>
+
+    <div class="button-row">
+        <NokninButton Variant="NokninVariant.Primary">Primary</NokninButton>
+        <NokninButton Variant="NokninVariant.Secondary">Secondary</NokninButton>
+        <NokninButton Variant="NokninVariant.Ghost">Ghost</NokninButton>
+        <NokninButton Variant="NokninVariant.Destructive">Destructive</NokninButton>
+    </div>
+
+    <hr style="margin:2rem 0;" />
+
+    <h2>Sizes</h2>
+
+    <div class="button-row">
+        <NokninButton Size="NokninSize.Small">Small</NokninButton>
+        <NokninButton Size="NokninSize.Medium">Medium</NokninButton>
+        <NokninButton Size="NokninSize.Large">Large</NokninButton>
+    </div>
+
+    <hr style="margin:2rem 0;" />
+
+    <h2>States</h2>
+
+    <div class="button-row">
+        <NokninButton>Enabled</NokninButton>
+        <NokninButton Disabled>Disabled</NokninButton>
+    </div>
+</div>

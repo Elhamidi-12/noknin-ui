@@ -1,0 +1,51 @@
+@page "/components/card"
+@using NokninUI.Data.Enums
+
+<PageTitle>Card - NokninUI</PageTitle>
+
+<div class="demo-page">
+    <div class="demo-header">
+        <p class="demo-eyebrow">Component</p>
+        <h1>Card</h1>
+        <p>Use cards to group related content and actions inside a themed surface.</p>
+    </div>
+
+    <h2>Variants</h2>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1rem;">
+        <NokninCard>
+            <Header>
+                Default card
+            </Header>
+
+            <ChildContent>
+                This is a basic elevated card using NokninUI semantic tokens.
+            </ChildContent>
+
+            <Footer>
+                <NokninButton Variant="NokninVariant.Ghost">Cancel</NokninButton>
+                <NokninButton Variant="NokninVariant.Primary">Save</NokninButton>
+            </Footer>
+        </NokninCard>
+
+        <NokninCard Variant="NokninCardVariant.Outlined">
+            <Header>
+                Outlined card
+            </Header>
+
+            <ChildContent>
+                Useful for dashboards, settings pages, and grouped content.
+            </ChildContent>
+        </NokninCard>
+
+        <NokninCard Variant="NokninCardVariant.Ghost" Interactive>
+            <Header>
+                Interactive ghost card
+            </Header>
+
+            <ChildContent>
+                Hover this card to test the interactive state.
+            </ChildContent>
+        </NokninCard>
+    </div>
+</div>
