@@ -1,0 +1,80 @@
+@using NokninUI.Data.Enums
+
+<svg viewBox="0 0 24 24"
+     fill="none"
+     stroke="currentColor"
+     stroke-width="2"
+     stroke-linecap="round"
+     stroke-linejoin="round"
+     class="@IconClass"
+     style="@Style"
+     @attributes="AdditionalAttributes"
+     aria-hidden="@(!HasAccessibleName)"
+     role="@(HasAccessibleName ? "img" : null)"
+     aria-label="@(HasAccessibleName ? AriaLabel : null)"
+     focusable="false">
+    @switch (Name)
+    {
+        case NokninIconName.Menu:
+            <path d="M4 12h16" />
+            <path d="M4 6h16" />
+            <path d="M4 18h16" />
+            break;
+        case NokninIconName.Sun:
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2" />
+            <path d="M12 20v2" />
+            <path d="m4.93 4.93 1.41 1.41" />
+            <path d="m17.66 17.66 1.41 1.41" />
+            <path d="M2 12h2" />
+            <path d="M20 12h2" />
+            <path d="m6.34 17.66-1.41 1.41" />
+            <path d="m19.07 4.93-1.41 1.41" />
+            break;
+        case NokninIconName.Moon:
+            <path d="M12 3a7.5 7.5 0 1 0 9 9A9 9 0 1 1 12 3Z" />
+            break;
+        case NokninIconName.ChevronLeft:
+            <path d="m15 18-6-6 6-6" />
+            break;
+        case NokninIconName.ChevronRight:
+            <path d="m9 18 6-6-6-6" />
+            break;
+        case NokninIconName.Home:
+            <path d="m3 9 9-7 9 7" />
+            <path d="M9 22V12h6v10" />
+            <path d="M21 22H3" />
+            <path d="M21 9v13" />
+            <path d="M3 9v13" />
+            break;
+        case NokninIconName.Github:
+            <path d="M9 19c-4.5 1.5-4.5-2.5-6-3m12 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 19 4.77 5.07 5.07 0 0 0 18.91 1S17.73.65 15 2.48a13.38 13.38 0 0 0-6 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+            break;
+        case NokninIconName.X:
+            <path d="M18 6 6 18" />
+            <path d="m6 6 12 12" />
+            break;
+        case NokninIconName.Check:
+            <path d="m20 6-11 11-5-5" />
+            break;
+        case NokninIconName.Info:
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 16v-4" />
+            <path d="M12 8h.01" />
+            break;
+        case NokninIconName.AlertTriangle:
+            <path d="m10.29 3.86-8 14A1 1 0 0 0 3.16 19h17.68a1 1 0 0 0 .87-1.14l-8-14a1 1 0 0 0-1.74 0Z" />
+            <path d="M12 9v4" />
+            <path d="M12 16h.01" />
+            break;
+        case NokninIconName.Search:
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.3-4.3" />
+            break;
+        default:
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 8v4" />
+            <path d="M12 16h.01" />
+            break;
+    }
+</svg>

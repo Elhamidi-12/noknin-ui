@@ -1,0 +1,20 @@
+.noknin-icon {
+    display: inline-block;
+    flex-shrink: 0;
+    vertical-align: middle;
+}
+
+.noknin-icon--small {
+    width: 1rem;
+    height: 1rem;
+}
+
+.noknin-icon--medium {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.noknin-icon--large {
+    width: 1.5rem;
+    height: 1.5rem;
+}
