@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <PackageId>NokninUI</PackageId>
     <Title>NokninUI</Title>
-    <VersionPrefix>0.1.0</VersionPrefix>
+    <VersionPrefix>0.1.1</VersionPrefix>
     <Authors>NokninUI Contributors</Authors>
     <Description>A semantic, themeable Blazor UI framework for modern applications.</Description>
     <PackageTags>blazor;components;ui;design-system;razor;dotnet</PackageTags>

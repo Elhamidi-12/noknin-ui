@@ -8,13 +8,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- Ongoing improvements and stabilization work for the first public package release.
+- Ongoing improvements and stabilization work for future releases.
 
 ### Changed
 - Ongoing API, accessibility, and release-readiness refinements.
 
 ### Fixed
 - Ongoing bug fixes and polish before broader adoption.
+
+## [0.1.1] - Unreleased
+
+### Added
+- Added `NokninIcon`, a Lucide-style inline SVG icon component.
+- Added `NokninIconName` enum for supported built-in icons.
+- Added dedicated playground pages for current components.
+- Added local package verification notes for `v0.1.1`.
+
+### Changed
+- Improved playground main layout and responsive navigation.
+- Updated playground navigation to support collapse and expand behavior.
+- Updated internal UI symbols to use `NokninIcon`.
+- Improved package consumption verification coverage.
+
+### Fixed
+- Fixed playground dark/light theme icon behavior.
+- Fixed playground navigation scrolling so the brand area remains fixed.
+- Fixed package verification cache issue documentation.
 
 ## [0.1.0] - 2026-05-08
 
