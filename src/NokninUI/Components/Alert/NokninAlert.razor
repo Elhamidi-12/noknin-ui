@@ -4,7 +4,7 @@
     @if (ShowIcon)
     {
         <span class="noknin-alert__icon" aria-hidden="true">
-            @Icon
+            <NokninIcon Name="@IconName" Size="NokninSize.Small" />
         </span>
     }
 
@@ -30,7 +30,7 @@
                 type="button"
                 aria-label="Dismiss alert"
                 @onclick="OnDismiss">
-            ×
+            <NokninIcon Name="NokninIconName.X" />
         </button>
     }
 </div>

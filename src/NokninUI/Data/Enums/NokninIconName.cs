@@ -7,11 +7,16 @@ public enum NokninIconName
     Moon,
     ChevronLeft,
     ChevronRight,
+    ChevronDown,
+    ChevronUp,
     Home,
     Github,
+    MoreHorizontal,
     X,
     Check,
+    CircleCheck,
     Info,
+    CircleAlert,
     AlertTriangle,
     Search
 }

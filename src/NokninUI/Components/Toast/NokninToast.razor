@@ -3,7 +3,7 @@
      aria-live="@AriaLive">
 
     <div class="noknin-toast__icon" aria-hidden="true">
-        @Icon
+        <NokninIcon Name="@IconName" Size="NokninSize.Small" />
     </div>
 
     <div class="noknin-toast__body">
@@ -19,6 +19,6 @@
             class="noknin-toast__close"
             aria-label="Dismiss notification"
             @onclick="Dismiss">
-        ×
+        <NokninIcon Name="NokninIconName.X" />
     </button>
 </div>

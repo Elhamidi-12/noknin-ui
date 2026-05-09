@@ -33,17 +33,17 @@ public partial class NokninToast
         }
     }
 
-    private string Icon
+    private NokninIconName IconName
     {
         get
         {
             return Message.Variant switch
             {
-                NokninToastVariant.Success => "✓",
-                NokninToastVariant.Warning => "!",
-                NokninToastVariant.Error => "!",
-                NokninToastVariant.Neutral => "•",
-                _ => "i"
+                NokninToastVariant.Success => NokninIconName.CircleCheck,
+                NokninToastVariant.Warning => NokninIconName.AlertTriangle,
+                NokninToastVariant.Error => NokninIconName.CircleAlert,
+                NokninToastVariant.Neutral => NokninIconName.Info,
+                _ => NokninIconName.Info
             };
         }
     }

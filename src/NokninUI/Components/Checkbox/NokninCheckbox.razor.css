@@ -86,6 +86,11 @@
     line-height: 1;
 }
 
+.noknin-checkbox__checkmark .noknin-icon {
+    width: 0.75rem;
+    height: 0.75rem;
+}
+
 .noknin-checkbox__content {
     display: inline-flex;
     flex-direction: column;

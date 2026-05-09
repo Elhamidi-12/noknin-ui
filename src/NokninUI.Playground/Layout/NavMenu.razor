@@ -1,4 +1,4 @@
-﻿<nav class="@NavClass" aria-label="NokninUI playground navigation">
+<nav class="@NavClass" aria-label="NokninUI playground navigation">
     <div class="noknin-docs-brand">
         <a class="noknin-docs-brand-link" href="" title="NokninUI" @onclick="HandleNavigate">
             <span class="noknin-docs-logo" aria-hidden="true">N</span>
@@ -21,7 +21,7 @@
             }
 
             <NavLink class="noknin-docs-nav-link" href="" Match="NavLinkMatch.All" title="Overview" @onclick="HandleNavigate">
-                <span class="noknin-docs-nav-icon"><DocsIcon Name="home" Size="18" /></span>
+                <span class="noknin-docs-nav-icon" aria-hidden="true"><NokninIcon Name="NokninIconName.Home" Size="NokninSize.Small" /></span>
 
                 @if (!Collapsed)
                 {
@@ -37,97 +37,97 @@
             }
 
             <NavLink class="noknin-docs-nav-link" href="components/accordion" title="Accordion" @onclick="HandleNavigate">
-                <span class="noknin-docs-nav-icon"><DocsIcon Name="accordion" Size="18" /></span>
+                <span class="noknin-docs-nav-icon" aria-hidden="true"><NokninIcon Name="NokninIconName.ChevronDown" Size="NokninSize.Small" /></span>
                 @if (!Collapsed) { <span>Accordion</span> }
             </NavLink>
 
             <NavLink class="noknin-docs-nav-link" href="components/alert" title="Alert" @onclick="HandleNavigate">
-                <span class="noknin-docs-nav-icon"><DocsIcon Name="alert" Size="18" /></span>
+                <span class="noknin-docs-nav-icon" aria-hidden="true"><NokninIcon Name="NokninIconName.AlertTriangle" Size="NokninSize.Small" /></span>
                 @if (!Collapsed) { <span>Alert</span> }
             </NavLink>
 
             <NavLink class="noknin-docs-nav-link" href="components/badge" title="Badge" @onclick="HandleNavigate">
-                <span class="noknin-docs-nav-icon"><DocsIcon Name="badge" Size="18" /></span>
+                <span class="noknin-docs-nav-icon" aria-hidden="true"><NokninIcon Name="NokninIconName.CircleCheck" Size="NokninSize.Small" /></span>
                 @if (!Collapsed) { <span>Badge</span> }
             </NavLink>
 
             <NavLink class="noknin-docs-nav-link" href="components/button" title="Button" @onclick="HandleNavigate">
-                <span class="noknin-docs-nav-icon"><DocsIcon Name="button" Size="18" /></span>
+                <span class="noknin-docs-nav-icon" aria-hidden="true"><NokninIcon Name="NokninIconName.Menu" Size="NokninSize.Small" /></span>
                 @if (!Collapsed) { <span>Button</span> }
             </NavLink>
 
             <NavLink class="noknin-docs-nav-link" href="components/card" title="Card" @onclick="HandleNavigate">
-                <span class="noknin-docs-nav-icon"><DocsIcon Name="card" Size="18" /></span>
+                <span class="noknin-docs-nav-icon" aria-hidden="true"><NokninIcon Name="NokninIconName.Home" Size="NokninSize.Small" /></span>
                 @if (!Collapsed) { <span>Card</span> }
             </NavLink>
 
             <NavLink class="noknin-docs-nav-link" href="components/checkbox" title="Checkbox" @onclick="HandleNavigate">
-                <span class="noknin-docs-nav-icon"><DocsIcon Name="checkbox" Size="18" /></span>
+                <span class="noknin-docs-nav-icon" aria-hidden="true"><NokninIcon Name="NokninIconName.Check" Size="NokninSize.Small" /></span>
                 @if (!Collapsed) { <span>Checkbox</span> }
             </NavLink>
 
             <NavLink class="noknin-docs-nav-link" href="components/datagrid" title="DataGrid" @onclick="HandleNavigate">
-                <span class="noknin-docs-nav-icon"><DocsIcon Name="datagrid" Size="18" /></span>
+                <span class="noknin-docs-nav-icon" aria-hidden="true"><NokninIcon Name="NokninIconName.MoreHorizontal" Size="NokninSize.Small" /></span>
                 @if (!Collapsed) { <span>DataGrid</span> }
             </NavLink>
 
             <NavLink class="noknin-docs-nav-link" href="components/dropdown" title="Dropdown" @onclick="HandleNavigate">
-                <span class="noknin-docs-nav-icon"><DocsIcon Name="dropdown" Size="18" /></span>
+                <span class="noknin-docs-nav-icon" aria-hidden="true"><NokninIcon Name="NokninIconName.ChevronDown" Size="NokninSize.Small" /></span>
                 @if (!Collapsed) { <span>Dropdown</span> }
             </NavLink>
 
             <NavLink class="noknin-docs-nav-link" href="components/modal" title="Modal" @onclick="HandleNavigate">
-                <span class="noknin-docs-nav-icon"><DocsIcon Name="modal" Size="18" /></span>
+                <span class="noknin-docs-nav-icon" aria-hidden="true"><NokninIcon Name="NokninIconName.X" Size="NokninSize.Small" /></span>
                 @if (!Collapsed) { <span>Modal</span> }
             </NavLink>
 
             <NavLink class="noknin-docs-nav-link" href="components/pagination" title="Pagination" @onclick="HandleNavigate">
-                <span class="noknin-docs-nav-icon"><DocsIcon Name="pagination" Size="18" /></span>
+                <span class="noknin-docs-nav-icon" aria-hidden="true"><NokninIcon Name="NokninIconName.MoreHorizontal" Size="NokninSize.Small" /></span>
                 @if (!Collapsed) { <span>Pagination</span> }
             </NavLink>
 
             <NavLink class="noknin-docs-nav-link" href="components/radio" title="Radio" @onclick="HandleNavigate">
-                <span class="noknin-docs-nav-icon"><DocsIcon Name="radio" Size="18" /></span>
+                <span class="noknin-docs-nav-icon" aria-hidden="true"><NokninIcon Name="NokninIconName.CircleCheck" Size="NokninSize.Small" /></span>
                 @if (!Collapsed) { <span>Radio</span> }
             </NavLink>
 
             <NavLink class="noknin-docs-nav-link" href="components/select" title="Select" @onclick="HandleNavigate">
-                <span class="noknin-docs-nav-icon"><DocsIcon Name="select" Size="18" /></span>
+                <span class="noknin-docs-nav-icon" aria-hidden="true"><NokninIcon Name="NokninIconName.ChevronDown" Size="NokninSize.Small" /></span>
                 @if (!Collapsed) { <span>Select</span> }
             </NavLink>
 
             <NavLink class="noknin-docs-nav-link" href="components/switch" title="Switch" @onclick="HandleNavigate">
-                <span class="noknin-docs-nav-icon"><DocsIcon Name="switch" Size="18" /></span>
+                <span class="noknin-docs-nav-icon" aria-hidden="true"><NokninIcon Name="NokninIconName.Moon" Size="NokninSize.Small" /></span>
                 @if (!Collapsed) { <span>Switch</span> }
             </NavLink>
 
             <NavLink class="noknin-docs-nav-link" href="components/table" title="Table" @onclick="HandleNavigate">
-                <span class="noknin-docs-nav-icon"><DocsIcon Name="table" Size="18" /></span>
+                <span class="noknin-docs-nav-icon" aria-hidden="true"><NokninIcon Name="NokninIconName.MoreHorizontal" Size="NokninSize.Small" /></span>
                 @if (!Collapsed) { <span>Table</span> }
             </NavLink>
 
             <NavLink class="noknin-docs-nav-link" href="components/tabs" title="Tabs" @onclick="HandleNavigate">
-                <span class="noknin-docs-nav-icon"><DocsIcon Name="tabs" Size="18" /></span>
+                <span class="noknin-docs-nav-icon" aria-hidden="true"><NokninIcon Name="NokninIconName.Menu" Size="NokninSize.Small" /></span>
                 @if (!Collapsed) { <span>Tabs</span> }
             </NavLink>
 
             <NavLink class="noknin-docs-nav-link" href="components/text-area" title="TextArea" @onclick="HandleNavigate">
-                <span class="noknin-docs-nav-icon"><DocsIcon Name="text-area" Size="18" /></span>
+                <span class="noknin-docs-nav-icon" aria-hidden="true"><NokninIcon Name="NokninIconName.Search" Size="NokninSize.Small" /></span>
                 @if (!Collapsed) { <span>TextArea</span> }
             </NavLink>
 
             <NavLink class="noknin-docs-nav-link" href="components/text-field" title="TextField" @onclick="HandleNavigate">
-                <span class="noknin-docs-nav-icon"><DocsIcon Name="text-field" Size="18" /></span>
+                <span class="noknin-docs-nav-icon" aria-hidden="true"><NokninIcon Name="NokninIconName.Search" Size="NokninSize.Small" /></span>
                 @if (!Collapsed) { <span>TextField</span> }
             </NavLink>
 
             <NavLink class="noknin-docs-nav-link" href="components/toast" title="Toast" @onclick="HandleNavigate">
-                <span class="noknin-docs-nav-icon"><DocsIcon Name="toast" Size="18" /></span>
+                <span class="noknin-docs-nav-icon" aria-hidden="true"><NokninIcon Name="NokninIconName.Info" Size="NokninSize.Small" /></span>
                 @if (!Collapsed) { <span>Toast</span> }
             </NavLink>
 
             <NavLink class="noknin-docs-nav-link" href="components/tooltip" title="Tooltip" @onclick="HandleNavigate">
-                <span class="noknin-docs-nav-icon"><DocsIcon Name="tooltip" Size="18" /></span>
+                <span class="noknin-docs-nav-icon" aria-hidden="true"><NokninIcon Name="NokninIconName.CircleAlert" Size="NokninSize.Small" /></span>
                 @if (!Collapsed) { <span>Tooltip</span> }
             </NavLink>
         </div>

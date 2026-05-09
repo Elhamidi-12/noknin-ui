@@ -22,5 +22,9 @@ public class IconSmokeTests
         Assert.Contains("Moon", values);
         Assert.Contains("Check", values);
         Assert.Contains("X", values);
+        Assert.Contains("ChevronDown", values);
+        Assert.Contains("MoreHorizontal", values);
+        Assert.Contains("CircleCheck", values);
+        Assert.Contains("CircleAlert", values);
     }
 }
